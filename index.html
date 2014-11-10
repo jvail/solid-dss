@@ -2,22 +2,60 @@
   <head>
     <title></title>
     <meta content="">
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
     <script type="text/javascript">
 
-      $.ajax({
-        url: 'http://zalf-lse.github.io/test/tg_47.375_15.125.json.tar.gz',
-        beforeSend:function(xhr){
-            xhr.overrideMimeType('application/x-gzip');
-        },
-        success: function (ret) {
-          console.log(ret);
-        }
-      });
+      var zeeWorker = new Worker('./lib/zee/zee-worker.js');
+      var zeeCallbacks = [];
 
+      zeeWorker.onmessage = function (msg) {
+        zeeCallbacks[msg.data.callbackID](msg.data.data);
+        console.log("zee'd " + msg.data.filename + ' in ' + msg.data.time + ' ms, ' + msg.data.data.length + ' bytes');
+        zeeCallbacks[msg.data.callbackID] = null;
+      };
+
+      function requestZee(filename, data, callback) {
+        zeeWorker.postMessage({
+          filename: filename,
+          data: data, // do not send over the underlying ArrayBuffer
+          callbackID: zeeCallbacks.length
+        });
+        zeeCallbacks.push(callback);
+      }
+
+      var oReq = new XMLHttpRequest();
+      oReq.open("GET", "http://zalf-lse.github.io/test/tg_47.375_15.125.json.gz", true);
+      oReq.responseType = "blob";
+      oReq.overrideMimeType('application/x-gzip-compressed');
+      oReq.onload = function (oEvent) {
+
+        var arrayBuffer;
+        var fileReader = new FileReader();
+
+        fileReader.onload = function() {
+            arrayBuffer = fileReader.result;
+            if (typeof fileReader.result === 'string')
+              console.log(JSON.parse(fileReader.result));
+            else
+              requestZee('tg_47.375_15.125.json.gz', new Uint8Array(fileReader.result), function (data) {
+                // console.log(data);
+                fileReader.readAsText(new Blob([data]));
+              });
+            // sync
+            // fileReader.readAsText(new Blob([Zee.decompress(new Uint8Array(fileReader.result))], {type: 'application/x-compressed-tar'}));
+
+        };
+
+        fileReader.readAsArrayBuffer(oReq.response);
+
+      };
+
+      oReq.send(null);
 
     </script>
     <style></style>
   </head>
-  <body></body>
+  <body>
+    <a href=""></a>
+  </body>
 </html>
