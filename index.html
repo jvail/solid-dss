@@ -7,24 +7,13 @@
 
       $.ajax({
         url: 'http://zalf-lse.github.io/test/tg_47.375_15.125.json.tar.gz',
-        xhrFields : {
-          responseType : 'blob'
+        beforeSend:function(xhr){
+            xhr.overrideMimeType('application/x-gzip');
         },
         success: function (ret) {
           console.log(ret);
         }
       });
-
-      $.ajax({
-    url : "/blob/job.pdf",
-    success : onSuccess,
-    type : 'GET',
-    xhrFields : {
-      responseType : 'arraybuffer'
-    },
-    error : onError,
-    dataType : 'binary'
-  });
 
 
     </script>
