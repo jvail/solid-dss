@@ -23,7 +23,7 @@
         zeeCallbacks.push(callback);
       }
 
-      var req = new XDomainRequest();
+      var req = new XMLHttpRequest();
       req.open("GET", "https://github.com/zalf-lse/rr/raw/gh-pages/rr_47.375_15.125.json.gz", true);
       req.responseType = "arraybuffer";
       req.onload = function () {
