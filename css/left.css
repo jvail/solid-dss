@@ -1,8 +1,8 @@
 #left {
   width: 300px;
-  height: calc(100% - 55px);
+  height: calc(100% - 53px);
   border-color: #444;
-  border-right-width: 5px;
+  border-right-width: 3px;
   border-left-width: 0px;
   border-top-width: 0px;
   border-bottom-width: 0px;
