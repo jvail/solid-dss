@@ -1,0 +1,5 @@
+#right {
+  height: calc(100% - 55px);
+  border-width: 0px;
+  overflow: hidden;
+}

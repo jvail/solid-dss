@@ -1,0 +1,54 @@
+html {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+body {
+  background-color: #333;
+  line-height: 1.5em;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 68.75%;
+  color: #999;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+::-webkit-scrollbar-corner, ::-webkit-resizer {
+  background:transparent;
+}
+
+::-webkit-scrollbar {
+  width:8px;
+  height:8px;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+  height:10px;
+  display:block;
+  background:transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background:#272727;
+  border-radius:6px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height:10px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  width:10px;
+}
+
+::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
+  background:#999;
+  border-radius:6px;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {
+  background:#aaa;
+}
