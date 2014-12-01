@@ -3,11 +3,15 @@
   <head>
     <title>SOLID-DSS</title>
     <meta content="">
-    <link rel="stylesheet" href="css/index.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="css/top.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="css/left.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="css/right.css" type="text/css" media="screen" charset="utf-8">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="css/top.css" type="text/css">
+    <link rel="stylesheet" href="css/left.css" type="text/css">
+    <link rel="stylesheet" href="css/right.css" type="text/css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css" type="text/css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/index.ui.js"></script>
     <script type="text/javascript">
     </script>
     <style></style>
@@ -19,37 +23,23 @@
         <ul>
           <li>settings
             <ul>
-              <li>dairy
-                <ul>
-                  <li>herd</li>
-                  <li>milk yield</li>
-                  <li>system &amp; ration</li>
-                </ul>
-              </li> <!-- dairy -->
-              <li>bought-in feedstuff
-                <ul>
-                  <li>a</li>
-                  <li>b</li>
-                  <li>c</li>
-                </ul>
+              <li id='location-and-weather' class='link-li'>location &amp; weather</li>
+              <li id='dairy-herd' class='link-li'>dairy herd</li>
+              <li id='bought-in-feedstuff' class='link-li'>bought-in feedstuff
               </li> <!-- bought-in feedstuff -->
               <li>arable crops
                 <ul>
-                  <li>type I</li>
-                  <li>type II</li>
+                  <li id='arable-crops-1' class='link-li'>type I</li>
+                  <li id='arable-crops-2' class='link-li'>type II</li>
                 </ul>
               </li> <!-- arable crops -->
               <li>permanent grassland
                 <ul>
-                  <li>type I</li>
-                  <li>type II</li>
+                  <li id='permanent-grassland-1' class='link-li'>type I</li>
+                  <li id='permanent-grassland-2' class='link-li'>type II</li>
                 </ul>
               </li> <!-- permanent grassland -->
-              <li>simulation
-                <ul>
-                  <li>a</li>
-                </ul>
-              </li> <!-- simulation -->
+              <li id='simulation' class='link-li'>simulation</li>
             </ul>
           </li> <!-- settings -->
           <li>results
@@ -62,6 +52,38 @@
         </ul>
       </div> <!-- left -->
       <div id='right'>
+        <div id='location-and-weather' class='stack'>
+          <span class='stack-label'>location-and-weather</span>
+          <p class='parameter'>
+            <label for='lat'>latitude</label>
+            <input id='lat'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='lon'>longitude</label>
+            <input id='lon'></input>
+          </p>
+        </div>
+        <div id='dairy-herd' class='stack'>
+          <span class='stack-label'>dairy-herd</span>
+        </div>
+        <div id='bought-in-feedstuff' class='stack'>
+          <span class='stack-label'>bought-in-feedstuff</span>
+        </div>
+        <div id='arable-crops-1' class='stack'>
+          <span class='stack-label'>arable-crops-1</span>
+        </div>
+        <div id='arable-crops-2' class='stack'>
+          <span class='stack-label'>arable-crops-2</span>
+        </div>
+        <div id='permanent-grassland-1' class='stack'>
+          <span class='stack-label'>permanent-grassland-1</span>
+        </div>
+        <div id='permanent-grassland-2' class='stack'>
+          <span class='stack-label'>permanent-grassland-2</span>
+        </div>
+        <div id='simulation' class='stack'>
+          <span class='stack-label'>simulation</span>
+        </div>
       </div> <!-- right -->
   </body>
 </html>

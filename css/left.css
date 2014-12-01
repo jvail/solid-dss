@@ -11,3 +11,8 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+#left > ul {
+  margin: 10px;
+  padding: 0px;
+}
