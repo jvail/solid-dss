@@ -117,5 +117,63 @@ $(function () {
 
   });
 
+  console.log(feed);
+  // feed
+  for (var i = 0, is = feed.feeds.length; i < is; i++) {
+
+    var f = feed.feeds[i];
+    if (f.type != 'straw' && f.type != 'concentrate' && f.type != 'hay')
+      continue;
+
+    var html = "";
+    html += "<div class='feed'>";
+    html +=   "<span class='feed-edit ui-icon ui-icon-triangle-1-e'></span>";
+    html +=   "<input id='feed-"+i+"' type='checkbox'></input>";
+    html +=   "<label for='feed-"+i+"'>"+f.name+"</label>";
+    html +=   "<div class='feed-content'>";
+    html +=     "<p class='feed-parameter'><label>DM</label><input value="+f.DM+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>ash</label><input value="+f.ash+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>OM</label><input value="+f.OM+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>OMD</label><input value="+f.OMD+"></input></p>";
+    html +=     "<p class='feed-parameter'><label>CP</label><input value="+f.CP+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>CPD</label><input value="+f.CPD+"></input></p>";
+    html +=     "<p class='feed-parameter'><label>EE</label><input value="+f.EE+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>EED</label><input value="+f.EED+"></input></p>";
+    html +=     "<p class='feed-parameter'><label>CF</label><input value="+f.CF+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>CFD</label><input value="+f.CFD+"></input></p>";
+    html +=     "<p class='feed-parameter'><label>NFE</label><input value="+f.NFE+"></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>NFED</label><input value="+f.NFED+"></input></p>";
+    html +=     "<p class='feed-parameter'><label>NDF</label><input value="+f.NDF+"></input></p>";
+    html +=   "</div>";
+    html += "</div>";
+
+    if (f.type === 'straw')
+      $('#straw').append(html);
+    else if (f.type === 'concentrate')
+      $('#concentrate').append(html);
+    else if (f.type === 'hay')
+      $('#hay').append(html);
+
+  }
+
+  $('.feed-parameter > input').spinner();
+
+  $('.feed-edit').on('click', function () {
+
+
+    $('.feed-content:visible', $(this).parents('.feed-column')).slideUp(200)
+    $('.feed-edit', $(this).parents('.feed-column')).removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
+
+    if (!$(this).siblings('.feed-content').is(':visible')) {
+      $(this).removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s');
+      $(this).siblings('.feed-content').slideDown(200);
+    }
+
+  });
+
+
+  $('#advanced').on('change', function () {
+    $('.advanced').fadeToggle(500);
+  })
 
 });

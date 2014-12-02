@@ -2,22 +2,24 @@
 <html>
   <head>
     <title>SOLID-DSS</title>
-    <meta content="">
-    <link rel="stylesheet" href="css/index.css" type="text/css">
-    <link rel="stylesheet" href="css/top.css" type="text/css">
-    <link rel="stylesheet" href="css/left.css" type="text/css">
-    <link rel="stylesheet" href="css/right.css" type="text/css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css" type="text/css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/index.ui.js"></script>
-    <script type="text/javascript">
+    <meta content=''>
+    <link rel='stylesheet' href='css/index.css' type='text/css'>
+    <link rel='stylesheet' href='css/top.css' type='text/css'>
+    <link rel='stylesheet' href='css/left.css' type='text/css'>
+    <link rel='stylesheet' href='css/right.css' type='text/css'>
+    <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css' type='text/css'>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src='lib/dairy.min.js'></script>
+    <script src='js/index.js'></script>
+    <script src='js/index.ui.js'></script>
+    <script type='text/javascript'>
     </script>
     <style></style>
   </head>
   <body>
       <div id='top'>
+        <label for='advanced'>advanced</label><input id='advanced' type='checkbox'>
       </div> <!-- top -->
       <div id='left'>
         <ul>
@@ -53,7 +55,7 @@
       </div> <!-- left -->
       <div id='right'>
         <div id='location-and-weather' class='stack'>
-          <span class='stack-label'>location-and-weather</span>
+          <p class='stack-label'>location-and-weather</p>
           <p class='parameter'>
             <label for='lat'>latitude</label>
             <input id='lat'></input>          
@@ -64,25 +66,34 @@
           </p>
         </div>
         <div id='dairy-herd' class='stack'>
-          <span class='stack-label'>dairy-herd</span>
+          <p class='stack-label'>dairy-herd</p>
         </div>
         <div id='bought-in-feedstuff' class='stack'>
-          <span class='stack-label'>bought-in-feedstuff</span>
+          <p class='stack-label'>bought-in-feedstuff</p>
+          <div id='concentrate' class='feed-column'>
+            <p class='stack-label'>concentrate</p>
+          </div>
+          <div id='hay' class='feed-column'>
+            <p class='stack-label'>hay</p>
+          </div>
+          <div id='straw' class='feed-column'>
+            <p class='stack-label'>straw</p>
+          </div>
         </div>
         <div id='arable-crops-1' class='stack'>
-          <span class='stack-label'>arable-crops-1</span>
+          <p class='stack-label'>arable-crops-1</p>
         </div>
         <div id='arable-crops-2' class='stack'>
-          <span class='stack-label'>arable-crops-2</span>
+          <p class='stack-label'>arable-crops-2</p>
         </div>
         <div id='permanent-grassland-1' class='stack'>
-          <span class='stack-label'>permanent-grassland-1</span>
+          <p class='stack-label'>permanent-grassland-1</p>
         </div>
         <div id='permanent-grassland-2' class='stack'>
-          <span class='stack-label'>permanent-grassland-2</span>
+          <p class='stack-label'>permanent-grassland-2</p>
         </div>
         <div id='simulation' class='stack'>
-          <span class='stack-label'>simulation</span>
+          <p class='stack-label'>simulation</p>
         </div>
       </div> <!-- right -->
   </body>
