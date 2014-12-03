@@ -44,17 +44,17 @@
   white-space: nowrap;
 }*/
 
-.feed > label {
+.feed > .feed-name {
   display: inline;
   vertical-align: 2px; /* align with checkbox */
   cursor: pointer;
   white-space: nowrap;
 }
 
-.feed > .ui-icon {
+.feed > .feed-icon {
   background-image: url('http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/images/ui-icons_ffffff_256x240.png') !important;
   display: inline-block;
-  cursor: pointer;
+  vertical-align: 0px;
   width: 20px;
 }
 
@@ -65,8 +65,6 @@
 }
 
 .feed-parameter  > input {
-  min-width: 60px;
-  max-width: 60px;
   display: inline;
 }
 
@@ -75,9 +73,9 @@
   display: none;
 }
 
-.feed-column > .feed:nth-child(2) > .feed-content {
+/*.feed-column > .feed:nth-child(2) > .feed-content {
   display: block;
-}
+}*/
 
 .feed-column {
   float: left;

@@ -117,8 +117,10 @@ $(function () {
 
   });
 
-  console.log(feed);
   // feed
+  feed.feeds.sort(function (a, b) { 
+    return (a.name > b.name) ? 1 : ((a.name < b.name) ? -1 : 0); 
+  });
   for (var i = 0, is = feed.feeds.length; i < is; i++) {
 
     var f = feed.feeds[i];
@@ -127,9 +129,9 @@ $(function () {
 
     var html = "";
     html += "<div class='feed'>";
-    html +=   "<span class='feed-edit ui-icon ui-icon-triangle-1-e'></span>";
-    html +=   "<input id='feed-"+i+"' type='checkbox'></input>";
-    html +=   "<label for='feed-"+i+"'>"+f.name+"</label>";
+    html +=   "<input id='feed-"+f.id+"' type='checkbox' data-id='"+f.id+"'></input>";
+    html +=   "<span class='feed-icon ui-icon ui-icon-triangle-1-e'></span>";
+    html +=   "<span class='feed-name'>"+f.name+"</span>";
     html +=   "<div class='feed-content'>";
     html +=     "<p class='feed-parameter'><label>DM</label><input value="+f.DM+"></input></p>";
     html +=     "<p class='feed-parameter advanced'><label>ash</label><input value="+f.ash+"></input></p>";
@@ -156,17 +158,22 @@ $(function () {
 
   }
 
-  $('.feed-parameter > input').spinner();
+  $('.feed-parameter > input').spinner({
+    min: 0,
+    create: function () {
+      $(this).css('width', '40px');
+    }
+  });
 
-  $('.feed-edit').on('click', function () {
+  $('.feed-name').on('click', function () {
 
-
+    var icon = $('.feed-icon', $(this).parents('.feed'))
     $('.feed-content:visible', $(this).parents('.feed-column')).slideUp(200)
-    $('.feed-edit', $(this).parents('.feed-column')).removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
+    $('.feed-icon', $(this).parents('.feed-column')).removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
 
-    if (!$(this).siblings('.feed-content').is(':visible')) {
-      $(this).removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s');
-      $(this).siblings('.feed-content').slideDown(200);
+    if (!icon.siblings('.feed-content').is(':visible')) {
+      icon.removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s');
+      icon.siblings('.feed-content').slideDown(200);
     }
 
   });
