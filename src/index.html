@@ -7,19 +7,24 @@
     <link rel='stylesheet' href='css/top.css' type='text/css'>
     <link rel='stylesheet' href='css/left.css' type='text/css'>
     <link rel='stylesheet' href='css/right.css' type='text/css'>
+    <link rel='stylesheet' href='css/feed.css' type='text/css'>
+    <link rel='stylesheet' href='css/arable.css' type='text/css'>
     <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css' type='text/css'>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
     <script src='lib/dairy.min.js'></script>
     <script src='js/index.js'></script>
     <script src='js/index.ui.js'></script>
+    <script src='js/ui.feed.js'></script>
+    <script src='js/ui.arable.js'></script>
     <script type='text/javascript'>
     </script>
     <style></style>
   </head>
   <body>
       <div id='top'>
-        <label for='advanced'>advanced</label><input id='advanced' type='checkbox'>
+        <div class='ctrl'><label for='advanced'>advanced</label><input id='advanced' type='checkbox'></div>
+        <img id='logo' src='img/cow.svg' height='50' width='50'>
       </div> <!-- top -->
       <div id='left'>
         <ul>
@@ -82,6 +87,78 @@
         </div>
         <div id='arable-crops-1' class='stack'>
           <p class='stack-label'>arable-crops-1</p>
+          <p class='stack-label'>soil</p>
+          <p class='parameter'>
+            <label for='area'>area</label>
+            <input id='area'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='top-soil-depth'>top soil depth</label>
+            <input id='top-soil-depth'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='top-soil-clay'>top soil clay</label>
+            <input id='top-soil-clay'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='top-soil-sand'>top soil sand</label>
+            <input id='top-soil-sand'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='sub-soil-clay'>sub soil clay</label>
+            <input id='sub-soil-clay'></input>          
+          </p>
+          <p class='parameter'>
+            <label for='sub-soil-sand'>sub soil sand</label>
+            <input id='sub-soil-sand'></input>          
+          </p>
+          <p class='stack-label' style='clear: both;'>rotations</p>
+          <div>
+            <div id='well-div'>
+              <div id='testitem1' class='item-well wheat' data-crop='wheat'>        
+                <div class='item-header'>
+                  <span class='item-label'>winter wheat</span>
+                  <span class='ui-icon ui-icon-close'></span>
+                </div>
+              </div>
+              <div id='testitem2' class='item-well maize' data-crop='maize'>        
+                <div class='item-header'>
+                  <span class='item-label'>maize</span>
+                  <span class='ui-icon ui-icon-close'></span>
+                </div>
+              </div>
+              <div id='testitem3' class='item-well grass' data-crop='grass'>        
+                <div class='item-header'>
+                  <span class='item-label'>grass</span>
+                  <span class='ui-icon ui-icon-close'></span>
+                </div>
+              </div>
+            </div>
+            <div id='rotation-div'>
+                <svg id='svg' width='700' height='100%' xmlns:svg='http://www.w3.org/2000/svg'>
+                  <rect x='0' y='0' width='100%' height='100%' stroke-width='0' fill='#333' />
+                  <line x1='100' y1='0' x2='100' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <line x1='200' y1='0' x2='200' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <line x1='300' y1='0' x2='300' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <line x1='400' y1='0' x2='400' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <line x1='500' y1='0' x2='500' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <line x1='600' y1='0' x2='600' y2='300' stroke-dasharray='3,3' style='stroke: rgb(40,40,40); stroke-width: 0.4; fill: rgba(0, 0, 0, 0);'  />
+                  <path id='preview-path' stroke-dasharray='3,3' d='M 0 0 C 0 0 0 0 0 0' style='stroke: #aaa; stroke-width: 1.5; fill: rgba(0, 0, 0, 0);opacity:0;'></path>
+                </svg>
+              <div class='container'></div>
+              <div class='container'></div>
+              <div class='container'></div>
+              <div class='container'></div>
+              <div class='container'></div>
+              <div class='container'></div>
+              <div class='container no-drop'></div>
+            </div>
+            <div id='rotation-crops-div'>
+              <p class='stack-label'>crop</p>
+              <span id='crop-name'>crop name</span>
+            </div>
+          </div>
+
         </div>
         <div id='arable-crops-2' class='stack'>
           <p class='stack-label'>arable-crops-2</p>

@@ -27,60 +27,19 @@
 .parameter > label {
   display: block;
   width: 100px;
+  white-space: nowrap;
 }
 
-.parameter > span {
-  width: 100px;
+.parameter {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .advanced {
   display: none;
 }
 
-
-/*label {
-  display: block;
-  width: 100px;
-  white-space: nowrap;
-}*/
-
-.feed > .feed-name {
-  display: inline;
-  vertical-align: 2px; /* align with checkbox */
-  cursor: pointer;
-  white-space: nowrap;
+.stack-label {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-
-.feed > .feed-icon {
-  background-image: url('http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/images/ui-icons_ffffff_256x240.png') !important;
-  display: inline-block;
-  vertical-align: 0px;
-  width: 20px;
-}
-
-.feed-parameter > label {
-  min-width: 40px;
-  max-width: 40px;
-  display: inline-block;
-}
-
-.feed-parameter  > input {
-  display: inline;
-}
-
-.feed-content {
-  margin-left: 25px;
-  display: none;
-}
-
-/*.feed-column > .feed:nth-child(2) > .feed-content {
-  display: block;
-}*/
-
-.feed-column {
-  float: left;
-  margin-right: 15px;
-}
-
-
-

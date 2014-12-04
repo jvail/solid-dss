@@ -7,4 +7,21 @@
   border-top-width: 0px;
   border-bottom-width: 3px;
   border-style: solid;
+  position: relative;
+}
+
+.ctrl {
+  position: absolute;
+  top: 10px;
+  margin-left: 10px;
+}
+
+.ctrl > label, input {
+  vertical-align: middle;
+}
+
+#logo {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 25px);
 }
