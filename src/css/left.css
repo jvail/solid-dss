@@ -10,9 +10,15 @@
   float: left;
   overflow-x: hidden;
   overflow-y: auto;
+  font-weight: bold;
 }
 
 #left > ul {
   margin: 10px;
   padding: 0px;
+}
+
+.link-li {
+  cursor: pointer;
+  font-weight: normal;
 }

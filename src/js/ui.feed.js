@@ -35,19 +35,20 @@ $(function () {
     html +=   "<span class='feed-icon ui-icon ui-icon-triangle-1-e'></span>";
     html +=   "<span class='feed-name'>"+f.name+"</span>";
     html +=   "<div class='feed-content'>";
-    html +=     "<p class='feed-parameter'><label>DM</label><input value="+f.DM+" data-name='DM'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>ash</label><input value="+f.ash+" data-name='ash'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>OM</label><input value="+f.OM+" data-name='OM'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>OMD</label><input value="+f.OMD+" data-name='OMD'></input></p>";
-    html +=     "<p class='feed-parameter'><label>CP</label><input value="+f.CP+" data-name='CP'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>CPD</label><input value="+f.CPD+" data-name='CPD'></input></p>";
-    html +=     "<p class='feed-parameter'><label>EE</label><input value="+f.EE+" data-name='EE'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>EED</label><input value="+f.EED+" data-name='EED'></input></p>";
-    html +=     "<p class='feed-parameter'><label>CF</label><input value="+f.CF+" data-name='CF'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>CFD</label><input value="+f.CFD+" data-name='CFD'></input></p>";
-    html +=     "<p class='feed-parameter'><label>NFE</label><input value="+f.NFE+" data-name='NFE'></input></p>";
-    html +=     "<p class='feed-parameter advanced'><label>NFED</label><input value="+f.NFED+" data-name='NFED'></input></p>";
-    html +=     "<p class='feed-parameter'><label>NDF</label><input value="+f.NDF+" data-name='NDF'></input></p>";
+    html +=     "<p class='feed-parameter'><label title='bought fresh matter [t year-1]'>FM</label><input value='0' data-name='FM'></input></p>";
+    html +=     "<p class='feed-parameter'><label>DM</label><input value='"+f.DM+"' data-name='DM'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>ash</label><input value='"+f.ash+"' data-name='ash'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>OM</label><input value='"+f.OM+"' data-name='OM'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>OMD</label><input value='"+f.OMD+"' data-name='OMD'></input></p>";
+    html +=     "<p class='feed-parameter'><label>CP</label><input value='"+f.CP+"' data-name='CP'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>CPD</label><input value='"+f.CPD+"' data-name='CPD'></input></p>";
+    html +=     "<p class='feed-parameter'><label>EE</label><input value='"+f.EE+"' data-name='EE'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>EED</label><input value='"+f.EED+"' data-name='EED'></input></p>";
+    html +=     "<p class='feed-parameter'><label>CF</label><input value='"+f.CF+"' data-name='CF'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>CFD</label><input value='"+f.CFD+"' data-name='CFD'></input></p>";
+    html +=     "<p class='feed-parameter'><label>NFE</label><input value='"+f.NFE+"' data-name='NFE'></input></p>";
+    html +=     "<p class='feed-parameter advanced'><label>NFED</label><input value='"+f.NFED+"' data-name='NFED'></input></p>";
+    html +=     "<p class='feed-parameter'><label>NDF</label><input value='"+f.NDF+"' data-name='NDF'></input></p>";
     html +=   "</div>";
     html += "</div>";
 
@@ -72,7 +73,7 @@ $(function () {
   $('.feed-parameter > input').spinner({
     min: 0,
     create: function () {
-      $(this).css('width', '40px');
+      $(this).css('width', '130px');
     }
   });
 

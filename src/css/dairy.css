@@ -1,0 +1,37 @@
+
+#lacdata {
+  width: 150px;
+  height: 240px; 
+}
+
+.dairy-parameter > label {
+  min-width: 40px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.dairy-parameter  > input {
+  display: inline;
+}
+
+.dairy-parameter  >  select {
+  width: 158px;
+  display: inline;
+}
+
+.ui-selectmenu-button {
+  height: 20px;
+}
+
+.ui-selectmenu-button span.ui-selectmenu-text {
+  padding: 0px;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-top: 2px;
+}
+
+.dairy-column {
+  min-width: 200px;
+  float: left;
+  margin-right: 15px;
+}

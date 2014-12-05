@@ -3,13 +3,15 @@
   <head>
     <title>SOLID-DSS</title>
     <meta content=''>
+    <!-- <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css' type='text/css'> -->
+    <link rel='stylesheet' href='http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css'>
     <link rel='stylesheet' href='css/index.css' type='text/css'>
     <link rel='stylesheet' href='css/top.css' type='text/css'>
     <link rel='stylesheet' href='css/left.css' type='text/css'>
     <link rel='stylesheet' href='css/right.css' type='text/css'>
     <link rel='stylesheet' href='css/feed.css' type='text/css'>
     <link rel='stylesheet' href='css/arable.css' type='text/css'>
-    <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css' type='text/css'>
+    <link rel='stylesheet' href='css/dairy.css' type='text/css'>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
     <script src='lib/dairy.min.js'></script>
@@ -17,6 +19,7 @@
     <script src='js/index.ui.js'></script>
     <script src='js/ui.feed.js'></script>
     <script src='js/ui.arable.js'></script>
+    <script src='js/ui.dairy.js'></script>
     <script type='text/javascript'>
     </script>
     <style></style>
@@ -72,6 +75,158 @@
         </div>
         <div id='dairy-herd' class='stack'>
           <p class='stack-label'>dairy-herd</p>
+          <div class='dairy-column'>
+            <p class='stack-label'>cow</p>
+            <p class='dairy-parameter'>
+              <label for="bw-spinner">Mature body weight [kg]</label><br>
+              <input id="bw-spinner" class='spinner' name="bw-spinner" value="650" title='Body weight of mature cow'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="ac-spinner">Age first calving [month]</label><br>
+              <input id="ac-spinner" class='spinner' name="ac-spinner" value="24" title='Age of first valving in month'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="wc-spinner">Body weight 1st calving [%]</label><br>
+              <input id="wc-spinner" class='spinner' name="wc-spinner" value="85" title='Body weight of heifer at 1st calving as % of mature body weight'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="fat-spinner">Milk fat [%]</label><br>
+              <input id="fat-spinner" class='spinner' name="fat-spinner" value="4.2" title='Milk fat'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="protein-spinner">Milk protein [%]</label><br>
+              <input id="protein-spinner" class='spinner' name="protein-spinner" value="3.4" title='Milk protein'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="lac-select">Milk yield data per level</label><br>
+              <select id="lac-select" class='selectmenu' name="lac-select">
+                <option value="0">Some real data</option>
+                <option value="6500">~ 6500 kg</option>
+                <option value="7500">~ 7500 kg</option>
+                <option value="8500">~ 8500 kg</option>
+                <option value="9500">~ 9500 kg</option>
+                <option value="10500">~ 10500 kg</option>
+                <option value="11500">~ 11500 kg</option>
+              </select>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="lacdata">Lactation data [week;kg]</label><br>
+              <textarea id='lacdata' cols=20 rows=35 maxlength=1000 title='Paste semicolon or tab separated milk yield - not ECM - values (week of lactation;kg milk) of an average, mature cow (parity > 2) here or select a predefined set.'>
+1;17.3
+2;27.65
+3;28.14
+4;27.69
+5;30.35
+6;29
+7;28.07
+8;28.16
+9;27.2
+10;26.21
+11;26.03
+12;25.6
+13;25.49
+14;24.31
+15;24.31
+16;24.54
+17;24.29
+18;24.42
+19;24.24
+20;24.84
+21;23.43
+22;22.86
+23;22.1
+24;22.4
+25;21.49
+26;20.43
+27;19.7
+28;18.03
+29;18.49
+30;18.2
+31;15.84
+32;13.49
+33;12.67
+34;12.68
+35;13.45
+36;12.89
+37;13.4
+38;14.37
+39;13.7
+40;12.19
+41;11.13
+42;10.47
+              </textarea>
+            </p>
+            <p class='dairy-parameter'>
+              <input type="checkbox" id="dual-check" title='Is cow a dual-purpose breed?'><label for="dual-check">Dual-purpose breed?</label>
+            </p>
+          </div>
+          <div class='dairy-column'>
+            <p class='stack-label'>herd</p>
+            <p class='dairy-parameter'>
+              <label for="ci-spinner">Calving interval [month]</label><br>
+              <input id="ci-spinner" class='spinner' name="ci-spinner" value="13" title='Month inbetween calvings'>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="fc-spinner">Female calves [%]</label><br>
+              <input id="fc-spinner" class='spinner' name="fc-spinner" value="47.0" title='Rate of female calves'>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="sb-spinner">Still birth [%]</label><br>
+              <input id="sb-spinner" class='spinner' name="sb-spinner" value="7.0" title='Dead born calves'>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="yc-spinner">Young stock culled [%]</label><br>
+              <input id="yc-spinner" class='spinner' name="yc-spinner" value="15.0" title='Rate of young stock that does not make it till 1st parity'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="rr-spinner">Annual replacement [%]</label><br>
+              <input id="rr-spinner" class='spinner' name="rr-spinner" value="30.0" title='Annual herd replacement'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="dp-spinner">Dry period [weeks]</label><br>
+              <input id="dp-spinner" class='spinner' name="dp-spinner" value="8" title='Length of dry period in weeks'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="hs-spinner">Herd size [#]</label><br>
+              <input id="hs-spinner" class='spinner' name="hs-spinner" value="50" title='Size of herd'>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="gr-spinner">No. groups w/o dry [#]</label><br>
+              <input id="gr-spinner" class='spinner' name="gr-spinner" value="3" title='Number of groups without dry group'>
+            </p>
+          </div>
+          <div class='dairy-column'>
+            <p class='stack-label'>system &amp; ration</p>
+            <p class='dairy-parameter'>
+              <label for="eval-sys">evaluation system</label><br>
+              <select id="eval-sys" class='selectmenu' name="eval-sys" title="Note: The diet will use the German protein system and the selected system's energy unit">
+                <option value="de">German NEL</option>
+                <option value="fi">Finnish ME</option>
+                <option value="fr">French UFL</option>
+                <option value="gb">British ME</option>
+              </select>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="rnb-lb">RNB lower bound [nitrogen]</label><br>
+              <select id="rnb-lb" class='selectmenu' name="rnb-lb" title='Lower bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
+                <option value="-Infinity">-Infinity</option>
+                <option value="-10">-10</option>
+                <option value="0" selected>0</option>
+              </select>
+            </p>
+            <p class='dairy-parameter advanced'>
+              <label for="rnb-ub">RNB upper bound [nitrogen]</label><br>
+              <select id="rnb-ub" class='selectmenu' name="rnb-ub" title='Upper bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
+                <option value="Infinity">Infinity</option>
+                <option value="50" selected>50</option>
+                <option value="0">0</option>
+              </select>
+            </p>
+            <p class='dairy-parameter'>
+              <label for="cc-spinner">Max. concentrate share in diet [%]</label><br>
+              <input id="cc-spinner" class='spinner' name="cc-spinner" value="40" title='Maximum concentrate share in diet in % of total dry matter intake'>
+            </p>
+          </div>
         </div>
         <div id='bought-in-feedstuff' class='stack'>
           <p class='stack-label'>bought-in-feedstuff</p>
@@ -104,6 +259,10 @@
             <label for='top-soil-sand'>top soil sand</label>
             <input id='top-soil-sand'></input>          
           </p>
+          <p class='parameter advanced'>
+            <label for='top-soil-corg'>top soil corg</label>
+            <input id='top-soil-corg'></input>          
+          </p>
           <p class='parameter'>
             <label for='sub-soil-clay'>sub soil clay</label>
             <input id='sub-soil-clay'></input>          
@@ -112,7 +271,12 @@
             <label for='sub-soil-sand'>sub soil sand</label>
             <input id='sub-soil-sand'></input>          
           </p>
-          <p class='stack-label' style='clear: both;'>rotations</p>
+          <p class='parameter advanced'>
+            <label for='sub-soil-corg'>sub soil corg</label>
+            <input id='sub-soil-corg'></input>          
+          </p>
+          <hr>
+          <p class='stack-label'>rotations</p>
           <div>
             <div id='well-div'>
               <div id='testitem1' class='item-well wheat' data-crop='wheat'>        

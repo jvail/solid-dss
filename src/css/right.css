@@ -19,11 +19,6 @@
   display: none;
 }
 
-.link-li {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .parameter > label {
   display: block;
   width: 100px;
@@ -42,4 +37,5 @@
 .stack-label {
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size: 110%;
 }

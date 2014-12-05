@@ -10,12 +10,29 @@ body {
   background-color: #333;
   line-height: 1.5em;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-size: 75%;
+  /*font-family: Georgia, serif  !important;*/
+  font-size: 82%;
   color: #999;
   height: 100%;
   margin: 0px;
   padding: 0px;
   border: 0px;
+}
+
+hr {
+  clear: both;
+  border: 0;
+  height: 2px;
+  color: #444;
+  background-color: #444;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; 
+  font-size: 100%;
+  font-weight: normal;
 }
 
 ::-webkit-scrollbar-corner, ::-webkit-resizer {
