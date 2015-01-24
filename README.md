@@ -12,6 +12,10 @@ SOLID-DSS - an online application balancing forage supply and demand in organic 
 In: Rahmann, G., Aksoy, U. (eds), Proceedings of the 4th ISOFAR Scientific Conference "Building Organic Bridges", at
 the Organic World Congress 2014, 13-15 October, Istanbul, Turkey. 29-31.
 
+Baldinger, L., Vaillant, J., Zollitsch, W. and Rinne, M. 2014.
+Making a decision support system for dairy farmers usable throughout Europe - the challenge of feed evaluation.
+Oral presentation at the International Livestock Modelling and Research Colloquium, 14-16 October, Bilbao, Spain.
+
 Baldinger, L., Vaillant, J., Zollitsch, W., and Rinne, M. 2014.
 SOLID-DSS - Eine online-Anwendung zur verbesserten Abstimmung von Grundfutterangebot und -bedarf auf biologisch wirtschaftenden Low Input Milchviehbetrieben.
 In: Wiesinger, K., Cais, K., Obermaier, S. (eds), Proceedings of the Öko-Landbau-Tag 2014, 9 April, Triesdorf, Germany. 19-22.
