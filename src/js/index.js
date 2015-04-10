@@ -1,5 +1,69 @@
 $(function () {
 
+var colors = ['rgb(107, 174, 214)',
+      'rgb(116, 196, 118)',
+      'rgb(251, 106, 74)',
+      'rgb(254, 153, 41)',
+      'rgb(204, 76, 2)',
+      'rgb(106, 81, 163)',
+      'rgb(206, 18, 86)',
+      'rgb(164, 46, 46)',
+      'rgb(107,174,214)',
+      'rgb(35,139,69)'];
+
+var chartPrecip = c3.generate({
+    bindto: '#chart-precip',
+    data: {
+        x: 'x',
+       xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
+        columns: [
+            ['x'],
+            ['precipitation'],
+            ['temperature']
+        ],
+        type: 'bar',
+        axes: {
+            precipitation: 'y',
+            temperature: 'y2'
+        },
+        colors: {
+            precipitation: colors[0],
+            temperature: colors[3]
+        }
+    },
+    bar: {
+        width: {
+            ratio: 0.9 // this makes bar width 50% of length between ticks
+        }
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            tick: {
+                format: '%Y-%m'
+            }
+        },
+        y2: {
+            show: true,
+            label: 'avg. monthly temperature'
+        },
+        y: {
+            show: true,
+            label: 'sum monthly precipitation'
+        }
+    },
+    zoom: {
+        enabled: true
+    }
+});
+
+var model = {
+  site: {
+    latitude: 0,
+    longitude: 0
+  }
+};
+
 function getWarning(strong, text) {
 
   return '<div class="alert alert-warning alert-dismissible container" role="alert">\
@@ -15,8 +79,8 @@ if (navigator.geolocation) {
       $('#lon').prop('value', pos.coords.longitude.toFixed(3));
     },
     function (err) {
-      $('#lat').prop('value', 52.52);
-      $('#lon').prop('value', 13.41);        
+      $('#lat').prop('value', 52.520);
+      $('#lon').prop('value', 13.410);        
     }
   );
 }  
@@ -29,14 +93,16 @@ $("#navbar").on('activate.bs.scrollspy', function () {
   console.log(href);
 
   if (href === 'weather-chart') {
-    var lat = parseFloat($('#lat').prop('value'));
-    var lon = parseFloat($('#lon').prop('value'));
+    var lat = parseFloat(Number($('#lat').prop('value')).toFixed(3));
+    var lon = parseFloat(Number($('#lon').prop('value')).toFixed(3));
+    if (model.site.latitude === lat && model.site.longitude === lon)
+      return;
+
+    model.site.latitude = lat;
+    model.site.longitude = lon;
 
     console.log(lat);
     console.log(lon);
-
-    if (lat === 0 || lon === 0 || isNaN(lat) || isNaN(lon))
-      return;
 
     var dec = [0.125,0.375,0.625,0.875];
     var lat_dec = Number('0.' + lat.toFixed(3).split('.')[1]);
@@ -55,7 +121,7 @@ $("#navbar").on('activate.bs.scrollspy', function () {
 
       if (data === null) {
         // on fail TODO: keep failing coords
-        $(getWarning('Sorry.', 'No weather data available for your coordinates.')).prependTo($('body')).fadeOut(6000);
+        $(getWarning('Sorry.', 'No weather data available for your coordinates.')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
         return;
       }
 
@@ -102,15 +168,74 @@ $("#navbar").on('activate.bs.scrollspy', function () {
         climate.exrad[d] = solar.R_a[d];
       }
 
-      var yearly_precip = climate.precip.reduce(function (a, b, i) {
-        if (climate.doy[i] === 1) {
-          a.push({ year: climate.date[i].split('-')[0], value: b});
+      // var yearly_precip = climate.precip.reduce(function (a, b, i) {
+      //   if (climate.doy[i] === 1) {
+      //     a.push({ year: climate.date[i].split('-')[0], value: b});
+      //   } else {
+      //     a[a.length - 1].value += b;
+      //   }
+      //   return a;
+      // }, []);
+
+      // var monthly_precip = climate.precip.reduce(function (a, b, i) {
+      //   var month = climate.date[i].substring(0, 7);
+      //   if (a.length === 0 || month !== a[a.length - 1].month) {
+      //     a.push({ month: month, value: b });
+      //   } else {
+      //     a[a.length - 1].value += b;
+      //   }
+      //   return a;
+      // }, []);
+
+      var monthly_precip = climate.precip.reduce(function (a, b, i) {
+        var month = climate.date[i].substring(0, 7);
+        if (month + '-01' !== a[0][a[0].length - 1]) {
+          a[0].push(month + '-01');
+          a[1].push(b);
         } else {
-          a[a.length - 1].value += b;
+          a[1][a[1].length - 1] += b;
         }
         return a;
-      }, []);
-      updatePrecipChart(yearly_precip);
+      }, [['x'], ['precipitation']]);
+
+      console.log(monthly_precip);
+
+      var yearly_precip = climate.precip.reduce(function (a, b, i) {
+        var year = climate.date[i].substring(0, 4);
+        if (year !== a[0][a[0].length - 1]) {
+          a[0].push(year);
+          a[1].push(b);
+        } else {
+          a[1][a[1].length - 1] += b;
+        }
+        return a;
+      }, [['x'], ['precipitation']]);
+
+      console.log(yearly_precip);
+
+      var monthly_tavg = climate.tavg.reduce(function (a, b, i) {
+        var month = climate.date[i].substring(0, 7);
+        if (a.length === 0 ||month !== a[a.length - 1].month) {
+          a.push({ month: month, value: b, count: 1 });
+        } else {
+          a[a.length - 1].value += b;
+          a[a.length - 1].count += 1;
+        }
+        return a;
+      }, []).reduce(function (a, b) {
+        a.push(b.value / b.count);
+        return a;
+      }, ['temperature']);
+      
+      console.log(monthly_tavg);
+
+      var columns = monthly_precip;
+      columns.push(monthly_tavg);
+      chartPrecip.load({
+        columns: columns
+      });
+      console.log(columns);
+
     });
     
   }
@@ -199,104 +324,106 @@ var getWeather = function (lat, lon, cb) {
 };
 
 
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+// var margin = {top: 20, right: 20, bottom: 30, left: 40},
+//     width = 960 - margin.left - margin.right,
+//     height = 300 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+// var x = d3.scale.ordinal()
+//     .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+// var y = d3.scale.linear()
+//     .range([height, 0]);
 
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+// var xAxis = d3.svg.axis()
+//     .scale(x)
+//     .orient("bottom")
+//     .ticks(10);
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10, "mm");
+// var yAxis = d3.svg.axis()
+//     .scale(y)
+//     .orient("left")
+//     .ticks(10)
+//     .tickFormat(d3.time.format("%Y-%m"));
 
-var svg = d3.select("#chart-1").append("svg")
-    .attr("width", '100%')
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("viewBox", '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+// var svg = d3.select("#chart-1").append("svg")
+//     .attr("width", '100%')
+//     .attr("height", height + margin.top + margin.bottom)
+//     .attr("viewBox", '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
+//   .append("g")
+//     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var data = [];
+//   var data = [];
   
-  x.domain(data.map(function(d, i) { return i; }));
-  y.domain([0, d3.max(data)]);
+//   x.domain(data.map(function(d, i) { return i; }));
+//   y.domain([0, d3.max(data)]);
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+//   svg.append("g")
+//       .attr("class", "x axis")
+//       .attr("transform", "translate(0," + height + ")")
+//       .call(xAxis);
 
-  svg.append("g") 
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "translate(50, -20)")
-      .attr("y", 6)
-      .attr("dy", ".9em")
-      .style("text-anchor", "end")
-      .text("precipitation mm / year");
+//   svg.append("g") 
+//       .attr("class", "y axis")
+//       .call(yAxis)
+//     .append("text")
+//       .attr("transform", "translate(50, -20)")
+//       .attr("y", 6)
+//       .attr("dy", ".9em")
+//       .style("text-anchor", "end")
+//       .text("precipitation mm / month");
 
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d, i) { return x(i); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d); })
-      .attr("height", function(d) { return height - y(d); });
-
-
-function type(d) {
-  d = +d;
-  return d;
-}
+//   svg.selectAll(".bar")
+//       .data(data)
+//     .enter().append("rect")
+//       .attr("class", "bar")
+//       .attr("x", function(d, i) { return x(i); })
+//       .attr("width", x.rangeBand())
+//       .attr("y", function(d) { return y(d); })
+//       .attr("height", function(d) { return height - y(d); });
 
 
+// function type(d) {
+//   d = +d;
+//   return d;
+// }
 
-function updatePrecipChart(data) {
 
-  var bar = svg.selectAll(".bar").data(data, function(d) { return d.year; });
-  x.domain(data.map(function(d, i) { return d.year; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+// function updatePrecipChart(data) {
+
+//   var bar = svg.selectAll(".bar").data(data, function(d) { return d.month; });
+//   x.domain(data.map(function(d, i) { return d.month; }));
+//   y.domain([0, d3.max(data, function(d) { return d.value; })]);
    
-  bar.enter().append("rect")
-    .attr("class", "bar")
-    .attr("x", function(d, i) { return x(d.year); })
-    .attr("width", x.rangeBand());
+//   bar.enter().append("rect")
+//     .attr("class", "bar")
+//     .attr("x", function(d, i) { return x(d.month); })
+//     .attr("width", x.rangeBand());
 
-  bar.exit().remove();
-  svg.select(".y.axis").remove();
-  svg.select(".x.axis").remove();
+//   bar.exit().remove();
+//   svg.select(".y.axis").remove();
+//   svg.select(".x.axis").remove();
   
-  bar.transition().duration(750)
-    .attr("y", function(d) { return y(d.value); })
-    .attr("height", function(d) { return height - y(d.value); });
+//   bar.transition().duration(750)
+//     .attr("y", function(d) { return y(d.value); })
+//     .attr("height", function(d) { return height - y(d.value); });
 
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+//   svg.append("g")
+//       .attr("class", "x axis")
+//       .attr("transform", "translate(0," + height + ")")
+//       .call(xAxis);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "translate(100, -20)")
-      .attr("y", 6)
-      .attr("dy", ".9em")
-      .style("text-anchor", "end")
-      .text("precipitation mm / year");
+//   svg.append("g")
+//       .attr("class", "y axis")
+//       .call(yAxis)
+//     .append("text")
+//       .attr("transform", "translate(100, -20)")
+//       .attr("y", 6)
+//       .attr("dy", ".9em")
+//       .style("text-anchor", "end")
+//       .text("precipitation mm / month");
 
-}
+// }
 
 
 });
