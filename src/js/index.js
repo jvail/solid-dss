@@ -1,15 +1,13 @@
 $(function () {
 
-var colors = ['rgb(107, 174, 214)',
-      'rgb(116, 196, 118)',
-      'rgb(251, 106, 74)',
-      'rgb(254, 153, 41)',
-      'rgb(204, 76, 2)',
-      'rgb(106, 81, 163)',
-      'rgb(206, 18, 86)',
-      'rgb(164, 46, 46)',
-      'rgb(107,174,214)',
-      'rgb(35,139,69)'];
+  var colors = {
+    blue : ['rgb(189, 215, 231)', 'rgb(107, 174, 214)', 'rgb(49, 130, 189)', 'rgb(8, 81, 156)'],
+    green : ['rgb(186, 228, 179)', 'rgb(116, 196, 118)', 'rgb(49, 163, 84)', 'rgb(0, 109, 44)'],
+    red : ['rgb(252, 174, 145)', 'rgb(251, 106, 74)', 'rgb(222, 45, 38)', 'rgb(165, 15, 21)'],
+    orange: ['rgb(254, 217, 142)', 'rgb(254, 153, 41)', 'rgb(217, 95, 14)', 'rgb(153, 52, 4)'],
+    violett: ['rgb(203, 201, 226)', 'rgb(158, 154, 200)', 'rgb(117, 107, 177)', 'rgb(84, 39, 143)'],
+    pink: ['rgb(215, 181, 216)', 'rgb(223, 101, 176)', 'rgb(221, 28, 119)', 'rgb(152, 0, 67)']
+  }
 
 var chartPrecip = c3.generate({
     bindto: '#chart-precip',
@@ -21,14 +19,18 @@ var chartPrecip = c3.generate({
             ['precipitation'],
             ['temperature']
         ],
+        names: {
+            precipitation: 'precipitation',
+            temperature: 'mean temperature'
+        },
         type: 'bar',
         axes: {
             precipitation: 'y',
             temperature: 'y2'
         },
         colors: {
-            precipitation: colors[0],
-            temperature: colors[3]
+            precipitation: colors.blue[2],
+            temperature: colors.orange[2]
         }
     },
     bar: {
@@ -52,8 +54,8 @@ var chartPrecip = c3.generate({
             label: 'sum monthly precipitation'
         }
     },
-    zoom: {
-        enabled: true
+    subchart: {
+        show: true
     }
 });
 
