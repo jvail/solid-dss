@@ -87,160 +87,161 @@ if (navigator.geolocation) {
 
 var zeeWorker = new Worker('lib/zee/zee-worker.js');
 $(".scroll-area").scrollspy({ target: "#navbar" });
-$("#navbar").on('activate.bs.scrollspy', function () {
-  
-  var href = $(".nav li.active:not(.dropdown) > a").prop('href').split('#')[1];
-  console.log(href);
+// $("#navbar").on('activate.bs.scrollspy', function () {
+$('#weather-chart').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
-  if (href === 'weather-chart') {
-    var lat = parseFloat(Number($('#lat').prop('value')).toFixed(3));
-    var lon = parseFloat(Number($('#lon').prop('value')).toFixed(3));
-    if (model.site.latitude === lat && model.site.longitude === lon)
-      return;
 
-    model.site.latitude = lat;
-    model.site.longitude = lon;
+    if (isInView) {
 
-    console.log(lat);
-    console.log(lon);
+      console.log('inview: ' + isInView + ', ' + visiblePartY);
 
-    var dec = [0.125,0.375,0.625,0.875];
-    var lat_dec = Number('0.' + lat.toFixed(3).split('.')[1]);
-    var lon_dec = Number('0.' + lon.toFixed(3).split('.')[1]);
-    var lat_nat = lat | 0;
-    var lon_nat = lon | 0;
-
-    for (var i = 0; i < dec.length; i++) {
-      if (Math.abs(dec[i] - lat_dec) <= 0.125)
-        lat = lat_nat + dec[i];
-      if (Math.abs(dec[i] - lon_dec) <= 0.125)
-        lon = lon_nat + dec[i];
-    }
-
-    getWeather(lat, lon, function (data) { 
-
-      if (data === null) {
-        // on fail TODO: keep failing coords
-        $(getWarning('Sorry.', 'No weather data available for your coordinates.')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+      var lat = parseFloat(Number($('#lat').prop('value')).toFixed(3));
+      var lon = parseFloat(Number($('#lon').prop('value')).toFixed(3));
+      if (model.site.latitude === lat && model.site.longitude === lon)
         return;
+
+      model.site.latitude = lat;
+      model.site.longitude = lon;
+
+      console.log(lat);
+      console.log(lon);
+
+      var dec = [0.125,0.375,0.625,0.875];
+      var lat_dec = Number('0.' + lat.toFixed(3).split('.')[1]);
+      var lon_dec = Number('0.' + lon.toFixed(3).split('.')[1]);
+      var lat_nat = lat | 0;
+      var lon_nat = lon | 0;
+
+      for (var i = 0; i < dec.length; i++) {
+        if (Math.abs(dec[i] - lat_dec) <= 0.125)
+          lat = lat_nat + dec[i];
+        if (Math.abs(dec[i] - lon_dec) <= 0.125)
+          lon = lon_nat + dec[i];
       }
 
-      // console.log(data);
-      var climate = {
-        tmin: [],
-        tmax: [],
-        tavg: [],
-        globrad: [],
-        wind: [],
-        sunhours: [],
-        relhumid: [],
-        precip: [],
-        ppf: [],
-        daylength: [],
-        f_directrad: [],
-        date: [],
-        doy: [],
-        exrad: []
-      };
+      getWeather(lat, lon, function (data) { 
 
-      for (var d = 0; d < data.tx.values.length; d++) {
-        climate.tmax.push(data.tx.values[d] * data.tx.scale);
-        climate.tmin.push(data.tn.values[d] * data.tn.scale);
-        climate.tavg.push(data.tg.values[d] * data.tg.scale);
-        climate.precip.push(data.rr.values[d] * data.rr.scale);
-
-        // seems to happen in ecad data
-        if (climate.tmax[d] < climate.tmin[d])
-          climate.tmax[d] = 2 * climate.tavg[d] - climate.tmin[d];
-        if (climate.precip[d] < 0)
-          climate.precip[d] = 0;
-      }
-
-      var solar = weather.solar(lat, climate.tmin, climate.tmax, '1995-01-01');
-      for (var d = 0, ds = solar.PPF.length; d < ds; d++) {
-        climate.globrad[d] = solar.R_s[d];
-        climate.f_directrad[d] = solar.f_s[d];
-        climate.daylength[d] = solar.N[d];
-        climate.sunhours[d] = solar.N[d];
-        climate.relhumid[d] = weather.rh(climate.tmin[d], climate.tmax[d]);
-        climate.date[d] = solar.date[d];
-        climate.doy[d] = solar.doy[d];
-        climate.exrad[d] = solar.R_a[d];
-      }
-
-      // var yearly_precip = climate.precip.reduce(function (a, b, i) {
-      //   if (climate.doy[i] === 1) {
-      //     a.push({ year: climate.date[i].split('-')[0], value: b});
-      //   } else {
-      //     a[a.length - 1].value += b;
-      //   }
-      //   return a;
-      // }, []);
-
-      // var monthly_precip = climate.precip.reduce(function (a, b, i) {
-      //   var month = climate.date[i].substring(0, 7);
-      //   if (a.length === 0 || month !== a[a.length - 1].month) {
-      //     a.push({ month: month, value: b });
-      //   } else {
-      //     a[a.length - 1].value += b;
-      //   }
-      //   return a;
-      // }, []);
-
-      var monthly_precip = climate.precip.reduce(function (a, b, i) {
-        var month = climate.date[i].substring(0, 7);
-        if (month + '-01' !== a[0][a[0].length - 1]) {
-          a[0].push(month + '-01');
-          a[1].push(b);
-        } else {
-          a[1][a[1].length - 1] += b;
+        if (data === null) {
+          // on fail TODO: keep failing coords
+          $(getWarning('Sorry.', 'No weather data available for your coordinates.')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+          return;
         }
-        return a;
-      }, [['x'], ['precipitation']]);
 
-      console.log(monthly_precip);
+        // console.log(data);
+        var climate = {
+          tmin: [],
+          tmax: [],
+          tavg: [],
+          globrad: [],
+          wind: [],
+          sunhours: [],
+          relhumid: [],
+          precip: [],
+          ppf: [],
+          daylength: [],
+          f_directrad: [],
+          date: [],
+          doy: [],
+          exrad: []
+        };
 
-      var yearly_precip = climate.precip.reduce(function (a, b, i) {
-        var year = climate.date[i].substring(0, 4);
-        if (year !== a[0][a[0].length - 1]) {
-          a[0].push(year);
-          a[1].push(b);
-        } else {
-          a[1][a[1].length - 1] += b;
+        for (var d = 0; d < data.tx.values.length; d++) {
+          climate.tmax.push(data.tx.values[d] * data.tx.scale);
+          climate.tmin.push(data.tn.values[d] * data.tn.scale);
+          climate.tavg.push(data.tg.values[d] * data.tg.scale);
+          climate.precip.push(data.rr.values[d] * data.rr.scale);
+
+          // seems to happen in ecad data
+          if (climate.tmax[d] < climate.tmin[d])
+            climate.tmax[d] = 2 * climate.tavg[d] - climate.tmin[d];
+          if (climate.precip[d] < 0)
+            climate.precip[d] = 0;
         }
-        return a;
-      }, [['x'], ['precipitation']]);
 
-      console.log(yearly_precip);
-
-      var monthly_tavg = climate.tavg.reduce(function (a, b, i) {
-        var month = climate.date[i].substring(0, 7);
-        if (a.length === 0 ||month !== a[a.length - 1].month) {
-          a.push({ month: month, value: b, count: 1 });
-        } else {
-          a[a.length - 1].value += b;
-          a[a.length - 1].count += 1;
+        var solar = weather.solar(lat, climate.tmin, climate.tmax, '1995-01-01');
+        for (var d = 0, ds = solar.PPF.length; d < ds; d++) {
+          climate.globrad[d] = solar.R_s[d];
+          climate.f_directrad[d] = solar.f_s[d];
+          climate.daylength[d] = solar.N[d];
+          climate.sunhours[d] = solar.N[d];
+          climate.relhumid[d] = weather.rh(climate.tmin[d], climate.tmax[d]);
+          climate.date[d] = solar.date[d];
+          climate.doy[d] = solar.doy[d];
+          climate.exrad[d] = solar.R_a[d];
         }
-        return a;
-      }, []).reduce(function (a, b) {
-        a.push(b.value / b.count);
-        return a;
-      }, ['temperature']);
-      
-      console.log(monthly_tavg);
 
-      var columns = monthly_precip;
-      columns.push(monthly_tavg);
-      chartPrecip.load({
-        columns: columns
+        // var yearly_precip = climate.precip.reduce(function (a, b, i) {
+        //   if (climate.doy[i] === 1) {
+        //     a.push({ year: climate.date[i].split('-')[0], value: b});
+        //   } else {
+        //     a[a.length - 1].value += b;
+        //   }
+        //   return a;
+        // }, []);
+
+        // var monthly_precip = climate.precip.reduce(function (a, b, i) {
+        //   var month = climate.date[i].substring(0, 7);
+        //   if (a.length === 0 || month !== a[a.length - 1].month) {
+        //     a.push({ month: month, value: b });
+        //   } else {
+        //     a[a.length - 1].value += b;
+        //   }
+        //   return a;
+        // }, []);
+
+        var monthly_precip = climate.precip.reduce(function (a, b, i) {
+          var month = climate.date[i].substring(0, 7);
+          if (month + '-01' !== a[0][a[0].length - 1]) {
+            a[0].push(month + '-01');
+            a[1].push(b);
+          } else {
+            a[1][a[1].length - 1] += b;
+          }
+          return a;
+        }, [['x'], ['precipitation']]);
+
+        console.log(monthly_precip);
+
+        var yearly_precip = climate.precip.reduce(function (a, b, i) {
+          var year = climate.date[i].substring(0, 4);
+          if (year !== a[0][a[0].length - 1]) {
+            a[0].push(year);
+            a[1].push(b);
+          } else {
+            a[1][a[1].length - 1] += b;
+          }
+          return a;
+        }, [['x'], ['precipitation']]);
+
+        console.log(yearly_precip);
+
+        var monthly_tavg = climate.tavg.reduce(function (a, b, i) {
+          var month = climate.date[i].substring(0, 7);
+          if (a.length === 0 ||month !== a[a.length - 1].month) {
+            a.push({ month: month, value: b, count: 1 });
+          } else {
+            a[a.length - 1].value += b;
+            a[a.length - 1].count += 1;
+          }
+          return a;
+        }, []).reduce(function (a, b) {
+          a.push(b.value / b.count);
+          return a;
+        }, ['temperature']);
+        
+        console.log(monthly_tavg);
+
+        var columns = monthly_precip;
+        columns.push(monthly_tavg);
+        chartPrecip.load({
+          columns: columns
+        });
+        console.log(columns);
+
       });
-      console.log(columns);
 
-    });
-    
-  }
 
-  // console.log(this);
+    }
 });
 
 
