@@ -11,6 +11,7 @@
 <link rel='stylesheet' href='lib/jquery-ui.min.css'>
 <link rel="stylesheet" href="lib/crop-rotation-ui.css">
 <link rel="stylesheet" href="css/ribbon.css">
+<link href="lib/c3.min.css" rel="stylesheet" type="text/css">
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 <script src="lib/jquery.min.js"></script>
 <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script> -->
@@ -18,11 +19,13 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
 <script src="lib/bootstrap.min.js"></script>
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-<script src="lib/d3.v3.min.js"></script>
+<script src="lib/d3.v3.min.js" charset="utf-8"></script>
+<script src="lib/c3.min.js"></script>
 <script src="lib/crop-rotation-ui.js"></script>
 <script src="lib/weather.solar.js"></script>
 <script src="lib/dairy.js"></script>
 <script src="js/index.js"></script>
+<script src="js/chart.js"></script>
 <script type="text/javascript">
 $(function () {
 
@@ -641,6 +644,15 @@ body {
   height: 400px;
 }
 
+.alert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 </style>
 </head>
 <body>
@@ -1138,7 +1150,7 @@ body {
         <hr>
         <h3>Weather</h3>
         <p>
-          <div id='chart-1'></div> 
+          <div id='chart-precip'></div> 
         </p>
       </div>
       <div id="dairy-chart" class='chart-main col-lg-12'>
