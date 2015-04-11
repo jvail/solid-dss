@@ -641,10 +641,6 @@ body {
   border-radius: 6px;*/
 }
 
-.chart-main {
-  height: 400px;
-}
-
 .alert {
   position: absolute;
   top: 0;
@@ -652,6 +648,10 @@ body {
   left: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.c3.chart {
+  min-height: 400px;
 }
 
 </style>
@@ -711,9 +711,9 @@ body {
             <li class="dropdown" data-toggle="popover" data-placement="top" data-content="Input summary">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src='img/chart.svg' height='60' width='60'><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                  <li><a href="#weather-chart">Weather</a></li>
-                  <li><a href="#dairy-chart">Dairy</a></li>
-                  <li><a href="#crop-chart">Crop</a></li>
+                  <li><a href="#weather-charts">Weather</a></li>
+                  <li><a href="#dairy-charts">Dairy</a></li>
+                  <li><a href="#crop-charts">Crop</a></li>
                 </ul>
             </li>
 
@@ -1147,21 +1147,24 @@ body {
         <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
         <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
       </div>
-      <div id="weather-chart" class='chart-main col-lg-12'>
+      <div id="weather-charts" class='chart-main col-lg-12'>
         <hr>
         <h3>Weather</h3>
         <p>
-          <div id='chart-precip'></div> 
+          <div id='weather-chart-1' class='chart'></div> 
+        </p>
+        <p>
+          <div id='weather-chart-2'></div> 
         </p>
       </div>
-      <div id="dairy-chart" class='chart-main col-lg-12'>
+      <div id="dairy-charts" class='chart-main col-lg-12'>
         <hr>
         <h3>Dairy</h3>
         <p>
           <div id='chart-2'></div> 
         </p>
       </div>
-      <div id="crop-chart" class='chart-main col-lg-12'>
+      <div id="crop-charts" class='chart-main col-lg-12'>
         <hr>
         <h3>Crop</h3>
         <p>
