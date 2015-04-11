@@ -9,55 +9,151 @@ $(function () {
     pink: ['rgb(215, 181, 216)', 'rgb(223, 101, 176)', 'rgb(221, 28, 119)', 'rgb(152, 0, 67)']
   }
 
-var chartPrecip = c3.generate({
-    bindto: '#chart-precip',
+var weatherChart1 = c3.generate({
+    bindto: '#weather-chart-1',
     data: {
         x: 'x',
        xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
         columns: [
             ['x'],
             ['precipitation'],
-            ['temperature']
+            ['temperature'],
+            ['radiation'],
+            ['daylength']
         ],
         names: {
-            precipitation: 'precipitation',
-            temperature: 'mean temperature'
+            precipitation: 'precipitation monthly sum',
+            temperature: 'mean temperature monthly average',
+            radiation: 'global radiation monthly average',
+            daylength: 'daylength monthly average'
         },
-        type: 'bar',
+        // type: 'bar',
         axes: {
             precipitation: 'y',
-            temperature: 'y2'
+            temperature: 'y2',
+            radiation: 'y2',
+            daylength: 'y2'
         },
         colors: {
             precipitation: colors.blue[2],
-            temperature: colors.orange[2]
+            temperature: colors.red[2]
         }
     },
-    bar: {
-        width: {
-            ratio: 0.9 // this makes bar width 50% of length between ticks
-        }
-    },
+    // bar: {
+    //     width: {
+    //         ratio: 0.9 // this makes bar width 50% of length between ticks
+    //     }
+    // },
     axis: {
         x: {
             type: 'timeseries',
             tick: {
-                format: '%Y-%m'
+                format: '%Y/%m',
+                values: ['1995-06-01', '1996-06-01', '1997-06-01', '1998-06-01', '1999-06-01', '2000-06-01', 
+                '2001-06-01', '2002-06-01', '2003-06-01', '2004-06-01', '2005-06-01', '2006-06-01', '2007-06-01', 
+                '2008-06-01', '2009-06-01', '2010-06-01', '2011-06-01', '2012-06-01', '2013-06-01', ]
             }
-        },
-        y2: {
-            show: true,
-            label: 'avg. monthly temperature'
         },
         y: {
             show: true,
-            label: 'sum monthly precipitation'
+            label: '[mm]'
+        },
+        y2: {
+            show: true,
+            label: '[MJ m-2 & h & °C]'
         }
     },
+    grid: {
+        y: {
+            lines: [
+                {value: 0}
+            ]
+        }
+    },
+    // zoom: {
+    //   enabled: true,
+    //   rescale: true
+    // }
     subchart: {
         show: true
+    },
+    tooltip: {
+      format: {
+        value: function (value, ratio, id, index) { return value.toFixed(1); }
+      }
     }
 });
+
+// var weatherChart2 = c3.generate({
+//     bindto: '#weather-chart-2',
+//     data: {
+//         x: 'x',
+//        xFormat: '%Y-%m-%d', // 'xFormat' can be used as custom format of 'x'
+//         columns: [
+//             ['x'],
+//             ['daylength'],
+//             ['radiation']
+//         ],
+//         names: {
+//             daylength: 'daylength',
+//             radiation: 'radiation'
+//         },
+//         // type: 'bar',
+//         axes: {
+//             daylength: 'y2',
+//             radiation: 'y'
+//         },
+//         colors: {
+//             daylength: colors.violett[2],
+//             radiation: colors.green[2]
+//         }
+//     },
+//     // bar: {
+//     //     width: {
+//     //         ratio: 0.9 // this makes bar width 50% of length between ticks
+//     //     }
+//     // },
+//     axis: {
+//         x: {
+//             type: 'timeseries',
+//             tick: {
+//                 format: '%Y/%m',
+//                 values: ['1995-06-01', '1996-06-01', '1997-06-01', '1998-06-01', '1999-06-01', '2000-06-01', 
+//                 '2001-06-01', '2002-06-01', '2003-06-01', '2004-06-01', '2005-06-01', '2006-06-01', '2007-06-01', 
+//                 '2008-06-01', '2009-06-01', '2010-06-01', '2011-06-01', '2012-06-01', '2013-06-01', ]
+//             }
+//         },
+//         y: {
+//             show: true,
+//             label: 'avg. monthly radiation'
+//         },
+//         y2: {
+//             show: true,
+//             label: 'avg. monthly daylength',
+//             min: 0,
+//             padding: 0
+//         }
+//     },
+//     grid: {
+//         y: {
+//             lines: [
+//                 {value: 0}
+//             ]
+//         }
+//     },
+//     // zoom: {
+//     //   enabled: true,
+//     //   rescale: true
+//     // }
+//     subchart: {
+//         show: true
+//     },
+//     tooltip: {
+//       format: {
+//         value: function (value, ratio, id, index) { return value.toFixed(1); }
+//       }
+//     }
+// });
 
 var model = {
   site: {
@@ -90,7 +186,7 @@ if (navigator.geolocation) {
 var zeeWorker = new Worker('lib/zee/zee-worker.js');
 $(".scroll-area").scrollspy({ target: "#navbar" });
 // $("#navbar").on('activate.bs.scrollspy', function () {
-$('#weather-chart').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
+$('#weather-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
 
     if (isInView) {
@@ -191,31 +287,37 @@ $('#weather-chart').bind('inview', function(event, isInView, visiblePartX, visib
         //   return a;
         // }, []);
 
+        var monthly_x_axis= climate.date.reduce(function (a, b, i) {
+          var month = b.substring(0, 7);
+          if (month + '-01' !== a[a.length - 1])
+            a.push(month + '-01');
+          return a;
+        }, ['x']);
+
         var monthly_precip = climate.precip.reduce(function (a, b, i) {
           var month = climate.date[i].substring(0, 7);
-          if (month + '-01' !== a[0][a[0].length - 1]) {
-            a[0].push(month + '-01');
-            a[1].push(b);
+          if (month + '-01' !== monthly_x_axis[a.length - 1]) {
+            a.push(b);
           } else {
-            a[1][a[1].length - 1] += b;
+            a[a.length - 1] += b;
           }
           return a;
-        }, [['x'], ['precipitation']]);
+        }, ['precipitation']);
 
         console.log(monthly_precip);
 
-        var yearly_precip = climate.precip.reduce(function (a, b, i) {
-          var year = climate.date[i].substring(0, 4);
-          if (year !== a[0][a[0].length - 1]) {
-            a[0].push(year);
-            a[1].push(b);
-          } else {
-            a[1][a[1].length - 1] += b;
-          }
-          return a;
-        }, [['x'], ['precipitation']]);
+        // var yearly_precip = climate.precip.reduce(function (a, b, i) {
+        //   var year = climate.date[i].substring(0, 4);
+        //   if (year !== a[0][a[0].length - 1]) {
+        //     a[0].push(year);
+        //     a[1].push(b);
+        //   } else {
+        //     a[1][a[1].length - 1] += b;
+        //   }
+        //   return a;
+        // }, [['x'], ['precipitation']]);
 
-        console.log(yearly_precip);
+        // console.log(yearly_precip);
 
         var monthly_tavg = climate.tavg.reduce(function (a, b, i) {
           var month = climate.date[i].substring(0, 7);
@@ -233,12 +335,61 @@ $('#weather-chart').bind('inview', function(event, isInView, visiblePartX, visib
         
         console.log(monthly_tavg);
 
-        var columns = monthly_precip;
-        columns.push(monthly_tavg);
-        chartPrecip.load({
-          columns: columns
+        var monthly_avg_globrad = climate.globrad.reduce(function (a, b, i) {
+          var month = climate.date[i].substring(0, 7);
+          if (a.length === 0 ||month !== a[a.length - 1].month) {
+            a.push({ month: month, value: b, count: 1 });
+          } else {
+            a[a.length - 1].value += b;
+            a[a.length - 1].count += 1;
+          }
+          return a;
+        }, []).reduce(function (a, b) {
+          a.push(b.value / b.count);
+          return a;
+        }, ['radiation']);
+        
+        console.log(monthly_avg_globrad);
+
+        // var monthly_avg_globrad = climate.globrad.reduce(function (a, b, i) {
+        //   var month = climate.date[i].substring(0, 7);
+        //   if (month + '-01' !== a[a.length - 1].month) {
+        //     a.push({ month: month + '-01', value: b, count: 1 });
+        //   } else {
+        //     a[a.length - 1].value += b;
+        //     a[a.length - 1].count += 1;
+        //   }
+        //   return a;
+        // }, [{ month: '1995-01-01', value: 0, count: 0 }]).reduce(function (a, b) {
+
+        //     a[0].push(b.month);
+        //     a[1].push(b.value / b.count);
+        //     return a;
+
+        // }, [['x'], ['radiation']]);
+
+        
+        // console.log('monthly_avg_globrad', monthly_avg_globrad);
+
+        var monthly_avg_daylength = climate.daylength.reduce(function (a, b, i) {
+          var month = climate.date[i].substring(0, 7);
+          if (a.length === 0 ||month !== a[a.length - 1].month) {
+            a.push({ month: month, value: b, count: 1 });
+          } else {
+            a[a.length - 1].value += b;
+            a[a.length - 1].count += 1;
+          }
+          return a;
+        }, []).reduce(function (a, b) {
+          a.push(b.value / b.count);
+          return a;
+        }, ['daylength']);
+        
+        console.log(monthly_avg_daylength);
+
+        weatherChart1.load({
+          columns: [monthly_x_axis, monthly_precip, monthly_tavg, monthly_avg_daylength, monthly_avg_globrad]
         });
-        console.log(columns);
 
       });
 
