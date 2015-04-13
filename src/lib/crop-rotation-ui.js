@@ -1,7 +1,7 @@
 
 var CropRotationUi = function (divSelector, options, onCropActivated) {
 
-  var DEBUG = true
+  var DEBUG = false
     , cropsWell = options.crops
     , rotationUi = $(divSelector)
     , MAX_ROTATION_LENGTH = options.maxRotationLength || 5
