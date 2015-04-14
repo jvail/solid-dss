@@ -375,10 +375,10 @@ $(function () {
       maxRotationLength: 5
     }, function (crop) {
 
-      var eqCrops = $('#rotation-eq-crops').prop('checked');
+      var eqCrops = $('#rotation-eq-crops').prop('value') === 'Yes';
       var ha = parseInt($('#arable-area').val());
       var perennial = (crop.isPerennial ? ', perennial' : '');
-      var divisor = (eqCrops ? cropRotationUi.rotationLength() : 1);
+      var divisor = (eqCrops ? dss.ui.rotation.rotationLength() : 1);
       var title = crop.name + perennial + ', ' + (crop.area * ha / divisor) + ' ha ' + (eqCrops ? 'each year' : '');
 
       $('#crop-rotation > #edit').empty();
