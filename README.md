@@ -5,6 +5,8 @@ SOLID-DSS
 
 Sustainable Organic and Low-Input Dairying - Decision Support System
 
+This is the development and testing repository. The application itself is available at http://zalf-lse.github.io/solid-dss/src/.
+
 ## References
 
 Baldinger, L.,  J. Vaillant, W. Zollitsch and M. Rinne (2015). Making a decision-support system for dairy farmers usable throughout Europe: the challenge of feed evaluation. Advances in Animal Biosciences, 6, pp 3-5. doi:10.1017/S2040470014000387. 
