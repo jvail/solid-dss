@@ -56,6 +56,10 @@
   fill: transparent;
 }
 
+.crop-rotation svg .connector.dot {
+  stroke-dasharray: 3 3;
+}
+
 .crop-rotation svg #preview-connection {
   stroke: #aaa;
   stroke-width: 2px;
@@ -177,6 +181,7 @@
   top: calc(50% - 5px);
   border-radius: 10px;
   background-color: rgb(153, 153, 153);
+  cursor: auto;
 }
 
 .crop-rotation .item-drag {

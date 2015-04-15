@@ -1,7 +1,7 @@
 
 var CropRotationUi = function (divSelector, options, onCropActivated) {
 
-  var DEBUG = false
+  var DEBUG = true
     , cropsWell = options.crops
     , rotationUi = $(divSelector)
     , MAX_ROTATION_LENGTH = options.maxRotationLength || 5
@@ -804,6 +804,30 @@ var CropRotationUi = function (divSelector, options, onCropActivated) {
             }
           }
         }); // on click
+
+        $(this).on('mouseover', function () {
+
+          var dragItem = $(this).parents('.item');
+          var drags = dragItem.data('data').drags;
+
+          if (drags.length > 0) {
+            var index = dragItem.find('.item-drag').index($(this));
+            drags[index].path.setAttributeNS(null, 'class', 'connector dot');
+          }          
+
+        }); // on mouseover
+
+        $(this).on('mouseout', function () {
+
+          var dragItem = $(this).parents('.item');
+          var drags = dragItem.data('data').drags;
+
+          if (drags.length > 0) {
+            var index = dragItem.find('.item-drag').index($(this));
+            drags[index].path.setAttributeNS(null, 'class', 'connector');
+          }          
+
+        }); // on mouseover
 
         if (drop) {
 
