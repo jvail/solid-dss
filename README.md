@@ -26,8 +26,7 @@ Mitteilungen der Arbeitsgemeinschaft Grünland und Futterbau 16, 114-116.
 
 ## Acknowledgements
 
-We gratefully acknowledge funding from the European Community´s 7th Framework Programme (FP7/2007-2013) under the grant 
+We acknowledge funding from the European Community´s 7th Framework Programme (FP7/2007-2013) under the grant 
 agreement number FP7-266367 (Sustainable organic and low input dairying).
 
 We acknowledge the E-OBS dataset from the EU-FP6 project ENSEMBLES (http://ensembles-eu.metoffice.com) and the data providers in the ECA&D project (http://www.ecad.eu).
-Haylock, M.R., N. Hofstra, A.M.G. Klein Tank, E.J. Klok, P.D. Jones, M. New. 2008: A European daily high-resolution gridded dataset of surface temperature and precipitation. J. Geophys. Res (Atmospheres), 113, D20119, doi:10.1029/2008JD10201
