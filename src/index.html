@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <title>SOLID-DSS</title>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="lib/bootstrap.min.css">
+<link rel="stylesheet" href="lib/bootstrap-3.3.4/css/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"> -->
-<link rel="stylesheet" href="lib/bootstrap-theme.min.css">
+<link rel="stylesheet" href="lib/bootstrap-3.3.4/css/bootstrap-theme.min.css">
 <!-- <link rel='stylesheet' href='http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css'> -->
 <link rel='stylesheet' href='lib/jquery-ui.min.css'>
 <link rel="stylesheet" href="lib/crop-rotation-ui.css">
@@ -17,7 +17,7 @@
 <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script> -->
 <script src='lib/jquery-ui.min.js'></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-<script src="lib/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.4/js/bootstrap.min.js"></script>
 <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
 <script src="lib/d3.v3.min.js" charset="utf-8"></script>
 <!-- <script src="lib/c3.0.49.min.js"></script> -->
@@ -40,8 +40,16 @@
   overflow: auto;
 }
 
-body > div {
+body {
   background-color: rgba(249, 249, 249, 1);
+  font-size: 16px;
+  font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;  
+}
+
+#navbar {
+  box-shadow: none;
+  background-image: none;
+  border-width: 0;
 }
 
 #navbar-collapse {
@@ -54,6 +62,14 @@ body > div {
   padding: 5px;
 }
 
+.nav > li > a {
+  border-radius: 5px;
+}
+
+.scroll-area > div {
+  padding-left: 5px;
+}
+
 #navbar-collapse img:hover {
   background-color: #e7e7e7;
 }
@@ -62,36 +78,6 @@ body > div {
   border-radius: 5px;
 }
 
-#run-btn img:hover {
-  background-color: #337ab7;
-}
-
-.bar {
-  fill: steelblue;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-body {
-  background-color: rgba(249, 249, 249, 0.50);
-}
 
 .input-group-addon {
     min-width: 90px;// Set whatever the width you want
@@ -101,110 +87,8 @@ body {
   color: rgb(0, 109, 44);
 }
 
-
-.crop-rotation > #well {
-  width: 100%;
-  height: 50%;
-  max-width: 100%;
-  clear: both;
-  border-color: #ccc;
-  background-color: transparent;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-top-width: 1px;
-  border-top-right-radius: 5px; 
-  border-top-left-radius: 5px; 
-  padding: 5px;
-}
-
-.crop-rotation > #main {
-  width: 100%;
-  height: 300px;
-  border-color: #ccc;
-  background-color: transparent;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-top-width: 0px;
-  border-radius: 0px;
-}
-
-.crop-rotation > #edit {
-  width: 100%;
-  min-height: 200px;
-  border-color: #ccc;
-  color: #333;;
-  background-color: transparent;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-top-width: 0px;
-  border-bottom-left-radius: 5px; 
-  border-bottom-right-radius: 5px;
-}
-
-.crop-rotation .item-body {
-  background-color: #eee;
-  border-color: #ccc;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-top-width: 1px;
-
-}
-
-.crop-rotation .item {
-  background-color: transparent;
-}
-
-.crop-rotation span.item-label {
-  color: black;
-}
-
-
-.crop-rotation .item.active .item-label {
-/*  text-decoration: underline;*/
-}
-
-.crop-rotation .well-item {
-  margin: 3px;
-}
-
-.crop-rotation .item.active .item-body {
-  background-color: #ccc;
-  border-color: #aaa;
-}
-
-.crop-rotation .item.no-precrop .item-drop, .item.no-successor .item-drag {
-  background-color: red;
-}
-
-.crop-rotation .item-drop.over-allowed, .item-drag.over-allowed {
-  background-color: green;
-}
-
-.crop-rotation .item-drop.over-not-allowed, .item-drag.over-not-allowed  {
-  background-color: red;
-}
-
-.well-item.well-item-helper.not-droppable .item-header {
-/*  border: 2px solid;
-  border-color: #F62817;
-  border-radius: 6px;*/
-  background: repeating-linear-gradient(
-    45deg,
-    #eee,
-    #eee 5px,
-    transparent 5px,
-    transparent 10px
-  );
-}
-
-.well-item.well-item-helper.is-droppable .item-header {
- /* border: 2px solid;
-  border-color: green;
-  border-radius: 6px;*/
+.crop-rotation > #well, .crop-rotation > #main, .crop-rotation > #edit {
+  background-color:  rgba(249, 249, 249, 1);
 }
 
 .alert {
@@ -212,21 +96,55 @@ body {
   top: 0;
   right: 0;
   left: 0;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  z-index: 100;
 }
 
 .c3.chart {
   min-height: 400px;
 }
 
+/*#navbar svg {
+  width: 60px;
+  height: 60px;
+}
+
+#navbar svg path {
+  fill: #333;
+}
+
+#navbar a:hover path {
+  fill: #337ab7;
+}*/
+
+#navbar img {
+  width: 30px;
+  height: 30px;
+}
+
+#navbar img.inflate {
+  width: 60px;
+  height: 60px;
+}
+
+#title.deflate {
+  font-size: 0;
+}
+
+#title {
+  margin-top: 10px;
+}
+
+
+
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h3 id='title'>SOLID-DSS / <span style='font-size:70%;'>Sustainable Organic and Low-Input Dairying - Decision Support System</span></h3>
-    <!-- <h4 id='sub-title'>Sustainable Organic and Low-Input Dairying - Decision Support System</h4> -->
+    <h1 id='title'>SOLID-DSS<span style='font-size:50%;'> / <a href="http://www.solidairy.eu/" title='http://www.solidairy.eu/'><span class='glyphicon glyphicon-link' aria-hidden="true"></span> Sustainable Organic and Low-Input Dairying</a> - Decision Support System / <a href="https://github.com/zalf-lse/solid-dss" title='https://github.com/zalf-lse/solid-dss'><span class='glyphicon glyphicon-link' aria-hidden="true"></span> github project</a></span></h1>
     <nav id="navbar" class="navbar navbar-default" role="navigation"> 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"> 
@@ -238,44 +156,44 @@ body {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav navbar-left">
-            <li class='active' data-toggle="popover" data-placement="top" data-content="Introduction">
+            <li class='active' data-toggle="popover" data-placement="right" data-content="Introduction">
               <a href="#intro">
-                <img src='img/info.svg' height='60' width='60'>
+                <img class='svg' src='img/info.svg' height='60' width='60'>
               </a>
             </li>
-            <li data-toggle="popover" data-placement="top" data-content="Location & weather">
+            <li data-toggle="popover" data-placement="right" data-content="Location & weather">
               <a href="#location">
-                <img src='img/weather.svg' height='60' width='60'>
+                <img class='svg' src='img/weather.svg' height='60' width='60'>
               </a>
             </li>
-            <li data-toggle="popover" data-content="Dairy herd" data-placement="top">
-              <a href="#herd">
-                <img src='img/cow.svg' height='60' width='60'>
-              </a>
-            </li>
-            <li data-toggle="popover" data-placement="top" data-content="Purchased feedstuff">
-              <a href="#feed">
-                <img src='img/feed.svg' height='60' width='60'>
-              </a>
-            </li>
-            <li data-toggle="popover" data-placement="top" data-content="Crop production">
-              <a href="#crop">
-                <img src='img/crop.svg' height='60' width='60'>
-              </a>
-            </li>
-            <li data-toggle="popover" data-placement="top" data-content="Grassland & pasture">
-              <a href="#grass">
-                <img src='img/grass.svg' height='60' width='60'>
-              </a>
-            </li>
-            <li data-toggle="popover" data-placement="top" data-content="Settings">
+            <li data-toggle="popover" data-placement="right" data-content="Settings">
               <a href="#settings">
-                <img src='img/settings.svg' height='60' width='60'>
+                <img class='svg' src='img/settings.svg' height='60' width='60'>
+              </a>
+            </li>
+            <li data-toggle="popover" data-content="Dairy herd" data-placement="right">
+              <a href="#herd">
+                <img class='svg' src='img/cow.svg' height='60' width='60'>
+              </a>
+            </li>
+            <li data-toggle="popover" data-placement="right" data-content="Purchased feedstuff">
+              <a href="#feed">
+                <img class='svg' src='img/feed.svg' height='60' width='60'>
+              </a>
+            </li>
+            <li data-toggle="popover" data-placement="right" data-content="Crop production">
+              <a href="#crop">
+                <img class='svg' src='img/crop.svg' height='60' width='60'>
+              </a>
+            </li>
+            <li data-toggle="popover" data-placement="right" data-content="Grassland & pasture">
+              <a href="#grass">
+                <img class='svg' src='img/grass.svg' height='60' width='60'>
               </a>
             </li>
 
-            <li class="dropdown" data-toggle="popover" data-placement="top" data-content="Input summary">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src='img/chart.svg' height='60' width='60'><b class="caret"></b></a>
+            <li class="dropdown" data-toggle="popover" data-placement="right" data-content="Input summary">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class='svg' src='img/chart.svg' height='60' width='60'><b class="caret"></b></a>
               <ul class="dropdown-menu">
                   <li><a href="#weather-charts">Weather</a></li>
                   <li><a href="#dairy-charts">Dairy</a></li>
@@ -283,14 +201,14 @@ body {
                 </ul>
             </li>
 
-<!--             <li data-toggle="popover" data-placement="top" data-content="Input summary">
+<!--             <li data-toggle="popover" data-placement="right" data-content="Input summary">
               <a href="#chart">
-                <img src='img/chart.svg' height='60' width='60'>
+                <img class='svg' src='img/chart.svg' height='60' width='60'>
               </a>
             </li> -->
-            <li data-toggle="popover" data-placement="top" data-content="Run simulation">
+            <li data-toggle="popover" data-placement="right" data-content="Run simulation">
               <a id='run-btn' href="#">
-                <img src='img/run.svg' height='60' width='60'>
+                <img class='svg' src='img/run.svg' height='60' width='60'>
               </a>
             </li>
           </ul>
@@ -299,14 +217,27 @@ body {
     <div class="scroll-area" data-spy="scroll" data-offset="0">
 
       <div id="intro" class='text col-lg-12'>
-        <h3>Inroduction</h3>
-        <p>Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.</p>
-        <p>Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</p>
+        <!-- <h2>Introduction</h2> -->
+        <h3 style='margin-top:0px;'>Towards a better balance of forage supply and demand</h3>
+        <p>Although a generally recognised definition does not exist of what a “low-input” dairying business exactly is, it is widely accepted that most farms of this type feed a considerably higher share of forages grown on-farm and less concentrates. The herd’s requirements must be met to a large extent by grazing, conserved fodder from permanent grassland or forages from arable land.</p>
+        <p>Therefore a low-input dairy farm has less options to supplement – and in case of shortages: substitute – forages with purchased feedstuffs. The risk of weather induced on-farm forage shortages is of greater importance in a low-input dairy farm, and feed supply and price volatility is less evened out by markets.</p>
+        <p>The DSS will evaluate measures to help to reduce risks of feed shortages – both in terms of dry matter and nutrient supply. The major components of such a system are requirement (herd), supply (feedstuff) and a logic that connects both sides (rations).</p>
+        <p>The mathematical models and algorithms include a model to simulate the herd structure with different calving patterns (no. of dry and milking cows, heifers, young stock, days in milk etc.). This model will feed the algorithms that estimate feed requirement (dry matter, energy and protein).</p>
+        <p>The supply side is estimated with an arable crop growth and a grassland (pure grass or grass-clover swards) model which simulates forage growth and quality throughout the year. A soil model will cover the most important dynamics of water and nitrogen availability. The models of the demand and supply side are connected with a ration formulation routine (linear programme) that designs the rations in a way that both over- and undersupply is minimized for energy and protein across all animal groups throughout all periods.</p>
+        <h3>Terms of use</h3>
+        <p>The crop growth model uses daily rainfall & temperature data from ECA&D. Therefore the <a href="http://www.ecad.eu/download/ensembles/ensembles.php"><span class='glyphicon glyphicon-link' aria-hidden="true"></span> ECA&D</a> data policy applies: "These observational data are strictly for use in non-commercial research and non-commercial education projects only. Scientific results based on these data must be submitted for publication in the open literature without any delay linked to commercial objectives. If you are unsure about the terms "commercial", "research", and "education", please contact the ECA&D staff at eca@knmi.nl for clarification."</p>
+        <!-- <div class="checkbox">
+          <label>
+            <input id='terms-of-use' type="checkbox">Accepted
+          </label>
+        </div> -->
+        <h3>Acknowledgements</h3>
+        <p>We acknowledge funding from the European Community´s 7th Framework Programme (FP7/2007-2013) under the grant agreement number FP7-266367 (Sustainable organic and low input dairying) and the E-OBS dataset from the EU-FP6 project ENSEMBLES (http://ensembles-eu.metoffice.com) and the data providers in the ECA&D project (http://www.ecad.eu).</p>
         <hr>
       </div>
 
       <div id="location" class='text col-lg-12'>
-        <h3>Location and Weather</h3>
+        <h2>Location and Weather</h2>
         <p>Integer pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id, tincidunt sit amet mauris.</p>
       </div>
 
@@ -316,7 +247,7 @@ body {
 
         <label for='longitude'>Longitude:</label>
         <div class="input-group">       
-          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375" data-content="Longitude" data-toggle="popover" data-placement="top">
+          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375" data-content="Longitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="top">
           <span class="input-group-addon">.00</span>
         </div>
 
@@ -329,7 +260,7 @@ body {
 
         <label for='latitude'>Latitude:</label>
         <div class="input-group">       
-          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375" data-content="Latitude" data-toggle="popover" data-placement="top">
+          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375" data-content="Latitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="top">
           <span class="input-group-addon">.00</span>
         </div>
 
@@ -338,7 +269,7 @@ body {
       </div>
 
       <div class='text col-lg-12'>
-        <h4>Soil</h4>
+        <h3>Soil</h3>
       </div>
 
       <div class='col-lg-6'>
@@ -361,7 +292,7 @@ body {
 
         <label for="topsoil-org">Topsoil organic matter</label>
         <div class="input-group">
-          <input id="topsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="0.05" min='0' max='0.1' data-content='Topsoil organic matter fraction'>
+          <input id="topsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="5" min='0' max='10' data-content='Topsoil organic matter fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -369,8 +300,8 @@ body {
 
         <label for="topsoil-depth">Topsoil depth</label>
         <div class="input-group">
-          <input id="topsoil-depth" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="0.2" min='0.1' max='0.5' data-content='Depth of topsoil'>
-          <span class="input-group-addon">m</span>
+          <input id="topsoil-depth" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="20" min='' max='50' data-content='Depth of topsoil'>
+          <span class="input-group-addon">cm</span>
         </div>
 
         <br>
@@ -397,7 +328,7 @@ body {
 
         <label for="subsoil-org">Subsoil organic matter</label>
         <div class="input-group">
-          <input id="subsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="0.02" min='0' max='0.1' data-content='Subsoil organic matter fraction'>
+          <input id="subsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="2" min='0' max='10' data-content='Subsoil organic matter fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -408,12 +339,25 @@ body {
       <div class='text col-lg-12'>
         <hr>
       </div>
+
+      <div id="settings" class='text col-lg-12'>
+        <h2>Simulation Settings</h2>
+        <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+        <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
+        <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
+        <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
+        <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
+      </div>
+
+      <div class='col-lg-12'>
+        <hr>
+      </div>
   
       <div id="herd" class='text col-lg-12'>
-        <h3>Dairy Herd</h3>
+        <h2>Dairy Herd</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
 
-        <h4>Cow</h4>
+        <h3>Cow</h3>
       </div>
         
 
@@ -500,7 +444,7 @@ body {
       </div>
 
       <div class='text col-lg-12'>
-        <h4>Herd</h4>
+        <h3>Herd</h3>
       </div>
 
       <div class='col-lg-6'>
@@ -545,7 +489,7 @@ body {
         <label for="herd-size">Herd size</label>
         <div class="input-group">
           <input id="herd-size" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="50" min='20' max='500' data-content='Total number of cows w/o young stock'>
-          <span class="input-group-addon">%</span>
+          <span class="input-group-addon">#</span>
         </div>
         
         <br>
@@ -577,7 +521,7 @@ body {
       </div>
 
       <div class='text col-lg-12'>
-        <h4>Ration</h4>
+        <h3>Ration</h3>
       </div>
 
       <div class='col-lg-6'>
@@ -611,8 +555,8 @@ body {
         <div class="input-group">
           <select id="rnb-ub" data-toggle="popover" data-placement="top" class='form-control parameter-feed' data-content='Upper bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
             <option value="Infinity">Infinity</option>
-            <option value="50">50</option>
-            <option value="0" selected>0</option>
+            <option value="50" selected>50</option>
+            <option value="0">0</option>
           </select>
           <span class="input-group-addon">g CP</span>
         </div>
@@ -623,8 +567,8 @@ body {
         <div class="input-group">
           <select id="rnb-lb" data-toggle="popover" data-placement="top" class='form-control parameter-feed' data-content='Lower bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
             <option value="-Infinity">-Infinity</option>
-            <option value="-10">-10</option>
-            <option value="0" selected>0</option>
+            <option value="-10" selected>-10</option>
+            <option value="0">0</option>
           </select>
           <span class="input-group-addon">g CP</span>
         </div>
@@ -638,7 +582,7 @@ body {
       </div>
 
       <div id="feed" class='text col-lg-12'>
-        <h3>Purchased and Supplementary Feedstuff</h3>
+        <h2>Purchased and Supplementary Feedstuff</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
       </div>
 
@@ -660,18 +604,13 @@ body {
       </div>
 
       <div id="crop" class='text col-lg-12'>
-        <h3>Crop Production</h3>
+        <h2>Crop Production</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
-        <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
-        <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-        <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
-        <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
-
       </div>
        
       <div class='col-lg-4'>
 
-        <label for="rotation-eq-crops">Crop share</label>
+        <label for="rotation-eq-crops">Equal crop share</label>
         <div class="input-group">
           <select id="rotation-eq-crops" class='form-control parameter-crop' data-toggle="popover" data-placement="top" data-content='Assume an equal share of each crop in each year.'>
             <option value="Yes" selected>Yes</option>
@@ -718,7 +657,7 @@ body {
       </div>
       
       <div id="grass" class='text col-lg-12'>
-        <h3>Permanent Grassland and Pasture</h3>
+        <h2>Permanent Grassland and Pasture</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
       </div>
 
@@ -762,16 +701,11 @@ body {
         <hr>
       </div>
 
-      <div id="settings" class='text col-lg-12'>
-        <h3>Simulation Settings</h3>
-        <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
-        <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
-        <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-        <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
-        <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
+      <div class='col-lg-12'>
+        <h2>Input Summary</h2>
       </div>
+
       <div id="weather-charts" class='chart-main col-lg-12'>
-        <hr>
         <h3>Weather</h3>
         <p>
           <div id='weather-chart-1' class='chart'></div> 
@@ -780,21 +714,32 @@ body {
           <div id='weather-chart-2'></div> 
         </p>
       </div>
-      <div id="dairy-charts" class='chart-main col-lg-12'>
+
+      <div class='col-lg-12'>
         <hr>
+      </div>
+      
+      <div id="dairy-charts" class='chart-main col-lg-12'>
         <h3>Dairy</h3>
         <p>
           <div id='dairy-chart-1'></div> 
         </p>
       </div>
-      <div id="crop-charts" class='chart-main col-lg-12'>
+
+      <div class='col-lg-12'>
         <hr>
+      </div>
+
+      <div id="crop-charts" class='chart-main col-lg-12'>
         <h3>Crop</h3>
         <p>
           <div id='arable-chart-1' class='chart col-lg-6'></div> 
           <div id='area-chart-1' class='chart col-lg-6'></div> 
         </p>
       </div>
+
+      <div class='col-lg-12' style='min-height:50px'></div>
+
     </div>
 </div>
 <div id='result-modal' class="modal fade">
@@ -802,17 +747,17 @@ body {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Simulation Results</h4>
+        <h3 class="modal-title">Simulation Results</h3>
       </div>
       <div class="modal-body">
-        <h3>Purchased Feedstuff</h3>
+        <h2>Purchased Feedstuff</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
         <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
         <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
         <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
         <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
         <hr>
-        <h3>Crop Production</h3>
+        <h2>Crop Production</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
         <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
         <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>

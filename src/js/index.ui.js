@@ -2,6 +2,37 @@ var dss = dss || {};
 
 $(function () {
 
+  // http://stackoverflow.com/questions/11978995/how-to-change-color-of-svg-image-using-css-jquery-svg-image-replacement
+  // jQuery('img.svg').each(function(){
+  //     var $img = jQuery(this);
+  //     var imgID = $img.attr('id');
+  //     var imgClass = $img.attr('class');
+  //     var imgURL = $img.attr('src');
+
+  //     jQuery.get(imgURL, function(data) {
+  //         // Get the SVG tag, ignore the rest
+  //         var $svg = jQuery(data).find('svg');
+
+  //         // Add replaced image's ID to the new SVG
+  //         if(typeof imgID !== 'undefined') {
+  //             $svg = $svg.attr('id', imgID);
+  //         }
+  //         // Add replaced image's classes to the new SVG
+  //         if(typeof imgClass !== 'undefined') {
+  //             $svg = $svg.attr('class', imgClass+' replaced-svg');
+  //         }
+
+  //         // Remove any invalid XML tags as per http://validator.w3.org
+  //         $svg = $svg.removeAttr('xmlns:a');
+
+  //         // Replace image with new SVG
+  //         $img.replaceWith($svg);
+
+  //     }, 'xml');
+
+  // });
+
+
   var colors = {
     blue : ['rgb(189, 215, 231)', 'rgb(107, 174, 214)', 'rgb(49, 130, 189)', 'rgb(8, 81, 156)'],
     green : ['rgb(186, 228, 179)', 'rgb(116, 196, 118)', 'rgb(49, 163, 84)', 'rgb(0, 109, 44)'],
@@ -522,7 +553,16 @@ $(function () {
 
   $(".scroll-area").scrollspy({ target: "#navbar" });
 
-// $("#navbar").on('activate.bs.scrollspy', function () {
+  $("#navbar").on('activate.bs.scrollspy', function () {
+
+    var add = ($('#navbar li.active > a').prop('href').split('#')[1] !== 'intro');
+    $('#navbar li img').toggleClass('inflate', add, 400);
+    // $('#title').toggle(!add);
+    $('#title').toggleClass('deflate', add, 400);
+
+      console.log(add);
+  });
+
   $('#weather-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
       if (isInView) {
@@ -532,7 +572,7 @@ $(function () {
         if (!dss.fn.modelChanged('location'))
           return;
 
-        var spinner = new Spinner({color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}).spin($('#weather-charts')[0]);
+        var spinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/).spin($('#weather-charts')[0]);
       
         dss.fn.weather(lat, lon, function (weather, error) { 
 
@@ -677,7 +717,7 @@ $(function () {
   
   $('#crop-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
-    if (isInView) {
+    if (isInView && (visiblePartY == 'bottom' || visiblePartY == 'both')) {
       // console.log('inview: ' + isInView + ', ' + visiblePartY);
       var arable = dss.ui.rotation.rotation().reduce(function (a, b) {
 
@@ -717,7 +757,9 @@ $(function () {
 
   $('#dairy-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
-    if (isInView) {
+    console.log(arguments);
+
+    if (isInView && (visiblePartY == 'bottom' || visiblePartY == 'both')) {
 
       var model = dss.ui.model().model
         , csv = ''
@@ -726,7 +768,7 @@ $(function () {
       if (!dss.fn.modelChanged('herd'))
         return;
 
-      var spinner = new Spinner({color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}).spin($('#dairy-chart-1')[0]);
+      var spinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/).spin($('#dairy-chart-1')[0]);
 
       if (model.herd['milk-yield-data'].trim().length === 0) {
         var data = dairy.milk.data[model.herd['milk-yield']];
