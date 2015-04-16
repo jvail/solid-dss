@@ -51,12 +51,10 @@ $(function () {
             </div>';
   }
 
-  $('#save-load').on('click', function () {
+  $('#save').on('click', function () {
 
-    $('#save', $(this)).attr({
-      href: "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dss.ui.model().model, null, 2)),
-      download: "solid-dss.json"
-    });
+    var blob = new Blob([JSON.stringify(dss.ui.model().model, null, 2)], {type: 'application/json'});
+    saveAs(blob, 'solid-dss.json');
   
   });
 
