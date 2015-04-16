@@ -2,7 +2,22 @@ $(function () {
 
   var zeeWorker = new Worker('lib/zee/zee-worker.js')
     , lmfitWorker = new Worker('lib/lmfit-worker.js')
-    ;   
+    ;
+
+  var zeeCallbacks = [];
+
+  zeeWorker.onmessage = function (msg) {
+
+    if (typeof zeeCallbacks[msg.data.callbackID] === 'function') {
+      zeeCallbacks[msg.data.callbackID](msg.data.data);
+      zeeCallbacks[msg.data.callbackID] = null;
+    } else {
+      console.log(zeeCallbacks);
+      throw new Error(zeeCallbacks[msg.data.callbackID]);
+    }
+    // console.log("zee'd " + msg.data.filename + ' in ' + msg.data.time + ' ms, ' + msg.data.data.length + ' bytes');
+
+  };
 
   // var dss = dss || {};
 
@@ -83,14 +98,6 @@ $(function () {
           lon_ecad = lon_nat + dec[i];
       }
 
-      var zeeCallbacks = [];
-
-      zeeWorker.onmessage = function (msg) {
-        zeeCallbacks[msg.data.callbackID](msg.data.data);
-        zeeCallbacks[msg.data.callbackID] = null;
-        // console.log("zee'd " + msg.data.filename + ' in ' + msg.data.time + ' ms, ' + msg.data.data.length + ' bytes');
-      };
-
       function requestZee(filename, data, callback) {
         zeeWorker.postMessage({
           filename: filename,
@@ -123,6 +130,8 @@ $(function () {
       req.open("GET", urls[i], true);
       req.responseType = "arraybuffer";
       req.onload = function () {
+
+        console.log('req.status', req.status);
         
         if (req.status === 200) {       
           
