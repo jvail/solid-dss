@@ -51,6 +51,37 @@ $(function () {
             </div>';
   }
 
+  $('#save-load').on('click', function () {
+
+    $('#save', $(this)).attr({
+      href: "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dss.ui.model().model, null, 2)),
+      download: "solid-dss.json"
+    });
+  
+  });
+
+  $('#load').on('change', function (evt) {
+
+    var file = evt.target.files.item(0)
+      , reader = new FileReader()
+      ;
+    
+    reader.onload = function (e) {
+    
+      var model = JSON.parse(e.target.result);
+      console.log(model);
+      if (model)
+        dss.ui.setModel(model);
+      else
+        $(getWarning('Error.', 'Could not parse parameter file.')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+
+    };
+
+    reader.readAsText(file);
+
+  });
+
+
   dss.ui = {
     model: function () {
 
@@ -73,7 +104,7 @@ $(function () {
         }
       ;
     
-      $('.parameter-location, parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland').each(function () {
+      $('.parameter-location, .parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland').each(function () {
 
         var id = $(this).prop('id')
           , min = $(this).prop('min')
@@ -114,7 +145,21 @@ $(function () {
       }
       
     },
-    setModel: function (model) {},
+    setModel: function (model) {
+
+      console.log(Object.keys(model));
+
+      Object.keys(model).forEach(function (submodel) {
+        if (submodel === 'rotation') {
+          dss.ui.rotation.setRotation(model[submodel]);
+        } else {
+          Object.keys(model[submodel]).forEach(function (parameter) {
+            $('#'+parameter).prop('value', model[submodel][parameter]);
+          });
+        }
+      });
+
+    },
     charts: {
       weather: c3.generate({
         bindto: '#weather-chart-1',
@@ -932,14 +977,14 @@ $(function () {
   function resizeScrollArea() {
     var scrollArea = $('.scroll-area');
     var offset = scrollArea.offset();
-    scrollArea.css('height', $(window).height() - offset.top - 30);   
+    scrollArea.css('height', $(window).height() - offset.top - 20);   
     resizeResultModal(); 
   }
   
   function resizeResultModal() {
     $('#result-modal .modal-dialog').css({
       width: parseInt($('.scroll-area').css('width')),
-      'margin-top': '60px',
+      'margin-top': '20px',
       'margin-left':  ($(window).width() - parseInt($('.scroll-area').css('width'))) * 0.5
     });
 

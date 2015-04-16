@@ -42,7 +42,7 @@
 
 body {
   background-color: rgba(249, 249, 249, 1);
-  font-size: 16px;
+  font-size: 15px;
   font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;  
 }
 
@@ -69,6 +69,7 @@ body {
 .scroll-area > div {
   padding-left: 5px;
 }
+
 
 #navbar-collapse img:hover {
   background-color: #e7e7e7;
@@ -201,11 +202,13 @@ body {
                 </ul>
             </li>
 
-<!--             <li data-toggle="popover" data-placement="right" data-content="Input summary">
-              <a href="#chart">
-                <img class='svg' src='img/chart.svg' height='60' width='60'>
-              </a>
-            </li> -->
+            <li id='save-load' class="dropdown" data-toggle="popover" data-placement="right" data-content="Save/load settings to/from local file">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class='svg' src='img/file.svg' height='60' width='60'><b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                  <li><a id='save' href="#">Save</a></li>
+                  <li><input type="file" id="load" name="files" style='margin-left: 5px;'></li>
+                </ul>
+            </li>
             <li data-toggle="popover" data-placement="right" data-content="Run simulation">
               <a id='run-btn' href="#">
                 <img class='svg' src='img/run.svg' height='60' width='60'>
