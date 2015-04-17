@@ -163,7 +163,7 @@ body {
                 <img class='svg' src='img/info.svg' height='60' width='60'>
               </a>
             </li>
-            <li data-toggle="popover" data-placement="right" data-content="Location & weather">
+            <li data-toggle="popover" data-placement="right" data-content="Location &amp; weather">
               <a href="#location">
                 <img class='svg' src='img/weather.svg' height='60' width='60'>
               </a>
@@ -188,7 +188,7 @@ body {
                 <img class='svg' src='img/crop.svg' height='60' width='60'>
               </a>
             </li>
-            <li data-toggle="popover" data-placement="right" data-content="Grassland & pasture">
+            <li data-toggle="popover" data-placement="right" data-content="Grassland &amp; pasture">
               <a href="#grass">
                 <img class='svg' src='img/grass.svg' height='60' width='60'>
               </a>
@@ -229,14 +229,14 @@ body {
         <p>The mathematical models and algorithms include a model to simulate the herd structure with different calving patterns (no. of dry and milking cows, heifers, young stock, days in milk etc.). This model will feed the algorithms that estimate feed requirement (dry matter, energy and protein).</p>
         <p>The supply side is estimated with an arable crop growth and a grassland (pure grass or grass-clover swards) model which simulates forage growth and quality throughout the year. A soil model will cover the most important dynamics of water and nitrogen availability. The models of the demand and supply side are connected with a ration formulation routine (linear programme) that designs the rations in a way that both over- and undersupply is minimized for energy and protein across all animal groups throughout all periods.</p>
         <h3>Terms of use</h3>
-        <p>The crop growth model uses daily rainfall & temperature data from ECA&D. Therefore the <a href="http://www.ecad.eu/download/ensembles/ensembles.php"><span class='glyphicon glyphicon-link' aria-hidden="true"></span> ECA&D</a> data policy applies: "These observational data are strictly for use in non-commercial research and non-commercial education projects only. Scientific results based on these data must be submitted for publication in the open literature without any delay linked to commercial objectives. If you are unsure about the terms "commercial", "research", and "education", please contact the ECA&D staff at eca@knmi.nl for clarification."</p>
+        <p>The crop growth model uses daily rainfall &amp; temperature data from ECA&amp;D. Therefore the <a href="http://www.ecad.eu/download/ensembles/ensembles.php"><span class='glyphicon glyphicon-link' aria-hidden="true"></span> ECA&amp;D</a> data policy applies: "These observational data are strictly for use in non-commercial research and non-commercial education projects only. Scientific results based on these data must be submitted for publication in the open literature without any delay linked to commercial objectives. If you are unsure about the terms "commercial", "research", and "education", please contact the ECA&amp;D staff at eca@knmi.nl for clarification."</p>
         <!-- <div class="checkbox">
           <label>
             <input id='terms-of-use' type="checkbox">Accepted
           </label>
         </div> -->
         <h3>Acknowledgements</h3>
-        <p>We acknowledge funding from the European Community´s 7th Framework Programme (FP7/2007-2013) under the grant agreement number FP7-266367 (Sustainable organic and low input dairying) and the E-OBS dataset from the EU-FP6 project ENSEMBLES (http://ensembles-eu.metoffice.com) and the data providers in the ECA&D project (http://www.ecad.eu).</p>
+        <p>We acknowledge funding from the European Community´s 7th Framework Programme (FP7/2007-2013) under the grant agreement number FP7-266367 (Sustainable organic and low input dairying) and the E-OBS dataset from the EU-FP6 project ENSEMBLES (http://ensembles-eu.metoffice.com) and the data providers in the ECA&amp;D project (http://www.ecad.eu).</p>
         <hr>
       </div>
 
@@ -386,7 +386,7 @@ body {
         
         <br>
         
-        <label for="age-first-calving">Age first calving</label>
+        <label for="age-first-calving">Age 1st calving</label>
         <div class="input-group">
           <input id="age-first-calving" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="24" min='24' max='28' data-content='Age of first valving in month'>
           <span class="input-group-addon">month</span>
@@ -610,6 +610,8 @@ body {
       <div id="crop" class='text col-lg-12'>
         <h2>Crop Production</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+      
+        <h3>Arable land</h3>
       </div>
        
       <div class='col-lg-4'>
@@ -651,10 +653,137 @@ body {
       
       </div>
 
+      <div class='text col-lg-12'>
+        <h3>Crop rotation</h3>
+        <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+      </div>
 
       <div id='crop-rotation' class='col-lg-12'></div>
 
+      <div class='text col-lg-12'>
+        <h3>Fertilizer</h3>
+        <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+      </div>
       
+      <div class='col-lg-6'>
+        <div class="panel-group" id="fertilizer-mineral-accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fertilizer-mineral-accordion" href="#fertilizer-mineral-1" aria-expanded="false" aria-controls="fertilizer-mineral-1">
+                    Mineral fertilizer I
+                  </a>
+                </h4>
+              </div>
+              <div id="fertilizer-mineral-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+
+                  <div class="input-group">
+                    <span class="input-group-addon">NH4-N</span>
+                    <input id="fertilizer-mineral-1-NH4" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="40" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">NO3-N</span>
+                    <input id="fertilizer-mineral-1-NO3" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="60" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Urea-N</span>
+                    <input id="fertilizer-mineral-1-Urea" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#fertilizer-mineral-accordion" href="#fertilizer-mineral-2" aria-expanded="false" aria-controls="fertilizer-mineral-2">
+                    Mineral fertilizer II
+                  </a>
+                </h4>
+              </div>
+              <div id="fertilizer-mineral-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <div class="input-group">
+                    <span class="input-group-addon">NH4-N</span>
+                    <input id="fertilizer-mineral-2-NH4" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">NO3-N</span>
+                    <input id="fertilizer-mineral-2-NO3" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Urea-N</span>
+                    <input id="fertilizer-mineral-2-Urea" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="100" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class='col-lg-6'>
+        <div class="panel-group" id="fertilizer-organic-accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#fertilizer-organic-accordion" href="#slurry" aria-expanded="false" aria-controls="slurry">
+                    Slurry
+                  </a>
+                </h4>
+              </div>
+              <div id="slurry" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class="input-group">
+                    <span class="input-group-addon">N</span>
+                    <input id="fertilizer-slurry-N" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="3" min='2' max='5' data-content='Nitrogen per m-3 fresh matter'>
+                    <span class="input-group-addon">kg N / m3</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">DM</span>
+                    <input id="fertilizer-slurry-drymatter" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="8" min='4' max='10' data-content='Dry matter fraction of fresh matter'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#fertilizer-organic-accordion" href="#manure" aria-expanded="false" aria-controls="manure">
+                    Manure
+                  </a>
+                </h4>
+              </div>
+              <div id="manure" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <div class="input-group">
+                    <span class="input-group-addon">N</span>
+                    <input id="fertilizer-manure-N" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="5" min='3' max='8' data-content='Nitrogen per tonne fresh matter'>
+                    <span class="input-group-addon">kg N / t FM</span>
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">DM</span>
+                    <input id="fertilizer-manure-drymatter" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="25" min='20' max='30' data-content='Dry matter fraction of fresh matter'>
+                    <span class="input-group-addon">%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
 
       <div class='col-lg-12'>
         <hr>
@@ -665,7 +794,7 @@ body {
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
       </div>
 
-      <div class='col-lg-4'>
+      <div class='col-lg-6'>
 
         <label for="grassland-area">Total permanant grassland area</label>
         <div class="input-group">
@@ -675,11 +804,17 @@ body {
         
         <br>
         
+        <label for="grassland-slope">Average slope</label>
+        <div class="input-group">
+          <input id="grassland-slope"type='number' data-toggle="popover" data-placement="top"  class='form-control parameter-grassland' value="0" min='0' max='10' data-content='Slope'>
+          <span class="input-group-addon">%</span>
+        </div>
+        
       </div>
 
-      <div class='col-lg-4'>
+      <div class='col-lg-6'>
 
-        <label for="pasture-share">Pasture</label>
+        <label for="pasture-share">Pasture share</label>
         <div class="input-group">
           <input id="pasture-share" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-grassland' value="50" min='0' max='100' data-content='Pasture share of grassland area'>
           <span class="input-group-addon">%</span>
@@ -687,18 +822,24 @@ body {
         
         <br>
         
-      </div>
-
-      <div class='col-lg-4'>
-
-        <label for="grassland-slope">Average slope</label>
+        <label for="no-paddocks">Number paddocks</label>
         <div class="input-group">
-          <input id="grassland-slope"type='number' data-toggle="popover" data-placement="top"  class='form-control parameter-grassland' value="0" min='0' max='10' data-content='Slope'>
-          <span class="input-group-addon">%</span>
+          <input id="no-paddocks" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-grassland' value="5" min='1' max='10' data-content='Number of paddocks'>
+          <span class="input-group-addon">#</span>
         </div>
         
-        <br>      
-      
+        <br>
+        
+        <label for="grazing-system">Grazing system</label>
+        <div class="input-group">
+          <select id="grazing-system" class='form-control parameter-crop' data-toggle="popover" data-placement="top" data-content='Grazing system'>
+            <option value="rotational" selected>rotational</option>
+            <option value="continuous">continuous</option>
+          </select>
+          <span class="input-group-addon">-</span>
+        </div>
+        
+        
       </div>
       
       <div class='col-lg-12'>
@@ -710,7 +851,7 @@ body {
       </div>
 
       <div id="weather-charts" class='chart-main col-lg-12'>
-        <h3>Weather</h3>
+        <h3>Location and weather</h3>
         <p>
           <div id='weather-chart-1' class='chart'></div> 
         </p>
@@ -724,7 +865,7 @@ body {
       </div>
       
       <div id="dairy-charts" class='chart-main col-lg-12'>
-        <h3>Dairy</h3>
+        <h3>Dairy herd</h3>
         <p>
           <div id='dairy-chart-1'></div> 
         </p>
@@ -735,7 +876,7 @@ body {
       </div>
 
       <div id="crop-charts" class='chart-main col-lg-12'>
-        <h3>Crop</h3>
+        <h3>Crops and grassland</h3>
         <p>
           <div id='arable-chart-1' class='chart col-lg-6'></div> 
           <div id='area-chart-1' class='chart col-lg-6'></div> 

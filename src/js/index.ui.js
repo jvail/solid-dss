@@ -43,9 +43,9 @@ $(function () {
   }
 
 
-  function getWarning(strong, text) {
+  function getAlert(strong, text, type) {
 
-    return '<div class="alert alert-warning alert-dismissible container" role="alert">\
+    return '<div class="alert alert-'+type+' alert-dismissible container" role="alert">\
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>\
               <strong>' + strong + '</strong> ' + text + '\
             </div>';
@@ -71,7 +71,7 @@ $(function () {
       if (model)
         dss.ui.setModel(model);
       else
-        $(getWarning('Error.', 'Could not parse parameter file.')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+        $(getAlert('Error.', 'Could not parse parameter file.', 'danger')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
 
     };
 
@@ -90,7 +90,8 @@ $(function () {
           feed: {},
           crop: {},
           rotation: {},
-          grassland: {}
+          grassland: {},
+          fertilizer: {}
         }
       , schema = {
           location: {},
@@ -98,11 +99,12 @@ $(function () {
           herd: {},
           feed: {},
           crop: {},
-          grassland: {}
+          grassland: {},
+          fertilizer: {}
         }
       ;
     
-      $('.parameter-location, .parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland').each(function () {
+      $('.parameter-location, .parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland, .parameter-fertilizer').each(function () {
 
         var id = $(this).prop('id')
           , min = $(this).prop('min')
@@ -124,6 +126,8 @@ $(function () {
           submodel = 'crop';
         else if ($(this).hasClass('parameter-grassland'))
           submodel = 'grassland';
+        else if ($(this).hasClass('parameter-fertilizer'))
+          submodel = 'fertilizer';
 
         model[submodel][$(this).prop('id')] = value;
         schema[submodel][$(this).prop('id')] = {
@@ -623,7 +627,7 @@ $(function () {
 
           if (weather === null && error) {
             // on fail TODO: keep failing coords
-            $(getWarning('Error.', error.text)).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+            $(getAlert('Error.', error.text, 'danger')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
 
             return;
           }
@@ -761,7 +765,12 @@ $(function () {
   $('#crop-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
     if (isInView && (visiblePartY == 'bottom' || visiblePartY == 'both')) {
-      // console.log('inview: ' + isInView + ', ' + visiblePartY);
+
+      if (!dss.ui.rotation.rotationIsValid()) {
+        $(getAlert('Error.', 'Crop rotation is not valid.', 'danger')).prependTo($('body')).delay(6000).fadeOut(500, function () { $(this).remove(); });
+        return;
+      }
+
       var arable = dss.ui.rotation.rotation().reduce(function (a, b) {
 
         // console.log(a,b)
@@ -903,7 +912,7 @@ $(function () {
   for (var i = 0, is = feeds.length; i < is; i++) {
 
     var f = feeds[i]
-      , accordion = (i % 2 > 0) ? $('#feed-accordion-2') : $('#feed-accordion-1')
+      , accordion = (i % 2 > 0) ? '#feed-accordion-2' : '#feed-accordion-1'
       , id = f.id
       , name = f.name
       , type = f.type
@@ -934,7 +943,7 @@ $(function () {
     var body = $('<div class="panel panel-default">\
         <div class="panel-heading" role="tab" id="heading-'+id+'">\
           <h4 class="panel-title">\
-            <a data-toggle="collapse" data-parent="#accordion" href="#feed-'+id+'" aria-expanded="false" aria-controls="feed-'+id+'">\
+            <a data-toggle="collapse" data-parent="'+accordion+'" href="#feed-'+id+'" aria-expanded="false" aria-controls="feed-'+id+'">\
               '+name+'\
             </a>\
           </h4>\
@@ -944,7 +953,7 @@ $(function () {
           </div>\
         </div>\
       </div>'
-    ).appendTo(accordion).find('.panel-body');
+    ).appendTo($(accordion)).find('.panel-body');
 
     for (var j = 0, js = params.length; j < js; j++) {
       body.append(
