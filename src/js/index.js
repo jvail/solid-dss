@@ -32,7 +32,8 @@ $(function () {
     feed: {},
     crop: {},
     rotation: [],
-    grassland: {}
+    grassland: {},
+    fertilizer: {}
   };
   
   dss.schema = {
@@ -41,7 +42,8 @@ $(function () {
       herd: {},
       feed: {},
       crop: {},
-      grassland: {}
+      grassland: {},
+      fertilizer: {}
   };
 
   dss.weather = {

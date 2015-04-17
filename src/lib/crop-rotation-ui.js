@@ -1,7 +1,7 @@
 
 var CropRotationUi = function (divSelector, options, onCropActivated) {
 
-  var DEBUG = false
+  var DEBUG = true
     , cropsWell = options.crops
     , rotationUi = $(divSelector)
     , MAX_ROTATION_LENGTH = options.maxRotationLength || 5
@@ -1234,12 +1234,27 @@ var CropRotationUi = function (divSelector, options, onCropActivated) {
 
   };
 
+
+  var rotationIsValid = function () {
+
+    var valid = true;
+
+    $('.crop-container').first().children('.item').each(function () {
+      if ($(this).data('data').crop.area !== $(this).data('data').clone.data('data').crop.area)
+        valid = false
+    });  
+
+    return valid;
+
+  };
+
   return {
     rotation: rotation,
     setRotation: setRotation,
     rotationLength: function () {
       return noYears;
-    }
+    },
+    rotationIsValid: rotationIsValid
   };
 
 };
