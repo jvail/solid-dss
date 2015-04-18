@@ -251,7 +251,7 @@ body {
 
         <label for='longitude'>Longitude:</label>
         <div class="input-group">       
-          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375" data-content="Longitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="top">
+          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375" data-content="Longitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="bottom">
           <span class="input-group-addon">.00</span>
         </div>
 
@@ -264,7 +264,7 @@ body {
 
         <label for='latitude'>Latitude:</label>
         <div class="input-group">       
-          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375" data-content="Latitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="top">
+          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375" data-content="Latitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="bottom">
           <span class="input-group-addon">.00</span>
         </div>
 
@@ -280,7 +280,7 @@ body {
         
         <label for="topsoil-clay">Topsoil clay</label>
         <div class="input-group">
-          <input id="topsoil-clay" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="20" min='0' max='65' data-content='Topsoil clay fraction'>
+          <input id="topsoil-clay" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="20" min='0' max='65' data-content='Topsoil clay fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -288,7 +288,7 @@ body {
 
         <label for="topsoil-sand">Topsoil sand</label>
         <div class="input-group">
-          <input id="topsoil-sand" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="60" min='0' max='90' data-content='Topsoil sand fraction'>
+          <input id="topsoil-sand" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="60" min='0' max='90' data-content='Topsoil sand fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -296,7 +296,7 @@ body {
 
         <label for="topsoil-org">Topsoil organic matter</label>
         <div class="input-group">
-          <input id="topsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="5" min='0' max='10' data-content='Topsoil organic matter fraction'>
+          <input id="topsoil-org" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="5" min='0' max='10' data-content='Topsoil organic matter fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -304,7 +304,7 @@ body {
 
         <label for="topsoil-depth">Topsoil depth</label>
         <div class="input-group">
-          <input id="topsoil-depth" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="20" min='' max='50' data-content='Depth of topsoil'>
+          <input id="topsoil-depth" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="20" min='' max='50' data-content='Depth of topsoil'>
           <span class="input-group-addon">cm</span>
         </div>
 
@@ -316,7 +316,7 @@ body {
           
         <label for="subsoil-clay">Subsoil clay</label>
         <div class="input-group">
-          <input id="subsoil-clay" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="30" min='0' max='65' data-content='Subsoil clay fraction'>
+          <input id="subsoil-clay" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="30" min='0' max='65' data-content='Subsoil clay fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -324,7 +324,7 @@ body {
 
         <label for="subsoil-sand">Subsoil sand</label>
         <div class="input-group">
-          <input id="subsoil-sand" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="60" min='0' max='90' data-content='Subsoil sand fraction'>
+          <input id="subsoil-sand" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="60" min='0' max='90' data-content='Subsoil sand fraction'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -332,7 +332,15 @@ body {
 
         <label for="subsoil-org">Subsoil organic matter</label>
         <div class="input-group">
-          <input id="subsoil-org" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-soil' value="2" min='0' max='10' data-content='Subsoil organic matter fraction'>
+          <input id="subsoil-org" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="2" min='0' max='10' data-content='Subsoil organic matter fraction'>
+          <span class="input-group-addon">%</span>
+        </div>
+        
+        <br>
+
+        <label for="stone-content">Stone content</label>
+        <div class="input-group">
+          <input id="stone-content" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-soil' value="5" min='0' max='20' data-content='Stone content by volume.'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -347,11 +355,137 @@ body {
       <div id="settings" class='text col-lg-12'>
         <h2>Simulation Settings</h2>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
-        <p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
-        <p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
-        <p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
-        <p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
       </div>
+
+      <div class='col-lg-6'>
+        
+        <label for="time-span">Time span</label>
+        <div class="input-group">
+          <select id="time-span" class='form-control parameter-simulation' data-toggle="popover" data-placement="bottom" data-content='Once or twice rotation length. Without any crop rotation (no arable land) choose between 1x 5 or 2x 5 years.'>
+            <option value="1" selected>1x</option>
+            <option value="2">2x</option>
+          </select>
+          <span class="input-group-addon">-</span>
+        </div>
+          
+      </div>
+
+      <div class='col-lg-6'>
+          
+        <label for="time-step">Time step</label>
+        <div class="input-group">
+          <select id="time-step" class='form-control parameter-simulation' data-toggle="popover" data-placement="bottom" data-content='Time step for ration formulation.'>
+            <option value="week" selected>week</option>
+            <option value="fortnight">fortnight</option>
+          </select>
+          <span class="input-group-addon">-</span>
+        </div>
+
+      </div>
+
+      <div class='col-lg-12'>
+        <h3>Advanced model settings</h3>
+        <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+      </div>
+
+      <div class='col-lg-6'>
+        <div class="panel-group" id="simulation-crop-accordition-1" role="tablist" aria-multiselectable="true">
+          
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#crop-1" aria-expanded="false" aria-controls="crop-1">
+                  Wheat, winter
+                </a>
+              </h4>
+            </div>
+
+            <div id="crop-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <div class="input-group">
+                  <span class="input-group-addon">?</span>
+                  <input id="crop-1-param-1" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="40" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                  <span class="input-group-addon">%</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#crop-2" aria-expanded="false" aria-controls="crop-2">
+                  Wheat, summer
+                </a>
+              </h4>
+            </div>
+            <div id="crop-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+
+                <div class="input-group">
+                  <span class="input-group-addon">?</span>
+                  <input id="crop-2-param-1" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="0" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                  <span class="input-group-addon">%</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class='col-lg-6'>
+        <div class="panel-group" id="simulation-crop-accordition-2" role="tablist" aria-multiselectable="true">
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#crop-3" aria-expanded="false" aria-controls="crop-3">
+                  Ryegrass
+                </a>
+              </h4>
+            </div>
+
+            <div id="crop-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+
+                <div class="input-group">
+                  <span class="input-group-addon">?</span>
+                  <input id="crop-3-param-1" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="40" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                  <span class="input-group-addon">%</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#crop-4" aria-expanded="false" aria-controls="crop-4">
+                  Rapeseed, winter
+                </a>
+              </h4>
+            </div>
+            <div id="crop-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body">
+
+                <div class="input-group">
+                  <span class="input-group-addon">?</span>
+                  <input id="crop-4-param-1" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="0" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                  <span class="input-group-addon">%</span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
 
       <div class='col-lg-12'>
         <hr>
@@ -369,7 +503,7 @@ body {
 
         <label for="is-dual-purpose">Dual purpose breed</label>
         <div class="input-group">
-          <select id="is-dual-purpose" class='form-control parameter-herd' data-toggle="popover" data-placement="top" data-content='Are your cows a dual purpose breed?'>
+          <select id="is-dual-purpose" class='form-control parameter-herd' data-toggle="popover" data-placement="bottom" data-content='Are your cows a dual purpose breed?'>
             <option value="Yes">Yes</option>
             <option value="No" selected>No</option>
           </select>
@@ -380,7 +514,7 @@ body {
 
         <label for="bodyweight">Mature body weight</label>
         <div class="input-group">
-          <input id="bodyweight" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="650" min='450' max='850' data-content='Body weight of mature cow'>
+          <input id="bodyweight" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="650" min='450' max='850' data-content='Body weight of mature cow'>
           <span class="input-group-addon">kg</span>
         </div>
         
@@ -388,7 +522,7 @@ body {
         
         <label for="age-first-calving">Age 1st calving</label>
         <div class="input-group">
-          <input id="age-first-calving" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="24" min='24' max='28' data-content='Age of first valving in month'>
+          <input id="age-first-calving" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="24" min='24' max='28' data-content='Age of first valving in month'>
           <span class="input-group-addon">month</span>
         </div>
 
@@ -396,7 +530,7 @@ body {
           
         <label for="weight-first-calving">Body weight 1st calving</label>
         <div class="input-group">
-          <input id="weight-first-calving" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="85" min='75' max='90' data-content='Body weight of heifer at 1st calving as % of body weight of mature cow'>
+          <input id="weight-first-calving" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="85" min='75' max='90' data-content='Body weight of heifer at 1st calving as % of body weight of mature cow'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -404,7 +538,7 @@ body {
 
         <label for="milk-fat">Milk fat</label>
         <div class="input-group">
-          <input id="milk-fat"type='number' data-toggle="popover" data-placement="top"  class='form-control parameter-herd' value="4.2" min='3' max='6' data-content='Milk fat'>
+          <input id="milk-fat"type='number' data-toggle="popover" data-placement="bottom"  class='form-control parameter-herd' value="4.2" min='3' max='6' data-content='Milk fat'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -412,7 +546,7 @@ body {
           
         <label for="milk-protein">Milk protein</label>
         <div class="input-group">
-          <input id="milk-protein" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="3.4" min='3' max='5' data-content='Milk protein'>
+          <input id="milk-protein" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="3.4" min='3' max='5' data-content='Milk protein'>
           <span class="input-group-addon">%</span>
         </div>
           
@@ -425,14 +559,14 @@ body {
 
         <label for="milk-yield-data">Milk yield data, csv (week;kg)</label>
         <div>
-          <textarea id="milk-yield-data" rows="17" class='form-control parameter-herd' style='height:100%;max-width:99%;;' data-toggle="popover" data-placement="top" data-content='If available paste a semicolon seperated list of week&kg pairs of a typical lactation of an average, mature cow into the textbox. Otherwise clear the box and choose a yield level below.'>1;17.3&#013;&#010;2;27.65&#013;&#010;3;28.14&#013;&#010;4;27.69&#013;&#010;5;30.35&#013;&#010;6;29&#013;&#010;7;28.07&#013;&#010;8;28.16&#013;&#010;9;27.2&#013;&#010;10;26.21&#013;&#010;11;26.03&#013;&#010;12;25.6&#013;&#010;13;25.49&#013;&#010;14;24.31&#013;&#010;15;24.31&#013;&#010;16;24.54&#013;&#010;17;24.29&#013;&#010;18;24.42&#013;&#010;19;24.24&#013;&#010;20;24.84&#013;&#010;21;23.43&#013;&#010;22;22.86&#013;&#010;23;22.1&#013;&#010;24;22.4&#013;&#010;25;21.49&#013;&#010;26;20.43&#013;&#010;27;19.7&#013;&#010;28;18.03&#013;&#010;29;18.49&#013;&#010;30;18.2&#013;&#010;31;15.84&#013;&#010;32;13.49&#013;&#010;33;12.67&#013;&#010;34;12.68&#013;&#010;35;13.45&#013;&#010;36;12.89&#013;&#010;37;13.4&#013;&#010;38;14.37&#013;&#010;39;13.7&#013;&#010;40;12.19&#013;&#010;41;11.13&#013;&#010;42;10.47&#013;&#010;  </textarea>
+          <textarea id="milk-yield-data" rows="17" class='form-control parameter-herd' style='height:100%;max-width:99%;;' data-toggle="popover" data-placement="bottom" data-content='If available paste a semicolon seperated list of week&kg pairs of a typical lactation of an average, mature cow into the textbox. Otherwise clear the box and choose a yield level below.'>1;17.3&#013;&#010;2;27.65&#013;&#010;3;28.14&#013;&#010;4;27.69&#013;&#010;5;30.35&#013;&#010;6;29&#013;&#010;7;28.07&#013;&#010;8;28.16&#013;&#010;9;27.2&#013;&#010;10;26.21&#013;&#010;11;26.03&#013;&#010;12;25.6&#013;&#010;13;25.49&#013;&#010;14;24.31&#013;&#010;15;24.31&#013;&#010;16;24.54&#013;&#010;17;24.29&#013;&#010;18;24.42&#013;&#010;19;24.24&#013;&#010;20;24.84&#013;&#010;21;23.43&#013;&#010;22;22.86&#013;&#010;23;22.1&#013;&#010;24;22.4&#013;&#010;25;21.49&#013;&#010;26;20.43&#013;&#010;27;19.7&#013;&#010;28;18.03&#013;&#010;29;18.49&#013;&#010;30;18.2&#013;&#010;31;15.84&#013;&#010;32;13.49&#013;&#010;33;12.67&#013;&#010;34;12.68&#013;&#010;35;13.45&#013;&#010;36;12.89&#013;&#010;37;13.4&#013;&#010;38;14.37&#013;&#010;39;13.7&#013;&#010;40;12.19&#013;&#010;41;11.13&#013;&#010;42;10.47&#013;&#010;  </textarea>
         </div>
 
         <br>
 
         <label for="milk-yield">Milk yield</label>
         <div class="input-group">
-          <select id="milk-yield" class='form-control parameter-herd' data-toggle="popover" data-placement="top" data-content='Predefined milk yield data'>
+          <select id="milk-yield" class='form-control parameter-herd' data-toggle="popover" data-placement="bottom" data-content='Predefined milk yield data'>
             <option value="6500">~ 6500</option>
             <option value="7500">~ 7500</option>
             <option value="8500" selected>~ 8500</option>
@@ -455,7 +589,7 @@ body {
 
         <label for="calving-interval">Calving interval</label>
         <div class="input-group">
-          <input id="calving-interval" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="13" min='12' max='15' data-content='Month inbetween calvings'>
+          <input id="calving-interval" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="13" min='12' max='15' data-content='Month inbetween calvings'>
           <span class="input-group-addon">month</span>
         </div>
         
@@ -463,7 +597,7 @@ body {
         
         <label for="female-calves-rate">Female calves</label>
         <div class="input-group">
-          <input id="female-calves-rate" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="47" min='45' max='50' data-content='Rate of female calves'>
+          <input id="female-calves-rate" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="47" min='45' max='50' data-content='Rate of female calves'>
           <span class="input-group-addon">%</span>
         </div>
 
@@ -471,7 +605,7 @@ body {
           
         <label for="still-birth-rate">Still birth</label>
         <div class="input-group">
-          <input id="still-birth-rate" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="7" min='1' max='10' data-content='Dead born calves'>
+          <input id="still-birth-rate" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="7" min='1' max='10' data-content='Dead born calves'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -479,7 +613,7 @@ body {
           
         <label for="young-stock-cull-rate">Young stock culled</label>
         <div class="input-group">
-          <input id="young-stock-cull-rate" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="15" min='1' max='20' data-content='Rate of young stock that does not make it till 1st parity'>
+          <input id="young-stock-cull-rate" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="15" min='1' max='20' data-content='Rate of young stock that does not make it till 1st parity'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -492,7 +626,7 @@ body {
 
         <label for="herd-size">Herd size</label>
         <div class="input-group">
-          <input id="herd-size" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="50" min='20' max='500' data-content='Total number of cows w/o young stock'>
+          <input id="herd-size" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="50" min='20' max='500' data-content='Total number of cows w/o young stock'>
           <span class="input-group-addon">#</span>
         </div>
         
@@ -500,7 +634,7 @@ body {
 
         <label for="replacement-rate">Replacement rate</label>
         <div class="input-group">
-          <input id="replacement-rate" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="30" min='15' max='40' data-content='Annual herd replacement'>
+          <input id="replacement-rate" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="30" min='15' max='40' data-content='Annual herd replacement'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -508,7 +642,7 @@ body {
         
         <label for="dry-periode">Dry period</label>
         <div class="input-group">
-          <input id="dry-periode" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="8" min='4' max='10' data-content='Length of dry period in weeks'>
+          <input id="dry-periode" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="8" min='4' max='10' data-content='Length of dry period in weeks'>
           <span class="input-group-addon">month</span>
         </div>
 
@@ -516,7 +650,7 @@ body {
           
         <label for="no-groups">Number of groups</label>
         <div class="input-group">
-          <input id="no-groups" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-herd' value="3" min='1' max='4' data-content='Number of groups w/o dry groups'>
+          <input id="no-groups" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-herd' value="3" min='1' max='4' data-content='Number of groups w/o dry groups'>
           <span class="input-group-addon">#</span>
         </div>
         
@@ -532,7 +666,7 @@ body {
 
         <label for="eval-system">Evaluation system</label>
         <div class="input-group">
-          <select id="eval-system" data-toggle="popover" data-placement="top" class='form-control parameter-feed' data-content='Energy evaluation system used for herd requirements and feedstuff'>
+          <select id="eval-system" data-toggle="popover" data-placement="bottom" class='form-control parameter-feed' data-content='Energy evaluation system used for herd requirements and feedstuff'>
             <option value="de">German NEL</option>
             <option value="fi">Finnish ME</option>
             <option value="fr">French UFL</option>
@@ -545,7 +679,7 @@ body {
         
         <label for="concentrate-share">Maximum concentrate in diet</label>
         <div class="input-group">
-          <input id="concentrate-share" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-feed' value="40" min='0' max='40' data-content='Maximum concentrate share in diet in % of total dry matter intake'>
+          <input id="concentrate-share" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-feed' value="40" min='0' max='40' data-content='Maximum concentrate share in diet in % of total dry matter intake'>
           <span class="input-group-addon">%</span>
         </div>
 
@@ -557,7 +691,7 @@ body {
 
         <label for="rnb-ub">Ruminal nitrogen balance upper bound</label>
         <div class="input-group">
-          <select id="rnb-ub" data-toggle="popover" data-placement="top" class='form-control parameter-feed' data-content='Upper bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
+          <select id="rnb-ub" data-toggle="popover" data-placement="bottom" class='form-control parameter-feed' data-content='Upper bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
             <option value="Infinity">Infinity</option>
             <option value="50" selected>50</option>
             <option value="0">0</option>
@@ -569,7 +703,7 @@ body {
 
         <label for="rnb-lb">Ruminal nitrogen balance lower bound</label>
         <div class="input-group">
-          <select id="rnb-lb" data-toggle="popover" data-placement="top" class='form-control parameter-feed' data-content='Lower bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
+          <select id="rnb-lb" data-toggle="popover" data-placement="bottom" class='form-control parameter-feed' data-content='Lower bound of the ruminal nitrogen balance (RNB) - part of the German protein system'>
             <option value="-Infinity">-Infinity</option>
             <option value="-10" selected>-10</option>
             <option value="0">0</option>
@@ -618,7 +752,7 @@ body {
 
         <label for="rotation-eq-crops">Equal crop share</label>
         <div class="input-group">
-          <select id="rotation-eq-crops" class='form-control parameter-crop' data-toggle="popover" data-placement="top" data-content='Assume an equal share of each crop in each year.'>
+          <select id="rotation-eq-crops" class='form-control parameter-crop' data-toggle="popover" data-placement="bottom" data-content='Assume an equal share of each crop in each year.'>
             <option value="Yes" selected>Yes</option>
             <option value="No">No</option>
           </select>
@@ -633,7 +767,7 @@ body {
 
         <label for="arable-area">Total arable area</label>
         <div class="input-group">
-          <input id="arable-area" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-crop' value="50" min='0' max='500' data-content='Total arable area'>
+          <input id="arable-area" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="50" min='0' max='500' data-content='Total arable area'>
           <span class="input-group-addon">ha</span>
         </div>
         
@@ -645,7 +779,7 @@ body {
 
         <label for="arable-slope">Average slope</label>
         <div class="input-group">
-          <input id="arable-slope"type='number' data-toggle="popover" data-placement="top"  class='form-control parameter-crop' value="0" min='0' max='10' data-content='Slope'>
+          <input id="arable-slope"type='number' data-toggle="popover" data-placement="bottom"  class='form-control parameter-crop' value="0" min='0' max='10' data-content='Slope'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -680,19 +814,19 @@ body {
 
                   <div class="input-group">
                     <span class="input-group-addon">NH4-N</span>
-                    <input id="fertilizer-mineral-1-NH4" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="40" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                    <input id="fertilizer-mineral-1-NH4" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="40" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">NO3-N</span>
-                    <input id="fertilizer-mineral-1-NO3" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="60" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
+                    <input id="fertilizer-mineral-1-NO3" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="60" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">Urea-N</span>
-                    <input id="fertilizer-mineral-1-Urea" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
+                    <input id="fertilizer-mineral-1-Urea" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
 
@@ -711,19 +845,19 @@ body {
                 <div class="panel-body">
                   <div class="input-group">
                     <span class="input-group-addon">NH4-N</span>
-                    <input id="fertilizer-mineral-2-NH4" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
+                    <input id="fertilizer-mineral-2-NH4" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from ammonium (share of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">NO3-N</span>
-                    <input id="fertilizer-mineral-2-NO3" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
+                    <input id="fertilizer-mineral-2-NO3" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="0" min='0' max='100' data-content='Nitrogen from nitrate (share of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">Urea-N</span>
-                    <input id="fertilizer-mineral-2-Urea" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="100" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
+                    <input id="fertilizer-mineral-2-Urea" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="100" min='0' max='100' data-content='Nitrogen from urea (fraction of total nitrogen)'>
                     <span class="input-group-addon">%</span>
                   </div>
                 </div>
@@ -746,13 +880,13 @@ body {
                 <div class="panel-body">
                   <div class="input-group">
                     <span class="input-group-addon">N</span>
-                    <input id="fertilizer-slurry-N" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="3" min='2' max='5' data-content='Nitrogen per m-3 fresh matter'>
+                    <input id="fertilizer-slurry-N" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="3" min='2' max='5' data-content='Nitrogen per m-3 fresh matter'>
                     <span class="input-group-addon">kg N / m3</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">DM</span>
-                    <input id="fertilizer-slurry-drymatter" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="8" min='4' max='10' data-content='Dry matter fraction of fresh matter'>
+                    <input id="fertilizer-slurry-drymatter" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="8" min='4' max='10' data-content='Dry matter fraction of fresh matter'>
                     <span class="input-group-addon">%</span>
                   </div>
                 </div>
@@ -770,13 +904,13 @@ body {
                 <div class="panel-body">
                   <div class="input-group">
                     <span class="input-group-addon">N</span>
-                    <input id="fertilizer-manure-N" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="5" min='3' max='8' data-content='Nitrogen per tonne fresh matter'>
+                    <input id="fertilizer-manure-N" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="5" min='3' max='8' data-content='Nitrogen per tonne fresh matter'>
                     <span class="input-group-addon">kg N / t FM</span>
                   </div>
                   <br>
                   <div class="input-group">
                     <span class="input-group-addon">DM</span>
-                    <input id="fertilizer-manure-drymatter" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-fertilizer' value="25" min='20' max='30' data-content='Dry matter fraction of fresh matter'>
+                    <input id="fertilizer-manure-drymatter" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-fertilizer' value="25" min='20' max='30' data-content='Dry matter fraction of fresh matter'>
                     <span class="input-group-addon">%</span>
                   </div>
                 </div>
@@ -798,25 +932,15 @@ body {
 
         <label for="grassland-area">Total permanant grassland area</label>
         <div class="input-group">
-          <input id="grassland-area" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-grassland' value="50" min='0' max='500' data-content='Total permanant grassland area'>
+          <input id="grassland-area" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-grassland' value="50" min='0' max='500' data-content='Total permanant grassland area'>
           <span class="input-group-addon">ha</span>
         </div>
         
         <br>
-        
-        <label for="grassland-slope">Average slope</label>
-        <div class="input-group">
-          <input id="grassland-slope"type='number' data-toggle="popover" data-placement="top"  class='form-control parameter-grassland' value="0" min='0' max='10' data-content='Slope'>
-          <span class="input-group-addon">%</span>
-        </div>
-        
-      </div>
-
-      <div class='col-lg-6'>
 
         <label for="pasture-share">Pasture share</label>
         <div class="input-group">
-          <input id="pasture-share" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-grassland' value="50" min='0' max='100' data-content='Pasture share of grassland area'>
+          <input id="pasture-share" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-grassland' value="50" min='0' max='100' data-content='Pasture share of grassland area'>
           <span class="input-group-addon">%</span>
         </div>
         
@@ -824,21 +948,51 @@ body {
         
         <label for="no-paddocks">Number paddocks</label>
         <div class="input-group">
-          <input id="no-paddocks" type='number' data-toggle="popover" data-placement="top" class='form-control parameter-grassland' value="5" min='1' max='10' data-content='Number of paddocks'>
+          <input id="no-paddocks" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-grassland' value="5" min='1' max='10' data-content='Number of paddocks'>
           <span class="input-group-addon">#</span>
         </div>
         
         <br>
         
+        <label for="grassland-slope">Average slope</label>
+        <div class="input-group">
+          <input id="grassland-slope"type='number' data-toggle="popover" data-placement="bottom"  class='form-control parameter-grassland' value="0" min='0' max='10' data-content='Slope'>
+          <span class="input-group-addon">%</span>
+        </div>
+        
+      </div>
+
+      <div class='col-lg-6'>
+        
         <label for="grazing-system">Grazing system</label>
         <div class="input-group">
-          <select id="grazing-system" class='form-control parameter-crop' data-toggle="popover" data-placement="top" data-content='Grazing system'>
+          <select id="grazing-system" class='form-control parameter-grassland' data-toggle="popover" data-placement="bottom" data-content='Grazing system'>
             <option value="rotational" selected>rotational</option>
             <option value="continuous">continuous</option>
           </select>
           <span class="input-group-addon">-</span>
         </div>
+
+        <br>
+
+        <label for="supplementation-strategy">Grazing &amp; supplementation strategy</label>
+        <div class="input-group">
+          <select id="time-step" class='form-control parameter-grassland' data-toggle="popover" data-placement="bottom" data-content='Diet supplementation, grazing strategy during growing season.'>
+            <option value="no-supplementation" selected>no supplementation</option>
+            <option value="full-day-grazing" selected>full day grazing</option>
+            <option value="half-day-grazing">half day grazing</option>
+            <option value="no-grazing">no grazing</option>
+          </select>
+          <span class="input-group-addon">-</span>
+        </div>
         
+        <br>
+
+        <label for="cut-threshhold">Grassland cut threshold</label>
+        <div class="input-group">
+          <input id="cut-threshhold" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-grassland' value="1500" min='500' max='5000' data-content='The minimum acceptable dry matter yield per ha and cut before any harvest is executed.'>
+          <span class="input-group-addon">kg DM / ha</span>
+        </div>
         
       </div>
       
