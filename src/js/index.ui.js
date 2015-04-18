@@ -91,7 +91,8 @@ $(function () {
           crop: {},
           rotation: {},
           grassland: {},
-          fertilizer: {}
+          fertilizer: {},
+          simulation: {}
         }
       , schema = {
           location: {},
@@ -100,11 +101,12 @@ $(function () {
           feed: {},
           crop: {},
           grassland: {},
-          fertilizer: {}
+          fertilizer: {},
+          simulation: {}
         }
       ;
     
-      $('.parameter-location, .parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland, .parameter-fertilizer').each(function () {
+      $('.parameter-location, .parameter-soil, .parameter-herd, .parameter-feed, .parameter-crop, .parameter-grassland, .parameter-fertilizer, .parameter-simulation').each(function () {
 
         var id = $(this).prop('id')
           , min = $(this).prop('min')
@@ -128,6 +130,8 @@ $(function () {
           submodel = 'grassland';
         else if ($(this).hasClass('parameter-fertilizer'))
           submodel = 'fertilizer';
+        else if ($(this).hasClass('parameter-simulation'))
+          submodel = 'simulation';
 
         model[submodel][$(this).prop('id')] = value;
         schema[submodel][$(this).prop('id')] = {
@@ -315,18 +319,24 @@ $(function () {
           },
         }
       }, {
-        name: 'grass',
+        name: 'grass-land',
         isPerennial: true,
         parameter: {
-          myparam1: {
-            name: 'name',
+          'ryegrass-share': {
+            name: 'Ryegrass',
             unit: '%',
-            help: 'help'
+            help: 'Initial ryegrass share of total DM',
+            min: 0,
+            max: 100,
+            value: 80
           },
-          myparam2: {
-            name: 'name2',
+          'whiteclover-share': {
+            name: 'White clover',
             unit: '%',
-            help: 'help'
+            help: 'Initial white clover share of total DM',
+            min: 0,
+            max: 100,
+            value: 20
           }
         }
       }, {
@@ -476,7 +486,7 @@ $(function () {
 
           $('<label for="'+prop+'">'+param.name+'</label>\
             <div class="input-group">\
-              <input id="'+prop+'" type="number" data-toggle="popover" data-placement="top" class="form-control" value="'+param.value+'" min="75" max="90" data-content="'+param.help+'">\
+              <input id="'+prop+'" type="number" data-toggle="popover" data-placement="bottom" class="form-control" value="'+param.value+'" min="'+param.min+'" max="'+param.max+'" data-content="'+param.help+'">\
               <span class="input-group-addon">'+param.unit+'</span>\
             </div>\
             <br>'
@@ -489,6 +499,10 @@ $(function () {
 
         }
       }
+
+      $('#crop-rotation > #edit [data-toggle="popover"]').popover({
+        trigger: 'hover'
+      });
 
       $('#crop-rotation > #edit input').change(function () {
 
@@ -538,7 +552,7 @@ $(function () {
     [
       {
         "crop": {
-          "name": "grass"
+          "name": "grass-land"
         },
         "id": 1427186641299,
         "to": [
@@ -567,7 +581,7 @@ $(function () {
     [
       {
         "crop": {
-          "name": "grass"
+          "name": "grass-land"
         },
         "id": 1427186660271,
         "to": [
@@ -587,7 +601,7 @@ $(function () {
     [
       {
         "crop": {
-          "name": "grass"
+          "name": "grass-land"
         },
         "id": 1427186662489,
         "to": [
