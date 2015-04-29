@@ -5,7 +5,7 @@ SOLID-DSS
 
 Sustainable Organic and Low-Input Dairying - Decision Support System
 
-This is the development and testing repository. The application itself is available at http://zalf-lse.github.io/solid-dss/src/.
+This is the development and testing repository. The application itself is available at http://zalf-lse.github.io/solid-dss/.
 
 ## References
 
