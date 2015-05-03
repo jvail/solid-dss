@@ -146,7 +146,7 @@ $(function () {
           $('#latitude').prop('value', lat_ecad);
           $('#longitude').prop('value', lon_ecad);
         } else {
-          mapMarker.setPopupContent('<div>No Weather data available.</div>');
+          mapMarker.setPopupContent('<div style="color: rgb(222, 45, 38);">No weather data available.</div>');
           mapMarker.openPopup();
         }
 

@@ -254,12 +254,12 @@ body {
 
       <div id="location" class='text col-lg-12'>
         <h2>Location and Weather</h2>
-        <p>Integer pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id, tincidunt sit amet mauris.</p>
+        <p>If you accept that your browser queries your current location the coordinates will be updated accordingly.</p>
       </div>
 
       <div class='col-lg-12'>
         <br>
-        <div id='map' class='col-lg-12'></div>
+        <div id='map' class='col-lg-12' data-content="Click on the map to set coordinates and check weather data availability." data-toggle="popover" data-html="true" data-placement="bottom"></div>
         <br>
       </div>
 
@@ -267,7 +267,7 @@ body {
         <br>
         <label for='latitude'>Latitude:</label>
         <div class="input-group">       
-          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375" data-content="Latitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="bottom">
+          <input id='latitude' class="form-control parameter-location" type="number" value="52.52" min="25.375" max="75.375">
           <span class="input-group-addon">.00</span>
         </div>
 
@@ -279,7 +279,7 @@ body {
 
         <label for='longitude'>Longitude:</label>
         <div class="input-group">       
-          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375" data-content="Longitude: If you accept that your browser queries your current location the coordinates will be updated accordingly." data-toggle="popover" data-placement="bottom">
+          <input id='longitude' class="form-control parameter-location" type="number" value="13.41" min="-40.375" max="75.375">
           <span class="input-group-addon">.00</span>
         </div>
 
