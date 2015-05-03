@@ -87,6 +87,8 @@ $(function () {
     rh: weather.rh,
     weather: function (lat, lon, cb) {
 
+      console.log(arguments);
+
       var dec = [0.125,0.375,0.625,0.875];
       var lat_ecad = 0;
       var lon_ecad = 0;
@@ -95,11 +97,13 @@ $(function () {
       var lat_nat = lat | 0;
       var lon_nat = lon | 0;
 
+      console.log(lat_nat, lon_nat);
+
       for (var i = 0; i < dec.length; i++) {
         if (Math.abs(dec[i] - lat_dec) <= 0.125)
-          lat_ecad = lat_nat + dec[i];
+          lat_ecad = Number(lat_nat.toString() +  '.' + dec[i].toString().split('.')[1]);
         if (Math.abs(dec[i] - lon_dec) <= 0.125)
-          lon_ecad = lon_nat + dec[i];
+          lon_ecad = Number(lon_nat.toString() +  '.' + dec[i].toString().split('.')[1]);
       }
 
       function requestZee(filename, data, callback) {
