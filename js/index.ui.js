@@ -79,8 +79,101 @@ $(function () {
 
   });
 
+  var map = new L.Map('map', {
+    maxBounds: L.latLngBounds(L.latLng(35.375, -20.375), L.latLng(70.375, 40.375))
+  });
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+      maxZoom: 8,
+      minZoom: 5
+  }).addTo(map);
+  map.setView([49.875, 7.875], 7);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        var lat = parseFloat(pos.coords.latitude.toFixed(3));
+        var lon = parseFloat(pos.coords.longitude.toFixed(3));
+        $('#latitude').prop('value', lat);
+        $('#longitude').prop('value', lon);
+        map.setView([lat, lon], 7);
+        map.fireEvent('click', { latlng: L.latLng(lat, lon) })
+      },
+      function (err) {
+        $('#latitude').prop('value', 52.520);
+        $('#longitude').prop('value', 13.410);        
+      }
+    );
+  }
+  
+  var mapMarker = L.marker(null, { draggable: false }).bindPopup('<div id="spinner"></div>', { className: 'map-spinner', closeButton: false });
+  var mapSpinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/);
+  map.on('click', function (event) {
+    mapMarker.setLatLng(event.latlng).addTo(map);
+    console.log(event.latlng);
+    var lat = event.latlng.lat, lon = event.latlng.lng;
+    var dec = [0.125,0.375,0.625,0.875];
+    var lat_ecad = 0;
+    var lon_ecad = 0;
+    var lat_dec = Number('0.' + lat.toFixed(3).split('.')[1]);
+    var lon_dec = Number('0.' + lon.toFixed(3).split('.')[1]);
+    var lat_nat = lat | 0;
+    var lon_nat = lon | 0;
+
+    for (var i = 0; i < dec.length; i++) {
+      if (Math.abs(dec[i] - lat_dec) <= 0.125)
+        lat_ecad = Number(lat_nat.toString() + '.' + dec[i].toString().split('.')[1]);
+      if (Math.abs(dec[i] - lon_dec) <= 0.125)
+        lon_ecad = Number(lon_nat.toString() + '.' + dec[i].toString().split('.')[1]);
+    }
+
+    var urls = [
+      "http://zalf-lse.github.io/rr/rr_" + lat_ecad + "_" + lon_ecad + ".json.gz",
+      "http://zalf-lse.github.io/tn/tn_" + lat_ecad + "_" + lon_ecad + ".json.gz",
+      "http://zalf-lse.github.io/tg/tg_" + lat_ecad + "_" + lon_ecad + ".json.gz",
+      "http://zalf-lse.github.io/tx/tx_" + lat_ecad + "_" + lon_ecad + ".json.gz"
+    ];
+
+    var res = [];
+    function onResult(x) {
+      res.push(x);
+      console.log(x);
+      console.log(res.reduce(function (a, b) { return a + b; }));
+      if (res.length === 4) {
+        if (res.reduce(function (a, b) { return a + b; }) === 4) {
+          mapMarker.setPopupContent('<div>Weather data available</div>');
+          mapMarker.openPopup();
+          $('#latitude').prop('value', lat_ecad);
+          $('#longitude').prop('value', lon_ecad);
+        } else {
+          mapMarker.setPopupContent('<div style="color: rgb(222, 45, 38);">No weather data available.</div>');
+          mapMarker.openPopup();
+        }
+
+      }
+    }
+
+    $.each(urls, function (index, url) {
+      $.ajax({
+        type: 'HEAD',
+        url: url,
+        success: function(message, text, response){
+          onResult(1);
+        },
+        error: function(message, text, response){
+          onResult(0);
+        }
+      });
+    });
+
+  });
+
+  map.on('popupopen', function () {
+    // mapSpinner.spin($('#map #spinner')[0]);
+  });
 
   dss.ui = {
+    map: map,
     model: function () {
 
       var model = {
@@ -887,20 +980,6 @@ $(function () {
     }
 
   });
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function (pos) {
-        $('#latitude').prop('value', pos.coords.latitude.toFixed(3));
-        $('#longitude').prop('value', pos.coords.longitude.toFixed(3));
-      },
-      function (err) {
-        $('#latitude').prop('value', 52.520);
-        $('#longitude').prop('value', 13.410);        
-      }
-    );
-  }  
-
 
   var feeds = feed.feeds.reduce(function (a, b) {
     if (b.type === 'concentrate')
