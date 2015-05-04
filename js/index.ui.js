@@ -84,10 +84,29 @@ $(function () {
   });
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-      maxZoom: 8,
-      minZoom: 5
+      maxZoom: 9,
+      minZoom: 4
   }).addTo(map);
   map.setView([49.875, 7.875], 7);
+
+  var latitude_mn = 25.25
+  , longitude_mn = -40.50
+  , latitude_mx = 75.50
+  , longitude_mx = 75.50
+  , grid = 0.25
+  , multiPolyline = []
+  ;
+
+  for (var lat = latitude_mn; lat <= latitude_mx; lat+=grid)
+    multiPolyline.push([[lat, longitude_mn], [lat, longitude_mx]]);
+  for (var lon = longitude_mn; lon <= longitude_mx; lon+=grid)
+    multiPolyline.push([[latitude_mn, lon], [latitude_mx, lon]]);
+
+  L.multiPolyline(multiPolyline, {
+    color: '#333',
+    weight: 1,
+    opacity: 0.3
+  }).addTo(map);
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -96,7 +115,7 @@ $(function () {
         var lon = parseFloat(pos.coords.longitude.toFixed(3));
         $('#latitude').prop('value', lat);
         $('#longitude').prop('value', lon);
-        map.setView([lat, lon], 7);
+        map.setView([lat, lon], 8);
         map.fireEvent('click', { latlng: L.latLng(lat, lon) })
       },
       function (err) {
