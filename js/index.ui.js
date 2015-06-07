@@ -67,7 +67,7 @@ $(function () {
     reader.onload = function (e) {
     
       var model = JSON.parse(e.target.result);
-      console.log(model);
+      //console.log(model);
       if (model)
         dss.ui.setModel(model);
       else
@@ -119,8 +119,7 @@ $(function () {
         map.fireEvent('click', { latlng: L.latLng(lat, lon) })
       },
       function (err) {
-        $('#latitude').prop('value', 52.520);
-        $('#longitude').prop('value', 13.410);        
+        console.log(err);     
       }
     );
   }
@@ -129,7 +128,7 @@ $(function () {
   var mapSpinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/);
   map.on('click', function (event) {
     mapMarker.setLatLng(event.latlng).addTo(map);
-    console.log(event.latlng);
+    //console.log(event.latlng);
     var lat = event.latlng.lat, lon = event.latlng.lng;
     var dec = [0.125,0.375,0.625,0.875];
     var lat_ecad = 0;
@@ -156,8 +155,8 @@ $(function () {
     var res = [];
     function onResult(x) {
       res.push(x);
-      console.log(x);
-      console.log(res.reduce(function (a, b) { return a + b; }));
+    //  console.log(x);
+    //  console.log(res.reduce(function (a, b) { return a + b; }));
       if (res.length === 4) {
         if (res.reduce(function (a, b) { return a + b; }) === 4) {
           mapMarker.setPopupContent('<div>Weather data available</div>');
@@ -224,9 +223,20 @@ $(function () {
           , min = $(this).prop('min')
           , max = $(this).prop('max')
           , type = $(this).prop('type')
-          , value = ((type === 'number' || !isNaN(parseFloat($(this).prop('value'))) && $(this).prop('tagName') !== 'TEXTAREA') ? parseFloat($(this).prop('value')) : $(this).prop('value'))
-          , value = (isNaN(value) && (value === 'No' || value === 'Yes') ? (value === 'No' ? false : true) : value)
+          , tagName = $(this).prop('tagName')
           , submodel = ''
+          , value = $(this).prop('value')
+          ;
+
+        if (tagName !== 'TEXTAREA' && type !== 'text') {
+          if (tagName === 'SELECT' && (value === 'No' || value === 'Yes'))
+            value = (value === 'No' ? false : true);
+          else if (type === 'number')
+            value = parseFloat(value);
+        }
+
+        if (value === NaN)
+          value = 0;
 
         if ($(this).hasClass('parameter-location'))
           submodel = 'location';
@@ -265,18 +275,47 @@ $(function () {
     },
     setModel: function (model) {
 
-      console.log(Object.keys(model));
+    //  console.log(Object.keys(model));
 
       Object.keys(model).forEach(function (submodel) {
         if (submodel === 'rotation') {
           dss.ui.rotation.setRotation(model[submodel]);
         } else {
           Object.keys(model[submodel]).forEach(function (parameter) {
-            $('#'+parameter).prop('value', model[submodel][parameter]);
+            var value = model[submodel][parameter];
+            value = (typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value);  
+            $('#'+parameter).prop('value', value);
           });
         }
       });
 
+    },
+    milkYieldData: function () {
+
+      var model = dss.ui.model().model
+        , csv = ''
+        ;
+
+      if (model.herd['milk-yield-data'].trim().length === 0) {
+        var data = dairy.milk.data[model.herd['milk-yield']];
+        for (var i = 0, is = data.length; i < is; i++)
+          csv += Math.round(data[i][0] / 7) + ';' + data[i][1] + '\n';
+      } else {
+        csv = model.herd['milk-yield-data'].trim();
+      }
+
+      /* parse lactation data */
+      var milkYieldData = { t: [], y: [] }
+        , lines = csv.trim().split('\n')
+        , sep = (lines[0].indexOf(';') > 0) ? ';' : '\t'
+        ;
+      for (var l = 0, ls = lines.length; l < ls; l++) {
+        var line = lines[l].split(sep);
+        milkYieldData.t[l] = parseFloat(line[0]);
+        milkYieldData.y[l] = parseFloat(line[1]);
+      }
+
+      return milkYieldData;
     },
     charts: {
       weather: c3.generate({
@@ -345,13 +384,16 @@ $(function () {
         //   enabled: true,
         //   rescale: true
         // }
-        subchart: {
-            show: true
-        },
+        // subchart: {
+        //     show: true
+        // },
         tooltip: {
           format: {
             value: function (value, ratio, id, index) { return value.toFixed(1); }
           }
+        },
+        point: {
+          show: false
         }
       }),
       arable: c3.generate({
@@ -359,6 +401,9 @@ $(function () {
         data: {
           columns: [],
           type : 'pie'
+        },
+        pie: { 
+          expand: false 
         }
       }),
       area: c3.generate({
@@ -366,6 +411,9 @@ $(function () {
         data: {
           columns: [],
           type : 'pie'
+        },
+        pie: { 
+          expand: false 
         }
       }),
       wood: c3.generate({
@@ -392,6 +440,118 @@ $(function () {
             value: function (value, ratio, id, index) { return value.toFixed(1); }
           }
         }
+      }),
+      herd: c3.generate({
+        bindto: '#dairy-chart-2',
+        data: {
+          columns: [['parity1', 0], ['parity2', 0], ['parity3', 0], ['heifers_in', 0], ['heifers_out', 0]],
+          type: 'bar',
+          bar: {
+            width: {
+              ratio: 1
+            }
+          },
+          names: {
+            parity1: 'Parity 1',
+            parity2: 'Parity 2',
+            parity3: 'Parity >2',
+            heifers_in: 'Heifers bought, monthly average',
+            heifers_out: 'Heifers sold, monthly average',
+          }
+        },
+        axis: {
+          y: {
+            label: 'no. animals'
+          }
+        }
+      }),
+      pastureIntake: c3.generate({
+        bindto: '#pasture-intake-chart',
+        data: {
+          x: 'x',
+          columns: [],
+          names: {
+            intake: 'Herbage intake from grazing',
+            omd: 'Grazed herbage OMD',
+            cp: 'Grazed herbage CP',
+            cf: 'Grazed herbage CF',
+          },
+          axes: {
+            intake: 'y',
+            omd: 'y2',
+            cp: 'y2',
+            cf: 'y2',
+          }
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%Y-%m-%d',
+              values: ['1995-06-01', '1996-06-01', '1997-06-01', '1998-06-01', '1999-06-01', '2000-06-01', 
+              '2001-06-01', '2002-06-01', '2003-06-01', '2004-06-01', '2005-06-01', '2006-06-01', '2007-06-01', 
+              '2008-06-01', '2009-06-01', '2010-06-01', '2011-06-01', '2012-06-01', '2013-06-01', ]
+            }
+          },
+          y: {
+              show: true,
+              label: '[kg DM / cow]'
+          },
+          y2: {
+              show: true,
+              label: '[%]'
+          }
+        },
+        // subchart: {
+        //   show: true
+        // },
+        point: {
+          show: false
+        }
+      }),
+      pastureDrymatter: c3.generate({
+        bindto: '#pasture-drymatter-chart',
+        data: {
+            x: 'x',
+            columns: [],
+            names: {}
+            // ,
+            // colors: {
+            //     precipitation: colors.blue[2],
+            //     temperature: colors.red[2]
+            // }
+        },
+        // bar: {
+        //     width: {
+        //         ratio: 0.9 // this makes bar width 50% of length between ticks
+        //     }
+        // },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%Y-%m-%d',
+                    values: ['1995-06-01', '1996-06-01', '1997-06-01', '1998-06-01', '1999-06-01', '2000-06-01', 
+                    '2001-06-01', '2002-06-01', '2003-06-01', '2004-06-01', '2005-06-01', '2006-06-01', '2007-06-01', 
+                    '2008-06-01', '2009-06-01', '2010-06-01', '2011-06-01', '2012-06-01', '2013-06-01', ]
+                }
+            }
+        },
+        // zoom: {
+        //   enabled: true,
+        //   rescale: true
+        // }
+        // subchart: {
+        //     show: true
+        // },
+        point: {
+          show: false
+        }/*,
+        tooltip: {
+          format: {
+            value: function (value, ratio, id, index) { return value.toFixed(1); }
+          }
+        }*/
       })
     },
     rotation: new CropRotationUi('#crop-rotation', {
@@ -706,7 +866,8 @@ $(function () {
         },
         "id": 1427186728919,
         "to": [
-          1427186662489
+          1427186662489,
+          1427186662500
         ]
       }
     ],
@@ -716,6 +877,15 @@ $(function () {
           "name": "grass-land"
         },
         "id": 1427186662489,
+        "to": [
+          1427186614808
+        ]
+      },
+      {
+        "crop": {
+          "name": "rye"
+        },
+        "id": 1427186662500,
         "to": [
           1427186614808
         ]
@@ -733,7 +903,7 @@ $(function () {
     // $('#title').toggle(!add);
     $('#title').toggleClass('deflate', add, 400);
 
-      console.log(add);
+      //console.log(add);
   });
 
   $('#weather-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
@@ -742,7 +912,8 @@ $(function () {
 
         var lat = parseFloat(Number($('#latitude').prop('value')).toFixed(3));
         var lon = parseFloat(Number($('#longitude').prop('value')).toFixed(3));
-        if (!dss.fn.modelChanged('location'))
+
+        if (!dss.fn.modelChanged('location') && dss.ui.charts.weather.data().length > 0)
           return;
 
         var spinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/).spin($('#weather-charts')[0]);
@@ -933,45 +1104,24 @@ $(function () {
 
   });
 
-  $('#dairy-charts').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
-    console.log(arguments);
+  $('#dairy-chart-1').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
 
     if (isInView && (visiblePartY == 'bottom' || visiblePartY == 'both')) {
 
-      var model = dss.ui.model().model
-        , csv = ''
-        ;
 
-      if (!dss.fn.modelChanged('herd'))
+      if (!dss.fn.modelChanged('herd', ['milk-yield-data']))
         return;
 
       var spinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/).spin($('#dairy-chart-1')[0]);
 
-      if (model.herd['milk-yield-data'].trim().length === 0) {
-        var data = dairy.milk.data[model.herd['milk-yield']];
-        for (var i = 0, is = data.length; i < is; i++)
-          csv += Math.round(data[i][0] / 7) + ';' + data[i][1] + '\n';
-      } else {
-        csv = model.herd['milk-yield-data'].trim();
-      }
+      var milkYieldData = dss.ui.milkYieldData();
 
-      /* parse lactation data */
-      var milkYieldData = { t: [], y: [] }
-        , lines = csv.trim().split('\n')
-        , sep = (lines[0].indexOf(';') > 0) ? ';' : '\t'
-        ;
-      for (var l = 0, ls = lines.length; l < ls; l++) {
-        var line = lines[l].split(sep);
-        milkYieldData.t[l] = parseFloat(line[0]);
-        milkYieldData.y[l] = parseFloat(line[1]);
-      }
-
-      dss.fn.dairy(milkYieldData, function (data, error) {
+      dss.fn.fitWood(milkYieldData, function (data, error) {
 
         if (typeof data === 'object') {
 
-          console.log(data);
+          //console.log(data);
           var columns = [['x'], ['fit'], ['data']];
 
           for (var t = 0, ts = milkYieldData.t.length; t < ts; t++) {
@@ -980,7 +1130,7 @@ $(function () {
             columns[2].push((milkYieldData.t[t], milkYieldData.y[t]));
           };
 
-          console.log(columns);
+          // console.log(columns);
 
           dss.ui.charts.wood.load({
             columns: columns
@@ -988,10 +1138,11 @@ $(function () {
 
           $('#dairy-chart-1 .spinner').remove();
 
-          dss.fn.updateModel('herd');
+          // dss.fn.updateModel('herd');
+          dss.fn.updateModel('herd', ['milk-yield-data']);
 
         } else {
-          console.log(data); /* lmfit output */
+          //console.log(data); /* lmfit output */
         }
 
       });
@@ -1000,11 +1151,56 @@ $(function () {
 
   });
 
+
+
+  $('#dairy-chart-2').bind('inview', function(event, isInView, visiblePartX, visiblePartY) {
+
+
+    if (isInView && (visiblePartY == 'bottom' || visiblePartY == 'both')) {
+
+      if (!dss.fn.modelChanged('herd', ['age-first-calving', 'female-calves-rate', 'still-birth-rate', 'young-stock-cull-rate', 'replacement-rate', 'calving-interval', 'herd-size', 'dry-periode']))
+        return;
+
+      var spinner = new Spinner(/*{color: '#333', lines: 10, length: 30, radius: 20, width: 8, speed: 0.5}*/).spin($('#dairy-chart-2')[0]);
+   
+      /* calculate herd structure */
+      dss.fn.herdStructure(function (data, error) {
+
+        dss.ui.charts.herd.load({
+          columns: data
+        });
+
+        $('#dairy-chart-2 .spinner').remove();
+        dss.fn.updateModel('herd', ['age-first-calving', 'female-calves-rate', 'still-birth-rate', 'young-stock-cull-rate', 'replacement-rate', 'calving-interval', 'herd-size', 'dry-periode']);
+
+
+      });
+
+
+
+    }
+
+  });
+
+
   var feeds = feed.feeds.reduce(function (a, b) {
     if (b.type === 'concentrate')
       a.push(b);
     return a; 
   }, []);
+
+  var cunstomFeed = feeds.reduce(function (a, b) {
+    if (b.id === 60)
+      a.push(b);
+    return a; 
+  }, [])[0];
+
+  if (typeof cunstomFeed === 'object' && cunstomFeed !== null) {
+    // make copy of feed 60
+    cunstomFeed = JSON.parse(JSON.stringify(cunstomFeed));
+    cunstomFeed.id = 999;
+    cunstomFeed.name = 'Custom feed';
+  }
   
   feeds.sort(function (a, b) {
     
@@ -1021,6 +1217,8 @@ $(function () {
   
   });
 
+  feeds.push(cunstomFeed);
+
   for (var i = 0, is = feeds.length; i < is; i++) {
 
     var f = feeds[i]
@@ -1029,18 +1227,19 @@ $(function () {
       , name = f.name
       , type = f.type
       , params = [
-            { value:   0, unit: 't / year', name: 'Amount', help: 'Maximum total amount fed per year in tonnes' }
-          , { value:   f.DM, unit: 'g / kg FM', name: 'DM', help: '' }
-          , { value:   f.OM, unit: 'g / kg DM', name: 'OM', help: '' }
-          , { value:  Math.round(f.OMD * 100), unit: '%', name: 'OMD', help: '' }
-          , { value:   f.CP, unit: 'g / kg DM', name: 'CP', help: '' }
-          , { value:  Math.round(f.CPD * 100), unit: '%', name: 'CPD', help: '' }
-          , { value:   f.EE, unit: 'g / kg DM', name: 'EE', help: '' }
-          , { value:  Math.round(f.EED * 100), unit: '%', name: 'EED', help: '' }
-          , { value:   f.CF, unit: 'g / kg DM', name: 'CF', help: '' }
-          , { value:  Math.round(f.CFD * 100), unit: '%', name: 'CFD', help: '' }
-          , { value:  f.NFE, unit: 'g / kg DM', name: 'NFE', help: '' }
-          , { value: Math.round(f.NFED * 100), unit: '%', name: 'NFED', help: '' }
+            { value:   f.name, unit: '-', name: 'Name', help: 'Feed name' }
+          , { value:   0, unit: 't / year', name: 'Amount', help: 'Maximum total amount fed per year in tonnes' }
+          , { value:   f.DM, unit: 'g / kg FM', name: 'DM', help: 'Dry matter content in fresh matter' }
+          , { value:   f.OM, unit: 'g / kg DM', name: 'OM', help: 'Organic matter content in dry matter.' }
+          , { value:  Math.round(f.OMD * 100), unit: '%', name: 'OMD', help: 'Organic matter digestibility.' }
+          , { value:   f.CP, unit: 'g / kg DM', name: 'CP', help: 'Crude protein content in dry matter.' }
+          , { value:  Math.round(f.CPD * 100), unit: '%', name: 'CPD', help: 'Crude protein digestibility.' }
+          , { value:   f.EE, unit: 'g / kg DM', name: 'EE', help: 'Ether extract content in dry matter.' }
+          , { value:  Math.round(f.EED * 100), unit: '%', name: 'EED', help: 'Ether extract digestibility.' }
+          , { value:   f.CF, unit: 'g / kg DM', name: 'CF', help: 'Crude fibre content in dry matter.' }
+          , { value:  Math.round(f.CFD * 100), unit: '%', name: 'CFD', help: 'Crude fibre digestibility.' }
+          , { value:  f.NFE, unit: 'g / kg DM', name: 'NFE', help: 'Nitrogenfree extractives in dry matter.' }
+          , { value: Math.round(f.NFED * 100), unit: '%', name: 'NFED', help: 'Nitrogenfree extractives digestibility.' }
         ]
       , onChange = function () {
         var value = parseFloat($(this).prop('value'));
@@ -1068,13 +1267,22 @@ $(function () {
     ).appendTo($(accordion)).find('.panel-body');
 
     for (var j = 0, js = params.length; j < js; j++) {
+      var disabled = '';
+      var display = '';
+      var type = 'number';
+      if (params[j].name === 'Name') {
+        if (id < 999) { // don't disable in custom feeds
+          disabled = 'disabled';
+          display = 'style="display:none;"';
+        }
+        type = 'text';
+      }
       body.append(
-       '<div class="input-group">\
+       '<div class="input-group" '+display+'>\
           <span class="input-group-addon">'+params[j].name+'</span>\
-            <input id="feed-'+id+'-'+params[j].name.toLowerCase()+'" type="number" data-toggle="popover" data-placement="top" class="form-control parameter-feed" value="'+params[j].value+'" min="0" data-content="'+params[j].help+'">\
+            <input id="feed-'+id+'-'+params[j].name.toLowerCase()+'" type="'+type+'" data-toggle="popover" data-placement="bottom" class="form-control parameter-feed" value="'+params[j].value+'" min="0" data-content="'+params[j].help+'" '+disabled+'>\
           <span class="input-group-addon">'+params[j].unit+'</span>\
-        </div>\
-        <br>'
+        </div>'+(display === '' ? '<br>' : '')
       );
       if (params[j].name.toLowerCase() === 'amount') {
         $('#feed-'+id+'-'+params[j].name.toLowerCase()).change(onChange);
@@ -1118,18 +1326,19 @@ $(function () {
 
   $('#run-btn').click(function () {
 
-    $('#result-modal').modal('show');
+    $('.result-chart').each(function () {
+      new Spinner().spin($(this)[0]);
+    });
+
+    dss.fn.runModel(function () {
+
+      /* done */
+      $('#run .spinner').remove();
+
+    });
+
 
   });
-
-
-
-
-  $('#result-modal').on('shown.bs.modal', function (e) {
-    console.log('on shown.bs.modal');
-  });
-
-  console.log(dss);
 
 
 });
