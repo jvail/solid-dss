@@ -2,7 +2,9 @@ $(function () {
 
   var zeeWorker = new Worker('lib/zee/zee-worker.js')
     , lmfitWorker = new Worker('lib/lmfit-worker.js')
-    , cropWorker = new Worker('lib/pasture-worker.js')
+    , pastureWorker = new Worker('lib/pasture-worker.js')
+    , grasslandWorker = new Worker('lib/grassland-worker.js')
+    , arableWorker = new Worker('lib/arable-worker.js')
     ;
 
   var DAYS_IN_MONTH = 30.5;
@@ -494,13 +496,13 @@ $(function () {
         })
       }
 
-      cropWorker.onmessage = function (evt) {
+      pastureWorker.onmessage = function (evt) {
         cb(evt.data);
       };
 
       // calc. avg IC per parity and avg req_m, req_t of herd
 
-      cropWorker.postMessage({
+      pastureWorker.postMessage({
         weather: dss.weather,
         debug: true,
         verbose: true,
@@ -1101,8 +1103,9 @@ $(function () {
               - calculate properties for each cow
               - group cows and calculate average per group (cb)
 
+          - run grassland model to calculate harvest dates, hay and silage availability per year
+          - sync potential harvest dates with crop (grass-clover) and pasture model
           - run pasture model with average cows (pasture intake per avg cow (group))
-          - run grassland model to calculate hay and silage availability per year
           - run arable crop model to calculate forage availability from forage crops
           - feed evaluation
           - setup and solve LP
