@@ -1183,7 +1183,7 @@ $(function () {
   });
 
 
-  var feeds = feed.feeds.reduce(function (a, b) {
+  var feeds = dairy.feed.feeds.reduce(function (a, b) {
     if (b.type === 'concentrate')
       a.push(b);
     return a; 
