@@ -5,10 +5,14 @@ SOLID-DSS
 
 Sustainable Organic and Low-Input Dairying - Decision Support System
 
-This is the development and testing repository. The application itself is available at http://zalf-lse.github.io/solid-dss/.
+This is the development and testing repository. The application itself is available at https://zalf-lse.github.io/solid-dss/.
 The source code of all included libraries and models is hosted here: https://github.com/jvail  
 
 ## References
+
+Vaillant, J. and Baldinger, L. 2016.
+Application note: An open-source JavaScript library to simulate dairy cows and young stock, their growth, requirements and diets.
+Computers and Electronics in Agriculture, Volume 120, January 2016, Pages 7–9
 
 Baldinger, L.,  J. Vaillant, W. Zollitsch and M. Rinne (2015). [Making a decision-support system for dairy farmers usable throughout Europe: the challenge of feed evaluation](https://github.com/jvail/dairy.js/raw/master/doc/Baldinger_2015.pdf). Advances in Animal Biosciences, 6, pp 3-5. doi:10.1017/S2040470014000387. 
 
