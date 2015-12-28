@@ -800,7 +800,7 @@ body {
 
         <label for="milk-yield-data">Milk yield data, csv (week;kg)</label>
         <div>
-          <textarea id="milk-yield-data" rows="17" class='form-control parameter-herd' style='height:100%;max-width:99%;;' data-toggle="popover" data-placement="bottom" data-content='If available paste a semicolon seperated list of week&kg pairs of a typical lactation of an average, mature cow into the textbox. Otherwise clear the box and choose a yield level below.'>1;17.3&#013;&#010;2;27.65&#013;&#010;3;28.14&#013;&#010;4;27.69&#013;&#010;5;30.35&#013;&#010;6;29&#013;&#010;7;28.07&#013;&#010;8;28.16&#013;&#010;9;27.2&#013;&#010;10;26.21&#013;&#010;11;26.03&#013;&#010;12;25.6&#013;&#010;13;25.49&#013;&#010;14;24.31&#013;&#010;15;24.31&#013;&#010;16;24.54&#013;&#010;17;24.29&#013;&#010;18;24.42&#013;&#010;19;24.24&#013;&#010;20;24.84&#013;&#010;21;23.43&#013;&#010;22;22.86&#013;&#010;23;22.1&#013;&#010;24;22.4&#013;&#010;25;21.49&#013;&#010;26;20.43&#013;&#010;27;19.7&#013;&#010;28;18.03&#013;&#010;29;18.49&#013;&#010;30;18.2&#013;&#010;31;15.84&#013;&#010;32;13.49&#013;&#010;33;12.67&#013;&#010;34;12.68&#013;&#010;35;13.45&#013;&#010;36;12.89&#013;&#010;37;13.4&#013;&#010;38;14.37&#013;&#010;39;13.7&#013;&#010;40;12.19&#013;&#010;41;11.13&#013;&#010;42;10.47&#013;&#010;  </textarea>
+          <textarea id="milk-yield-data" rows="17" class='form-control parameter-herd' style='height:100%;max-width:99%;;' data-toggle="popover" data-placement="bottom" data-content='If available paste a semicolon seperated list of week&kg pairs of a typical lactation of an average, mature cow into the textbox. Otherwise choose a yield level below.'>1;17.3&#013;&#010;2;27.65&#013;&#010;3;28.14&#013;&#010;4;27.69&#013;&#010;5;30.35&#013;&#010;6;29&#013;&#010;7;28.07&#013;&#010;8;28.16&#013;&#010;9;27.2&#013;&#010;10;26.21&#013;&#010;11;26.03&#013;&#010;12;25.6&#013;&#010;13;25.49&#013;&#010;14;24.31&#013;&#010;15;24.31&#013;&#010;16;24.54&#013;&#010;17;24.29&#013;&#010;18;24.42&#013;&#010;19;24.24&#013;&#010;20;24.84&#013;&#010;21;23.43&#013;&#010;22;22.86&#013;&#010;23;22.1&#013;&#010;24;22.4&#013;&#010;25;21.49&#013;&#010;26;20.43&#013;&#010;27;19.7&#013;&#010;28;18.03&#013;&#010;29;18.49&#013;&#010;30;18.2&#013;&#010;31;15.84&#013;&#010;32;13.49&#013;&#010;33;12.67&#013;&#010;34;12.68&#013;&#010;35;13.45&#013;&#010;36;12.89&#013;&#010;37;13.4&#013;&#010;38;14.37&#013;&#010;39;13.7&#013;&#010;40;12.19&#013;&#010;41;11.13&#013;&#010;42;10.47&#013;&#010;  </textarea>
         </div>
 
         <br>
@@ -808,9 +808,10 @@ body {
         <label for="milk-yield">Milk yield</label>
         <div class="input-group">
           <select id="milk-yield" class='form-control parameter-herd' data-toggle="popover" data-placement="bottom" data-content='Predefined milk yield data'>
+            <option value="data" selected>data</option>
             <option value="6500">~ 6500</option>
             <option value="7500">~ 7500</option>
-            <option value="8500" selected>~ 8500</option>
+            <option value="8500">~ 8500</option>
             <option value="9500">~ 9500</option>
           </select>
           <span class="input-group-addon">kg</span>
