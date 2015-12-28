@@ -34,8 +34,8 @@
 <script src="lib/weather.solar.js"></script>
 <script src="lib/dairy.min.js"></script>
 <script src="lib/pathseg.js"></script> <!-- polyfill https://github.com/progers/pathseg -->
-<script src="js/index.ui.min.js"></script>
-<script src="js/index.min.js"></script>
+<script src="js/index.ui.js"></script>
+<script src="js/index.js"></script>
 <style type="text/css">
 /*label {
   font-weight: 500;
@@ -154,6 +154,11 @@ body {
 .c3.chart {
   min-height: 350px;
   max-height: 350px;
+}
+
+#dairy-chart-1 .c3-circle {
+  stroke-width: 2px;
+  opacity: 1 !important;
 }
 
 .c3-line {
