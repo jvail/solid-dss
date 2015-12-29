@@ -67,6 +67,13 @@ body {
   }
 }
 
+/*modal-sm:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}*/
+
 #results-dlg .modal-dialog {
     overflow-y: initial !important
 }
@@ -369,7 +376,7 @@ body {
             <option value="silt loam">silt loam</option>
             <option value="silty clay loam">silty clay loam</option>
           </select>
-          <span class="input-group-addon">year</span>
+          <span class="input-group-addon">-</span>
         </div>
         
         <br>
@@ -405,7 +412,7 @@ body {
             <option value="silt loam">silt loam</option>
             <option value="silty clay loam">silty clay loam</option>
           </select>
-          <span class="input-group-addon">year</span>
+          <span class="input-group-addon">-</span>
         </div>
         
         <br>
@@ -503,234 +510,6 @@ body {
         </div>
 
       </div>
-
-      <div class='col-md-12'>
-        <h3>Advanced model settings</h3>
-        <p></p>
-      </div>
-
-      <div class='col-md-6'>
-        <div class="panel-group" id="simulation-crop-accordition-1" role="tablist" aria-multiselectable="true">
-          
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#wheat" aria-expanded="false" aria-controls="wheat">
-                  Wheat
-                </a>
-              </h4>
-            </div>
-            <div id="wheat" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
-                  <input id="wheat-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
-                  <input id="wheat-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="380" min='300' max='450' data-content='Temperature sum from double ridge to flowering'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
-                  <input id="wheat-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from flowering to begin grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Grain filling</span>
-                  <input id="wheat-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="420" min='350' max='500' data-content='Temperature sum till end of grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#barley" aria-expanded="false" aria-controls="barley">
-                  Barley
-                </a>
-              </h4>
-            </div>
-            <div id="barley" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
-                  <input id="barley-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
-                  <input id="barley-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="300" min='250' max='350' data-content='Temperature sum from double ridge to flowering'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
-                  <input id="barley-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="120" min='100' max='150' data-content='Temperature sum from flowering to begin grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Grain filling</span>
-                  <input id="barley-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="260" min='200' max='300' data-content='Temperature sum till end of grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#rye" aria-expanded="false" aria-controls="rye">
-                  Rye
-                </a>
-              </h4>
-            </div>
-            <div id="rye" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
-                  <input id="rye-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'>
-                  <span class="input-group-addon"/>°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
-                  <input id="rye-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from double ridge to flowering'>
-                  <span class="input-group-addon"/>°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
-                  <input id="rye-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="400" min='300' max='500' data-content='Temperature sum from flowering to begin grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Grain filling</span>
-                  <input id="rye-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="350" min='300' max='400' data-content='Temperature sum till end of grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class='col-md-6'>
-        <div class="panel-group" id="simulation-crop-accordition-2" role="tablist" aria-multiselectable="true">
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#oats" aria-expanded="false" aria-controls="oats">
-                  Oats
-                </a>
-              </h4>
-            </div>
-            <div id="oats" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
-                  <input id="oats-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="300" min='200' max='400' data-content='Temperature sum from emergence to double ridge'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
-                  <input id="oats-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="420" min='300' max='500' data-content='Temperature sum from double ridge to flowering'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
-                  <input id="oats-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from flowering to begin grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Grain filling</span>
-                  <input id="oats-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum till end of grain filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#maize" aria-expanded="false" aria-controls="maize">
-                  Maize
-                </a>
-              </h4>
-            </div>
-            <div id="maize" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Emergence to shooting</span>
-                  <input id="maize-emergence-to-shooting" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='350' data-content='Temperature sum from emergence to shooting'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Shooting to tasseling</span>
-                  <input id="maize-shooting-to-tasseling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="190" min='150' max='250' data-content='Temperature sum from shooting to tasseling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Tasseling to flowering</span>
-                  <input id="maize-tasseling-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='100' max='300' data-content='Temperature sum from tasseling to flowering'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering to corn filling</span>
-                  <input id="maize-flowering-to-corn-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='100' max='300' data-content='Temperature sum from flowering to corn filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-                <br/>
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Corn filling</span>
-                  <input id="maize-corn-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="400" min='300' max='500' data-content='Temperature sum corn filling'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#grassland" aria-expanded="false" aria-controls="grass">
-                  Grass
-                </a>
-              </h4>
-            </div>
-            <div id="grassland" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
-                <div class="input-group">
-                  <span class="input-group-addon long-input-desc">Flowering</span>
-                  <input id="grass-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="500" min='250' max='750' data-content='Temperature sum till flowering'/>
-                  <span class="input-group-addon">°C</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
 
       <div class='col-md-12'>
         <hr>
@@ -1089,6 +868,234 @@ body {
 
       <div id='crop-rotation' class='col-md-12'></div>
 
+      <div class='col-md-12'>
+        <h3>Advanced model settings</h3>
+        <p></p>
+      </div>
+
+      <div class='col-md-6'>
+        <div class="panel-group" id="simulation-crop-accordition-1" role="tablist" aria-multiselectable="true">
+          
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#wheat" aria-expanded="false" aria-controls="wheat">
+                  Wheat
+                </a>
+              </h4>
+            </div>
+            <div id="wheat" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
+                  <input id="wheat-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
+                  <input id="wheat-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="380" min='300' max='450' data-content='Temperature sum from double ridge to flowering'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
+                  <input id="wheat-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from flowering to begin grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Grain filling</span>
+                  <input id="wheat-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="420" min='350' max='500' data-content='Temperature sum till end of grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#barley" aria-expanded="false" aria-controls="barley">
+                  Barley
+                </a>
+              </h4>
+            </div>
+            <div id="barley" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
+                  <input id="barley-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
+                  <input id="barley-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="300" min='250' max='350' data-content='Temperature sum from double ridge to flowering'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
+                  <input id="barley-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="120" min='100' max='150' data-content='Temperature sum from flowering to begin grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Grain filling</span>
+                  <input id="barley-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="260" min='200' max='300' data-content='Temperature sum till end of grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-1" href="#rye" aria-expanded="false" aria-controls="rye">
+                  Rye
+                </a>
+              </h4>
+            </div>
+            <div id="rye" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
+                  <input id="rye-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='300' data-content='Temperature sum from emergence to double ridge'>
+                  <span class="input-group-addon"/>°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
+                  <input id="rye-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from double ridge to flowering'>
+                  <span class="input-group-addon"/>°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
+                  <input id="rye-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="400" min='300' max='500' data-content='Temperature sum from flowering to begin grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Grain filling</span>
+                  <input id="rye-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="350" min='300' max='400' data-content='Temperature sum till end of grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class="panel-group" id="simulation-crop-accordition-2" role="tablist" aria-multiselectable="true">
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#oats" aria-expanded="false" aria-controls="oats">
+                  Oats
+                </a>
+              </h4>
+            </div>
+            <div id="oats" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Emergence to double ridge</span>
+                  <input id="oats-emergence-to-double-ridge" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="300" min='200' max='400' data-content='Temperature sum from emergence to double ridge'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Double ridge to flowering</span>
+                  <input id="oats-double-ridge-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="420" min='300' max='500' data-content='Temperature sum from double ridge to flowering'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering to begin grain filling</span>
+                  <input id="oats-flowering-to-begin-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum from flowering to begin grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Grain filling</span>
+                  <input id="oats-grain-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='150' max='250' data-content='Temperature sum till end of grain filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#maize" aria-expanded="false" aria-controls="maize">
+                  Maize
+                </a>
+              </h4>
+            </div>
+            <div id="maize" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Emergence to shooting</span>
+                  <input id="maize-emergence-to-shooting" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="284" min='200' max='350' data-content='Temperature sum from emergence to shooting'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Shooting to tasseling</span>
+                  <input id="maize-shooting-to-tasseling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="190" min='150' max='250' data-content='Temperature sum from shooting to tasseling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Tasseling to flowering</span>
+                  <input id="maize-tasseling-to-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='100' max='300' data-content='Temperature sum from tasseling to flowering'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering to corn filling</span>
+                  <input id="maize-flowering-to-corn-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="200" min='100' max='300' data-content='Temperature sum from flowering to corn filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+                <br/>
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Corn filling</span>
+                  <input id="maize-corn-filling" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="400" min='300' max='500' data-content='Temperature sum corn filling'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#simulation-crop-accordition-2" href="#grassland" aria-expanded="false" aria-controls="grass">
+                  Grass
+                </a>
+              </h4>
+            </div>
+            <div id="grassland" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon long-input-desc">Flowering</span>
+                  <input id="grass-flowering" type='number' data-toggle="popover" data-placement="bottom" class='form-control parameter-crop' value="500" min='250' max='750' data-content='Temperature sum till flowering'/>
+                  <span class="input-group-addon">°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
   <!--<div class='text col-md-12'>
         <h3>Fertilizer</h3>
         <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
@@ -1358,7 +1365,7 @@ body {
       </div>
 
       <div class='chart-main col-md-12'>
-        <h4>Yields</h4>
+        <h4>Yields arable</h4>
         <p>Averaged if a crop appears twice or more in a rotation</p>
         <div class ='form-group'>
           <select id='result-yield-select' class="selectpicker" data-width="fit" data-size="5">
@@ -1370,7 +1377,7 @@ body {
       </div>
 
       <div class='chart-main col-md-12'>
-        <h4>Water-/ nitrogen deficits and irrigation</h4>
+        <h4>Water-/ nitrogen deficits and irrigation on arable land</h4>
         <p>Averaged over 10 days</p>
         <div class ='form-group'>
           <select id='result-water-select' class="selectpicker" data-width="fit" data-size="5">
@@ -1378,6 +1385,14 @@ body {
         </div>        
         <p>
           <div id='water-chart' class='chart'></div> 
+        </p>
+      </div>
+  
+      <div class='chart-main col-md-12'>
+        <h4>Yields permanent grassland</h4>
+        <p></p>       
+        <p>
+          <div id='grassland-yield-chart' class='chart'></div> 
         </p>
       </div>
   
@@ -1420,6 +1435,24 @@ body {
           <h4 class='modal-title'>Progress</h4>
         </div>        
         <div class='modal-body'>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div id='error-dlg' class='modal' tabindex='-1' role='dialog'>
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+          <h4 class='modal-title'>Error</h4>
+        </div>        
+        <div class='modal-body'>
+          <p>An unexpected error occured. Please download your configuration file <a id='download-error' href="#">here</a>
+          and send it to <a href="mailto:jbachinger@zalf.de?Subject=solid-dss" target="_top">jbachinger@zalf.de</a>. We will fix the problem.
+          </p>
+          <p>Please copy information about your browser into the email:</p>
+          <pre id='environment'></pre> 
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
