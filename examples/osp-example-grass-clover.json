@@ -28,8 +28,8 @@
     "straw-max": 1,
     "straw-type": "wheat",
     "concentrate-share": 30,
-    "rnb-ub": "50",
-    "rnb-lb": "-10",
+    "rnb-ub": "Infinity",
+    "rnb-lb": "-Infinity",
     "feed-53-name": "Barley, grain",
     "feed-53-amount": 0,
     "feed-53-dm": 880,
@@ -266,7 +266,7 @@
     "feed-500-nfed": 93
   },
   "crop": {
-    "arable-area": 70,
+    "arable-area": 100,
     "wheat-emergence-to-double-ridge": 284,
     "wheat-double-ridge-to-flowering": 380,
     "wheat-flowering-to-begin-grain-filling": 200,
@@ -294,6 +294,195 @@
     [
       {
         "crop": {
+          "name": "rye",
+          "isPerennial": false,
+          "parameter": {
+            "N-input": {
+              "name": "Nitrogen input",
+              "unit": "kg N / ha",
+              "help": "Average mineral or organic nitrogen fertilization",
+              "value": 80,
+              "min": 0,
+              "max": 200
+            },
+            "irrigation": {
+              "name": "Irrrigated",
+              "unit": "-",
+              "help": "Apply automatic irrigation",
+              "value": [
+                "No",
+                "Yes"
+              ]
+            }
+          },
+          "area": 1
+        },
+        "id": 1451658763667,
+        "to": [
+          1451658763675,
+          1451658763679
+        ]
+      }
+    ],
+    [
+      {
+        "crop": {
+          "name": "grass-legume",
+          "isPerennial": true,
+          "parameter": {
+            "N-input": {
+              "name": "Nitrogen input",
+              "unit": "kg N / ha",
+              "help": "Average mineral or organic nitrogen fertilization",
+              "value": "0",
+              "min": 0,
+              "max": 200
+            },
+            "irrigation": {
+              "name": "Irrrigated",
+              "unit": "-",
+              "help": "Apply automatic irrigation",
+              "value": [
+                "No",
+                "Yes"
+              ]
+            },
+            "legume-share": {
+              "name": "Legume share",
+              "unit": "%",
+              "help": "Initial legume share of total DM",
+              "min": 1,
+              "max": 100,
+              "value": "90"
+            }
+          },
+          "area": 0.5
+        },
+        "id": 1451658763675,
+        "to": [
+          1451658763683
+        ]
+      },
+      {
+        "crop": {
+          "name": "grass-legume",
+          "isPerennial": true,
+          "parameter": {
+            "N-input": {
+              "name": "Nitrogen input",
+              "unit": "kg N / ha",
+              "help": "Average mineral or organic nitrogen fertilization",
+              "value": "0",
+              "min": 0,
+              "max": 200
+            },
+            "irrigation": {
+              "name": "Irrrigated",
+              "unit": "-",
+              "help": "Apply automatic irrigation",
+              "value": [
+                "No",
+                "Yes"
+              ]
+            },
+            "legume-share": {
+              "name": "Legume share",
+              "unit": "%",
+              "help": "Initial legume share of total DM",
+              "min": 1,
+              "max": 100,
+              "value": "10"
+            }
+          },
+          "area": 0.5
+        },
+        "id": 1451658763679,
+        "to": [
+          1451658763687
+        ]
+      }
+    ],
+    [
+      {
+        "crop": {
+          "name": "grass-legume",
+          "isPerennial": true,
+          "parameter": {
+            "N-input": {
+              "name": "Nitrogen input",
+              "unit": "kg N / ha",
+              "help": "Average mineral or organic nitrogen fertilization",
+              "value": 80,
+              "min": 0,
+              "max": 200
+            },
+            "irrigation": {
+              "name": "Irrrigated",
+              "unit": "-",
+              "help": "Apply automatic irrigation",
+              "value": [
+                "No",
+                "Yes"
+              ]
+            },
+            "legume-share": {
+              "name": "Legume share",
+              "unit": "%",
+              "help": "Initial legume share of total DM",
+              "min": 1,
+              "max": 100,
+              "value": 20
+            }
+          },
+          "area": 0.5
+        },
+        "id": 1451658763683,
+        "to": [
+          1451658763690
+        ]
+      },
+      {
+        "crop": {
+          "name": "grass-legume",
+          "isPerennial": true,
+          "parameter": {
+            "N-input": {
+              "name": "Nitrogen input",
+              "unit": "kg N / ha",
+              "help": "Average mineral or organic nitrogen fertilization",
+              "value": 80,
+              "min": 0,
+              "max": 200
+            },
+            "irrigation": {
+              "name": "Irrrigated",
+              "unit": "-",
+              "help": "Apply automatic irrigation",
+              "value": [
+                "No",
+                "Yes"
+              ]
+            },
+            "legume-share": {
+              "name": "Legume share",
+              "unit": "%",
+              "help": "Initial legume share of total DM",
+              "min": 1,
+              "max": 100,
+              "value": 20
+            }
+          },
+          "area": 0.5
+        },
+        "id": 1451658763687,
+        "to": [
+          1451658763690
+        ]
+      }
+    ],
+    [
+      {
+        "crop": {
           "name": "wheat",
           "isPerennial": false,
           "parameter": {
@@ -317,251 +506,16 @@
           },
           "area": 1
         },
-        "id": 1451648076571,
+        "id": 1451658763690,
         "to": [
-          1451655784266,
-          1451655786439
+          1451658763696
         ]
       }
     ],
     [
       {
         "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": "50",
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": "75"
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451655784266,
-        "to": [
-          1451648076593
-        ]
-      },
-      {
-        "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": "50",
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": "25"
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451655786439,
-        "to": [
-          1451655788002
-        ]
-      }
-    ],
-    [
-      {
-        "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": 80,
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": 20
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451648076593,
-        "to": [
-          1451648076604
-        ]
-      },
-      {
-        "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": 80,
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": 20
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451655788002,
-        "to": [
-          1451655789963
-        ]
-      }
-    ],
-    [
-      {
-        "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": 80,
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": 20
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451648076604,
-        "to": [
-          1451655798257
-        ]
-      },
-      {
-        "crop": {
-          "name": "grass-legume",
-          "isPerennial": true,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": 80,
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            },
-            "legume-share": {
-              "name": "Legume share",
-              "unit": "%",
-              "help": "Initial legume share of total DM",
-              "min": 1,
-              "max": 100,
-              "value": 20
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451655789963,
-        "to": [
-          1451655800031
-        ]
-      }
-    ],
-    [
-      {
-        "crop": {
-          "name": "wheat",
+          "name": "barley",
           "isPerennial": false,
           "parameter": {
             "N-input": {
@@ -582,51 +536,21 @@
               ]
             }
           },
-          "area": 0.5
+          "area": 1
         },
-        "id": 1451655800031,
+        "id": 1451658763696,
         "to": [
-          1451648076571
-        ]
-      },
-      {
-        "crop": {
-          "name": "wheat",
-          "isPerennial": false,
-          "parameter": {
-            "N-input": {
-              "name": "Nitrogen input",
-              "unit": "kg N / ha",
-              "help": "Average mineral or organic nitrogen fertilization",
-              "value": 80,
-              "min": 0,
-              "max": 200
-            },
-            "irrigation": {
-              "name": "Irrrigated",
-              "unit": "-",
-              "help": "Apply automatic irrigation",
-              "value": [
-                "No",
-                "Yes"
-              ]
-            }
-          },
-          "area": 0.5
-        },
-        "id": 1451655798257,
-        "to": [
-          1451648076571
+          1451658763667
         ]
       }
     ]
   ],
   "grassland": {
-    "grassland-area": 50,
+    "grassland-area": 100,
     "grassland-legume-share": 20,
     "cut-threshhold": 1500,
     "hay-share": 10,
-    "grassland-N-input": 80,
+    "grassland-N-input": 100,
     "pasture-share": 50,
     "time-at-pasture": 6,
     "grazing-start": 4,
@@ -634,7 +558,7 @@
   },
   "fertilizer": {},
   "simulation": {
-    "start-year": "1997",
+    "start-year": "2007",
     "time-step": "fortnight"
   }
 }
