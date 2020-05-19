@@ -3,7 +3,7 @@ SOLID-DSS
 
 Sustainable Organic and Low-Input Dairying - Decision Support System
 
-The application itself is available at https://zalf-lse.github.io/solid-dss/.
+The application itself is available at https://jvail.github.io/solid-dss/.
 
 The source code of all included libraries and models ([dairy.js](https://github.com/jvail/dairy.js), [crop.js](https://github.com/jvail/crop.js)) is hosted here: https://github.com/jvail  
 
